@@ -6,7 +6,18 @@
   <link rel="icon" type="image/webp" href="/logo.webp">
   <title>Garage Door Tips &amp; Local Guides | Noah Garage Doors Blog | San Diego</title>
   <meta name="description" content="Expert garage door tips, repair guides, and San Diego area service information from Noah Garage Doors. Spring replacement costs, opener troubleshooting, local city guides.">
-  <link rel="canonical" href="https://noahgaragedoors.com/blog/">
+  <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.noahgaragedoors.com/blog/">
+<meta property="og:title" content="Garage Door Tips &amp; Local Guides | Noah Garage Doors Blog | San Diego">
+<meta property="og:description" content="Expert garage door tips, repair guides, and San Diego area service information from Noah Garage Doors. Spring replacement costs, opener troubleshooting, local city guides.">
+<meta property="og:image" content="https://www.noahgaragedoors.com/hero_final.jpg">
+<meta property="og:site_name" content="Noah Garage Doors">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Garage Door Tips &amp; Local Guides | Noah Garage Doors Blog">
+<meta name="twitter:description" content="Expert garage door repair guides and San Diego area service info from Noah Garage Doors.">
+<meta name="twitter:image" content="https://www.noahgaragedoors.com/hero_final.jpg">
+  <link rel="canonical" href="https://www.noahgaragedoors.com/blog/">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script type="application/ld+json">
@@ -19,6 +30,16 @@
     "publisher": {"@type": "Organization", "name": "Noah Garage Doors", "logo": {"@type": "ImageObject", "url": "https://noahgaragedoors.com/logo.webp"}}
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.noahgaragedoors.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.noahgaragedoors.com/blog/"}
+  ]
+}
+</script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0a0a0a; color: #e0e0e0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -41,14 +62,17 @@
 
     .blog-grid-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
     .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #555; margin: 56px 0 24px; }
-    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-    .blog-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px; text-decoration: none; display: block; transition: border-color 0.2s, transform 0.2s; }
-    .blog-card:hover { border-color: rgba(37,99,235,0.35); transform: translateY(-2px); }
-    .card-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #2563EB; margin-bottom: 12px; }
-    .card-title { font-size: 19px; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 10px; }
-    .card-desc { font-size: 14px; color: #888; line-height: 1.6; margin-bottom: 16px; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .blog-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; text-decoration: none; display: block; transition: border-color 0.2s, transform 0.2s; }
+    .blog-card:hover { border-color: rgba(37,99,235,0.35); transform: translateY(-3px); }
+    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card-img-placeholder { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    .card-body { padding: 22px; }
+    .card-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #2563EB; margin-bottom: 10px; }
+    .card-title { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 8px; }
+    .card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 16px; }
     .card-meta { display: flex; align-items: center; gap: 12px; }
-    .card-date { font-size: 12px; color: #555; }
+    .card-date { font-size: 11px; color: #555; }
     .card-read { font-size: 12px; font-weight: 600; color: #2563EB; margin-left: auto; }
 
     .cta-strip { background: linear-gradient(135deg, #0f1f4a 0%, #1a2d6e 50%, #0f1f4a 100%); border: 1px solid rgba(37,99,235,0.2); border-radius: 20px; padding: 48px 40px; text-align: center; margin: 48px 0; }
@@ -69,14 +93,14 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-brand">
-        <img src="/logo.webp" alt="Noah Garage Doors logo">
+        <img src="/logo.png" alt="Noah Garage Doors logo" style="width:80px;height:80px;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
         <div>
-          <div class="nav-brand-text">NOAH<br><span style="font-weight:700;font-size:11px;letter-spacing:0.15em;opacity:0.8">GARAGE DOORS</span></div>
-          <div class="nav-brand-sub">Fast. Reliable. Local.</div>
+          <div class="nav-brand-text">NOAH GARAGE DOORS</div>
+          <div class="nav-brand-sub" style="color:rgba(255,255,255,0.3);font-size:8px;letter-spacing:4px;">Fast. Reliable. Local.</div>
         </div>
       </a>
       <div class="nav-right">
-        <a href="tel:6195724266" class="nav-phone">&#9742; (619) 572-4266</a>
+        <a href="tel:6195724266" class="nav-phone" style="color:#fff;">&#9742; (619) 572-4266</a>
         <a href="/#quote" class="nav-cta">Free Estimate</a>
       </div>
     </div>
@@ -94,52 +118,52 @@
     <div class="blog-grid">
 
       <a href="/blog/garage-door-spring-replacement-san-diego.html" class="blog-card">
-        <div class="card-tag">Springs</div>
-        <div class="card-title">Garage Door Spring Replacement in San Diego: What It Costs and What to Expect</div>
-        <div class="card-desc">Loud bang this morning and the door won't move? Here's everything about spring replacement costs, the repair process, and why DIY is dangerous.</div>
-        <div class="card-meta">
-          <span class="card-date">May 15, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <img src="/blog/images/spring.webp" alt="Garage door spring replacement San Diego" class="card-img">
+        <div class="card-body">
+          <div class="card-tag">Springs</div>
+          <div class="card-title">Garage Door Spring Replacement in San Diego: What It Costs and What to Expect</div>
+          <div class="card-desc">Loud bang this morning and the door won't move? Here's everything about spring replacement costs, the repair process, and why DIY is dangerous.</div>
+          <div class="card-meta"><span class="card-date">May 15, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/garage-door-opener-repair-san-diego.html" class="blog-card">
-        <div class="card-tag">Openers</div>
-        <div class="card-title">Garage Door Opener Not Working? Here's What's Wrong</div>
-        <div class="card-desc">Sensors, circuit boards, gears, remotes: a breakdown of the most common opener symptoms and exactly what each one means.</div>
-        <div class="card-meta">
-          <span class="card-date">May 19, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg,#0f1f4a,#1a2d6e);">🔧</div>
+        <div class="card-body">
+          <div class="card-tag">Openers</div>
+          <div class="card-title">Garage Door Opener Not Working? Here's What's Wrong</div>
+          <div class="card-desc">Sensors, circuit boards, gears, remotes: a breakdown of the most common opener symptoms and exactly what each one means.</div>
+          <div class="card-meta"><span class="card-date">May 19, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/garage-door-off-track-repair-san-diego.html" class="blog-card">
-        <div class="card-tag">Off-Track</div>
-        <div class="card-title">Garage Door Off Track in San Diego: What to Do Right Now</div>
-        <div class="card-desc">Don't force it. Here's why doors jump the tracks, what the repair involves, and what it costs in San Diego.</div>
-        <div class="card-meta">
-          <span class="card-date">May 22, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg,#1a0f0f,#4a1a1a);">🚪</div>
+        <div class="card-body">
+          <div class="card-tag">Off-Track</div>
+          <div class="card-title">Garage Door Off Track in San Diego: What to Do Right Now</div>
+          <div class="card-desc">Don't force it. Here's why doors jump the tracks, what the repair involves, and what it costs in San Diego.</div>
+          <div class="card-meta"><span class="card-date">May 22, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/how-much-does-garage-door-repair-cost-san-diego.html" class="blog-card">
-        <div class="card-tag">Pricing</div>
-        <div class="card-title">How Much Does Garage Door Repair Cost in San Diego? (2026 Guide)</div>
-        <div class="card-desc">Honest price ranges for every type of garage door repair in San Diego County: springs, openers, cables, off-track, and full replacement.</div>
-        <div class="card-meta">
-          <span class="card-date">May 26, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg,#0f2a1a,#1a4a2a);">💰</div>
+        <div class="card-body">
+          <div class="card-tag">Pricing</div>
+          <div class="card-title">How Much Does Garage Door Repair Cost in San Diego? (2026 Guide)</div>
+          <div class="card-desc">Honest price ranges for every type of garage door repair in San Diego County: springs, openers, cables, off-track, and full replacement.</div>
+          <div class="card-meta"><span class="card-date">May 26, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/emergency-garage-door-repair-san-diego.html" class="blog-card">
-        <div class="card-tag">Emergency</div>
-        <div class="card-title">Emergency Garage Door Repair in San Diego: 24/7 Same-Day Service</div>
-        <div class="card-desc">Door stuck open at night? Car trapped inside? What to do in a garage door emergency and how fast we can reach you.</div>
-        <div class="card-meta">
-          <span class="card-date">May 15, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <img src="/blog/images/emergency.webp" alt="Emergency garage door repair San Diego" class="card-img">
+        <div class="card-body">
+          <div class="card-tag">Emergency</div>
+          <div class="card-title">Emergency Garage Door Repair in San Diego: 24/7 Same-Day Service</div>
+          <div class="card-desc">Door stuck open at night? Car trapped inside? What to do in a garage door emergency and how fast we can reach you.</div>
+          <div class="card-meta"><span class="card-date">May 15, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
@@ -149,32 +173,32 @@
     <div class="blog-grid">
 
       <a href="/blog/garage-door-repair-chula-vista.html" class="blog-card">
-        <div class="card-tag">Chula Vista</div>
-        <div class="card-title">Garage Door Repair in Chula Vista, CA</div>
-        <div class="card-desc">Same-day garage door service for Chula Vista homeowners. Springs, openers, cables, and full door replacement.</div>
-        <div class="card-meta">
-          <span class="card-date">May 15, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <img src="/blog/images/chula-vista.webp" alt="Garage door repair Chula Vista CA" class="card-img">
+        <div class="card-body">
+          <div class="card-tag">Chula Vista</div>
+          <div class="card-title">Garage Door Repair in Chula Vista, CA</div>
+          <div class="card-desc">Same-day garage door service for Chula Vista homeowners. Springs, openers, cables, and full door replacement.</div>
+          <div class="card-meta"><span class="card-date">May 15, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/garage-door-repair-el-cajon.html" class="blog-card">
-        <div class="card-tag">El Cajon</div>
-        <div class="card-title">Garage Door Repair in El Cajon, CA</div>
-        <div class="card-desc">El Cajon's inland heat puts extra stress on springs. Same-day service for East County homes. Honest pricing.</div>
-        <div class="card-meta">
-          <span class="card-date">May 29, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg,#1a1a0f,#3a3a1a);">🏠</div>
+        <div class="card-body">
+          <div class="card-tag">El Cajon</div>
+          <div class="card-title">Garage Door Repair in El Cajon, CA</div>
+          <div class="card-desc">El Cajon's inland heat puts extra stress on springs. Same-day service for East County homes. Honest pricing.</div>
+          <div class="card-meta"><span class="card-date">May 29, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
       <a href="/blog/garage-door-repair-oceanside.html" class="blog-card">
-        <div class="card-tag">Oceanside</div>
-        <div class="card-title">Garage Door Repair in Oceanside, CA</div>
-        <div class="card-desc">Coastal salt air accelerates hardware corrosion. Same-day service for Oceanside and North County homeowners.</div>
-        <div class="card-meta">
-          <span class="card-date">June 2, 2026</span>
-          <span class="card-read">Read &rarr;</span>
+        <div class="card-img-placeholder" style="background:linear-gradient(135deg,#0f1a2a,#1a2a3a);">🌊</div>
+        <div class="card-body">
+          <div class="card-tag">Oceanside</div>
+          <div class="card-title">Garage Door Repair in Oceanside, CA</div>
+          <div class="card-desc">Coastal salt air accelerates hardware corrosion. Same-day service for Oceanside and North County homeowners.</div>
+          <div class="card-meta"><span class="card-date">June 2, 2026</span><span class="card-read">Read &rarr;</span></div>
         </div>
       </a>
 
