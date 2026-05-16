@@ -1,0 +1,51 @@
+name: Publish SEO Article
+
+on:
+  # Runs every Monday and Thursday at 9am PT (17:00 UTC)
+  schedule:
+    - cron: "0 17 * * 1"   # Monday 9am PT
+    - cron: "0 17 * * 4"   # Thursday 9am PT
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Topic to generate (leave empty for auto)"
+        required: false
+        default: ""
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install google-generativeai
+
+      - name: Generate SEO article
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          cd noahgaragedoors
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            python generate_seo_article.py --topic "${{ github.event.inputs.topic }}"
+          else
+            python generate_seo_article.py --auto
+          fi
+
+      - name: Commit and push new article
+        run: |
+          git config --global user.name "SEO Bot"
+          git config --global user.email "bot@noahgaragedoors.com"
+          git add noahgaragedoors/blog/
+          git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
+          git push
+
+      # Vercel deploys automatically on push if the repo is connected to Vercel
+      # No extra step needed — Vercel Git integration handles it
