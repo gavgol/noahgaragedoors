@@ -35,7 +35,6 @@ jobs:
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
-          cd noahgaragedoors
           if [ -n "${{ github.event.inputs.topic }}" ]; then
             python generate_seo_article.py --topic "${{ github.event.inputs.topic }}"
           else
@@ -46,7 +45,7 @@ jobs:
         run: |
           git config --global user.name "SEO Bot"
           git config --global user.email "bot@noahgaragedoors.com"
-          git add noahgaragedoors/blog/
+          git add blog/
           git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
           git push
 
