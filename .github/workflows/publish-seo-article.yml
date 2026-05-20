@@ -13,6 +13,9 @@ on:
         required: false
         default: ""
 
+permissions:
+  contents: write
+
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
