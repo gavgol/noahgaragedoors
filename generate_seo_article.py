@@ -104,7 +104,7 @@ def get_next_topic():
 
 def generate_article(topic: dict, api_key: str) -> str:
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     prompt = ARTICLE_PROMPT.format(
         topic_title=topic["title"],
         topic_type=topic.get("type", "service"),
