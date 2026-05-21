@@ -50,45 +50,163 @@ COMPANY INFO:
 - Name: Noah Garage Doors
 - Phone: (619) 572-4266
 - Address: 1080 8th Ave, San Diego, CA 92101
-- Rating: 5.0 stars, 40 Google reviews
 - Key differentiators: Same-day service, lifetime spring warranty, locally owned, licensed & insured
 - Service area: All of San Diego County
 
 TOPIC: {topic_title}
 TYPE: {topic_type}
+SLUG: {slug}
 
-Write a complete, detailed HTML article. Requirements:
-1. Title tag: "{topic_title} | Noah Garage Doors" (include year 2026 for price guides)
-2. Meta description: ~155 characters, includes city name and phone
-3. Article body: 700-1000 words of genuinely useful content
-4. Include at least one price/cost table if relevant
-5. Include 3-4 FAQ items
-6. Include one CTA banner in the middle and one at the end
-7. Be specific to San Diego — mention neighborhoods, local climate factors, local context
-8. Write in a direct, authoritative, friendly tone (not marketing fluff)
-9. IMPORTANT: Never use em dashes (—) anywhere. Use periods, commas, colons, or semicolons instead.
+CONTENT REQUIREMENTS:
+1. Article body: 800-1100 words of genuinely useful content
+2. Include at least one price/cost table if relevant (use class="vs-table")
+3. Include 3-4 FAQ items using the faq-card divs shown below
+4. Include one CTA banner in the middle and one at the end (use cta-banner div)
+5. Be specific to San Diego: mention real neighborhoods, local climate factors
+6. Direct, authoritative, friendly tone. No marketing fluff.
+7. NEVER use em dashes. Use commas, colons, or periods instead.
+8. Use service-grid/service-card divs for lists of services when appropriate
 
-Return ONLY the complete HTML document, starting with <!DOCTYPE html>.
-Use this exact CSS/nav/footer structure as a template — just change the content:
+Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav, and footer. Only change: title, meta description, canonical URL, slug, JSON-LD schema, hero badge text, h1, and article body content.
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.noahgaragesd.com/blog/{slug}.html">
   <link rel="icon" type="image/webp" href="/logo.webp">
-  <title>[TITLE]</title>
-  <meta name="description" content="[META DESC]">
-  <link rel="canonical" href="https://noahgaragedoors.com/blog/[SLUG].html">
+  <title>[WRITE TITLE HERE] | Noah Garage Doors</title>
+  <meta name="description" content="[WRITE ~155 CHAR META DESC WITH CITY AND PHONE (619) 572-4266]">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.noahgaragesd.com/blog/{slug}.html">
+  <meta property="og:title" content="[SAME AS TITLE TAG]">
+  <meta property="og:description" content="[SAME AS META DESC]">
+  <meta property="og:image" content="https://www.noahgaragesd.com/og-image.jpg">
+  <meta property="og:site_name" content="Noah Garage Doors">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.noahgaragesd.com/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script type="application/ld+json">{{ Article schema }}</script>
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "[ARTICLE H1]",
+    "description": "[META DESC]",
+    "image": "https://www.noahgaragesd.com/og-image.jpg",
+    "author": {{"@type": "Person", "name": "Noah", "url": "https://www.noahgaragesd.com/about"}},
+    "publisher": {{"@type": "Organization", "name": "Noah Garage Doors", "logo": {{"@type": "ImageObject", "url": "https://www.noahgaragesd.com/logo.webp"}}}},
+    "datePublished": "2026-05-21",
+    "mainEntityOfPage": {{"@type": "WebPage", "@id": "https://www.noahgaragesd.com/blog/{slug}.html"}}
+  }}
+  </script>
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.noahgaragesd.com/"}},
+      {{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.noahgaragesd.com/blog/"}},
+      {{"@type": "ListItem", "position": 3, "name": "[ARTICLE TITLE SHORT]"}}
+    ]
+  }}
+  </script>
   <style>
-    [same CSS as other blog articles]
+    * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+    body {{ background: #0a0a0a; color: #e0e0e0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }}
+    .nav {{ background: #0a0a0a; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }}
+    .nav-inner {{ max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }}
+    .nav-brand {{ display: flex; align-items: center; gap: 12px; text-decoration: none; }}
+    .nav-brand img {{ width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }}
+    .nav-brand-text {{ font-weight: 900; color: #fff; text-transform: uppercase; font-size: 14px; letter-spacing: -0.02em; line-height: 1.1; }}
+    .nav-brand-sub {{ display: none; }}
+    .nav-phone {{ display: none; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }}
+    .nav-phone:hover {{ color: #2563EB; }}
+    .nav-cta {{ background: #2563EB; color: #fff; padding: 8px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 13px; transition: all 0.2s; white-space: nowrap; }}
+    .nav-cta:hover {{ background: #1D4ED8; transform: translateY(-1px); }}
+    .nav-right {{ display: flex; align-items: center; gap: 12px; }}
+    @media (min-width: 768px) {{ .nav-brand-text {{ font-size: 16px; letter-spacing: 1.5px; }} .nav-brand-sub {{ display: block; font-size: 8px; color: rgba(255,255,255,0.3); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; }} .nav-phone {{ display: flex; color: #fff; }} .nav-cta {{ padding: 10px 22px; font-size: 14px; }} .nav-right {{ gap: 20px; }} }}
+    .hero {{ background: linear-gradient(180deg, rgba(37,99,235,0.08) 0%, rgba(10,10,10,0) 60%); padding: 60px 24px 40px; text-align: center; }}
+    .hero-badge {{ display: inline-block; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.25); color: #2563EB; padding: 6px 18px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px; }}
+    .article-wrap {{ max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }}
+    .article-wrap h1 {{ font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: #ffffff; line-height: 1.15; margin-bottom: 32px; text-align: center; letter-spacing: -0.5px; }}
+    .article-wrap h2 {{ font-size: 26px; font-weight: 700; color: #ffffff; margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid rgba(37,99,235,0.3); }}
+    .article-wrap h3 {{ font-size: 20px; font-weight: 600; color: #2563EB; margin-top: 32px; margin-bottom: 12px; }}
+    .article-wrap p {{ margin-bottom: 18px; color: #c8c8c8; }}
+    .article-wrap strong {{ color: #ffffff; font-weight: 600; }}
+    .article-wrap a {{ color: #2563EB; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.3); transition: border-color 0.2s; }}
+    .article-wrap a:hover {{ border-bottom-color: #2563EB; }}
+    .article-wrap ul, .article-wrap ol {{ margin: 16px 0 24px 24px; color: #c8c8c8; }}
+    .article-wrap li {{ margin-bottom: 10px; padding-left: 4px; }}
+    .article-wrap li::marker {{ color: #2563EB; }}
+    .faq-card {{ background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 28px; margin-bottom: 16px; }}
+    .faq-q {{ color: #fff; font-weight: 600; display: block; margin-bottom: 8px; }}
+    .cta-banner {{ background: linear-gradient(135deg, #0f1f4a 0%, #1a2d6e 50%, #0f1f4a 100%); border: 1px solid rgba(37,99,235,0.2); border-radius: 16px; padding: 40px; text-align: center; margin: 48px 0; }}
+    .cta-banner h3 {{ color: #fff !important; font-size: 24px; margin-top: 0 !important; margin-bottom: 12px !important; }}
+    .cta-banner p {{ color: #a0a0a0; margin-bottom: 24px; }}
+    .cta-btn {{ display: inline-block; background: #2563EB; color: #fff !important; padding: 14px 36px; border-radius: 999px; text-decoration: none !important; font-weight: 700; font-size: 16px; border: none !important; transition: all 0.2s; margin: 0 8px; }}
+    .cta-btn:hover {{ background: #1D4ED8; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.3); }}
+    .cta-btn.outline {{ background: transparent; border: 2px solid rgba(255,255,255,0.2) !important; }}
+    .cta-btn.outline:hover {{ border-color: #2563EB !important; background: rgba(37,99,235,0.1); }}
+    .footer {{ background: #050505; border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 24px; text-align: center; color: #666; font-size: 14px; }}
+    .footer a {{ color: #2563EB; text-decoration: none; }}
+    .footer-areas {{ color: #555; margin-top: 12px; font-size: 13px; }}
+    .sources {{ margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: #666; }}
+    .sources a {{ color: #888; font-size: 13px; }}
+    .article-hero-img {{ width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; margin-bottom: 32px; }}
+    .service-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }}
+    .service-card {{ background: rgba(255,255,255,0.03); border: 1px solid rgba(37,99,235,0.15); border-radius: 12px; padding: 20px; }}
+    .service-card h4 {{ color: #fff; font-weight: 600; font-size: 15px; margin-bottom: 8px; }}
+    .service-card p {{ color: #999; font-size: 14px; margin-bottom: 0; line-height: 1.5; }}
+    .vs-table {{ width: 100%; border-collapse: collapse; margin: 24px 0; }}
+    .vs-table th {{ background: rgba(37,99,235,0.15); color: #fff; font-weight: 600; padding: 12px 16px; text-align: left; border: 1px solid rgba(37,99,235,0.2); }}
+    .vs-table td {{ padding: 12px 16px; border: 1px solid rgba(255,255,255,0.06); color: #c8c8c8; font-size: 15px; }}
+    .vs-table tr:nth-child(even) td {{ background: rgba(255,255,255,0.02); }}
+    @media (max-width: 640px) {{ .nav-phone {{ display: none; }} .article-wrap h2 {{ font-size: 22px; }} .cta-banner {{ padding: 28px 20px; }} .cta-btn {{ display: block; margin: 8px 0; }} .service-grid {{ grid-template-columns: 1fr; }} .vs-table {{ font-size: 14px; }} }}
   </style>
 </head>
 <body>
-  [nav, article content, footer]
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="/logo.png" alt="Noah Garage Doors logo" style="width:80px;height:80px;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
+        <div>
+          <div class="nav-brand-text">NOAH GARAGE DOORS</div>
+          <div class="nav-brand-sub" style="color:rgba(255,255,255,0.3);font-size:8px;letter-spacing:4px;">Fast. Reliable. Local.</div>
+        </div>
+      </a>
+      <div class="nav-right">
+        <a href="tel:6195724266" class="nav-phone">&#9742; (619) 572-4266</a>
+        <a href="/#quote" class="nav-cta">Free Estimate</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">[WRITE BADGE TEXT: e.g. "San Diego County - Same-Day Service"]</div>
+  </div>
+
+  <article class="article-wrap">
+    <h1>[WRITE H1 TITLE]</h1>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;color:#888;font-size:14px;justify-content:center;">
+      <div style="text-align:center;">
+        <strong style="color:#fff;">Noah</strong> &bull; Owner, Noah Garage Doors &bull; San Diego, CA
+      </div>
+    </div>
+
+    [ARTICLE CONTENT HERE - use h2, h3, p, ul, ol, service-grid, vs-table, cta-banner, faq-card as needed]
+
+    <div class="sources">
+      <p><strong>About Noah Garage Doors:</strong> Locally owned and operated, serving all of San Diego County. Located at 1080 8th Ave, San Diego, CA 92101. Call or text <a href="tel:6195724266">(619) 572-4266</a> or email <a href="mailto:Noahgaragedoors@gmail.com">Noahgaragedoors@gmail.com</a>.</p>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | 1080 8th Ave, San Diego, CA 92101</p>
+    <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
+  </footer>
 </body>
 </html>
 """
@@ -108,6 +226,7 @@ def generate_article(topic: dict, api_key: str) -> str:
     prompt = ARTICLE_PROMPT.format(
         topic_title=topic["title"],
         topic_type=topic.get("type", "service"),
+        slug=topic["slug"],
     )
     response = model.generate_content(prompt)
     return response.text
