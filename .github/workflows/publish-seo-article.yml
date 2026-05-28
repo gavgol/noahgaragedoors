@@ -49,5 +49,9 @@ jobs:
           git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
           git push
 
-      # Vercel deploys automatically on push if the repo is connected to Vercel
-      # No extra step needed — Vercel Git integration handles it
+      - name: Deploy to Vercel Production
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm install -g vercel
+          vercel --prod --token="$VERCEL_TOKEN" --yes
