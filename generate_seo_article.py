@@ -18,9 +18,9 @@ from datetime import datetime
 from pathlib import Path
 
 try:
-    import google.generativeai as genai
+    from google import genai
 except ImportError:
-    print("Install: pip install google-generativeai")
+    print("Install: pip install google-genai")
     sys.exit(1)
 
 BLOG_DIR = Path(__file__).parent / "blog"
@@ -221,14 +221,16 @@ def get_next_topic():
 
 
 def generate_article(topic: dict, api_key: str) -> str:
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-2.5-flash")
+    client = genai.Client(api_key=api_key)
     prompt = ARTICLE_PROMPT.format(
         topic_title=topic["title"],
         topic_type=topic.get("type", "service"),
         slug=topic["slug"],
     )
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt,
+    )
     return response.text
 
 
