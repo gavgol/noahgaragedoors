@@ -92,6 +92,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
   <meta property="og:description" content="[SAME AS META DESC]">
   <meta property="og:image" content="https://www.noahgaragesd.com/og-image.jpg">
   <meta property="og:site_name" content="Noah Garage Doors">
+  <meta property="article:published_time" content="{date_iso}T00:00:00Z">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://www.noahgaragesd.com/og-image.jpg">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +107,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     "image": "https://www.noahgaragesd.com/og-image.jpg",
     "author": {{"@type": "Person", "name": "Noah", "url": "https://www.noahgaragesd.com/about"}},
     "publisher": {{"@type": "Organization", "name": "Noah Garage Doors", "logo": {{"@type": "ImageObject", "url": "https://www.noahgaragesd.com/logo.webp"}}}},
-    "datePublished": "2026-05-21",
+    "datePublished": "{date_iso}",
     "mainEntityOfPage": {{"@type": "WebPage", "@id": "https://www.noahgaragesd.com/blog/{slug}.html"}}
   }}
   </script>
@@ -230,10 +231,12 @@ def get_next_topic():
 
 def generate_article(topic: dict, api_key: str) -> str:
     client = genai.Client(api_key=api_key)
+    date_iso = datetime.now().strftime("%Y-%m-%d")
     prompt = ARTICLE_PROMPT.format(
         topic_title=topic["title"],
         topic_type=topic.get("type", "service"),
         slug=topic["slug"],
+        date_iso=date_iso,
     )
     response = client.models.generate_content(
         model="gemini-2.5-flash",
