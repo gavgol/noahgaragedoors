@@ -71,15 +71,15 @@
     .blog-grid-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
     .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #555; margin: 56px 0 24px; }
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-    .blog-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; text-decoration: none; display: block; transition: border-color 0.2s, transform 0.2s; }
+    .blog-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: border-color 0.2s, transform 0.2s; }
     .blog-card:hover { border-color: rgba(37,99,235,0.35); transform: translateY(-3px); }
-    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
-    .card-img-placeholder { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
-    .card-body { padding: 22px; }
+    .card-img { width: 100%; height: 200px; object-fit: cover; display: block; flex-shrink: 0; }
+    .card-img-placeholder { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0; }
+    .card-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
     .card-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #2563EB; margin-bottom: 10px; }
     .card-title { font-size: 17px; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: 8px; }
-    .card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 16px; }
-    .card-meta { display: flex; align-items: center; gap: 12px; }
+    .card-desc { font-size: 13px; color: #777; line-height: 1.6; margin-bottom: 16px; flex: 1; }
+    .card-meta { display: flex; align-items: center; gap: 12px; margin-top: auto; }
     .card-date { font-size: 11px; color: #555; }
     .card-read { font-size: 12px; font-weight: 600; color: #2563EB; margin-left: auto; }
 
