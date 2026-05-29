@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.noahgaragedoors.com/sitemap.xml
+Sitemap: https://www.noahgaragesd.com/sitemap.xml
