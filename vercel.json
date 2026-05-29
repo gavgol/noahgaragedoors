@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "noahgaragesd.com" }],
+      "destination": "https://www.noahgaragesd.com/$1",
+      "permanent": true
+    }
+  ]
+}
