@@ -180,7 +180,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-brand">
-        <img src="/logo.png" alt="Noah Garage Doors logo" style="width:80px;height:80px;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
+        <img src="/logo.webp" alt="Noah Garage Doors logo" style="width:80px;height:80px;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
         <div>
           <div class="nav-brand-text">NOAH GARAGE DOORS</div>
           <div class="nav-brand-sub" style="color:rgba(255,255,255,0.3);font-size:8px;letter-spacing:4px;">Fast. Reliable. Local.</div>
@@ -216,6 +216,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | 1080 8th Ave, San Diego, CA 92101</p>
     <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
   </footer>
+  <script src="/cookie-consent.js" defer></script>
 </body>
 </html>
 """
