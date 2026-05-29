@@ -44,7 +44,7 @@ jobs:
       - name: Commit and push new article
         run: |
           git config --global user.name "SEO Bot"
-          git config --global user.email "bot@noahgaragedoors.com"
+          git config --global user.email "bot@noahgaragesd.com"
           git add blog/
           git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
           git push
