@@ -1,0 +1,31 @@
+name: Deploy to Production
+
+# Auto-deploy every push to main straight to Vercel production
+# (replaces the need to manually "Promote to Production" in the dashboard).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Never run two production deploys at once; newest push wins.
+concurrency:
+  group: vercel-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_DtG7MDZc4CZpjHLsPauTsGBA
+      VERCEL_PROJECT_ID: prj_qETiPQcZLYd2A4FNhqmprx21nRUe
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel production
+        run: vercel deploy --prod --yes --token="$VERCEL_TOKEN"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
