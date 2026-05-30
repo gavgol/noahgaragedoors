@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@1.17.0"></script>
+  <script src="https://unpkg.com/lucide@1.17.0" defer></script>
 
   <style>
     :root {
@@ -453,7 +453,7 @@
   </a>
 
   <script>
-    lucide.createIcons();
+    if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
 
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');

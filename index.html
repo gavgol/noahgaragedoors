@@ -42,7 +42,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/lucide@1.17.0"></script>
+    <script src="https://unpkg.com/lucide@1.17.0" defer></script>
 
     <script type="application/ld+json">
     {
@@ -75,6 +75,11 @@
       },
       "priceRange": "$$",
       "areaServed": ["San Diego","Oceanside","Carlsbad","Vista","San Marcos","Escondido","Encinitas","Del Mar","Poway","Chula Vista","El Cajon","Alpine","Bonita","Jamul"],
+      "sameAs": [
+        "https://www.instagram.com/noahgaragedoors_sd",
+        "https://www.youtube.com/@NoahGarageDoorSD",
+        "https://www.tiktok.com/@noahgaragedoorsd"
+      ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Garage Door Services",
@@ -626,8 +631,8 @@
                     Free Estimates, No Obligation
                 </div>
                 <h1 class="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] mb-5 text-white animate-blur-up delay-100 uppercase" style="text-shadow: 0 4px 24px rgba(0,0,0,0.8);">
-                    Garage Door Broken?<br>
-                    <span class="font-display" style="color:var(--brand-accent)">We Fix It Today!</span>
+                    San Diego Garage Door Repair<br>
+                    <span class="font-display" style="color:var(--brand-accent)">Broken? We Fix It Today!</span>
                 </h1>
                 <p class="text-[15px] md:text-xl text-white/90 font-light max-w-2xl mb-8 animate-blur-up delay-200" style="text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
                     Spring snapped? Door off-track? Opener dead?<br>
@@ -2079,7 +2084,7 @@
     </a>
 
     <script>
-        lucide.createIcons();
+        if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
         document.querySelectorAll('.faq-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 btn.querySelector('.faq-content').classList.toggle('hidden');
