@@ -50,7 +50,8 @@ COMPANY INFO:
 - Name: Noah Garage Doors
 - Phone: (619) 572-4266
 - Address: 1080 8th Ave, San Diego, CA 92101
-- Key differentiators: Same-day service, lifetime spring warranty, locally owned, licensed & insured
+- Key differentiators: Same-day service, lifetime spring warranty, locally owned, upfront honest pricing, experienced background-checked technicians
+- IMPORTANT: Do NOT claim the business is "licensed", "insured", or "bonded" — it does not hold those credentials yet. Never use those words.
 - Service area: All of San Diego County
 
 TOPIC: {topic_title}
