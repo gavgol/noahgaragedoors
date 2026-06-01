@@ -49,8 +49,16 @@ jobs:
           git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
           git push
 
-      # Going live is handled automatically by deploy-production.yml, which runs
-      # on every push to main with VERCEL_ORG_ID/VERCEL_PROJECT_ID set explicitly.
-      # The push above triggers it. (A duplicate `vercel --prod` here previously
-      # failed on 2026-05-28 — invalid token + no project linking since .vercel is
-      # gitignored — leaving an article committed but never deployed.)
+      # Deploy must happen here: the push above is made with the default
+      # GITHUB_TOKEN, and GitHub does NOT let such pushes trigger other workflows
+      # (e.g. deploy-production.yml). So this workflow deploys to production itself,
+      # using the exact same proven setup as deploy-production.yml (explicit
+      # VERCEL_ORG_ID/VERCEL_PROJECT_ID + valid VERCEL_TOKEN).
+      - name: Deploy to Vercel production
+        env:
+          VERCEL_ORG_ID: team_DtG7MDZc4CZpjHLsPauTsGBA
+          VERCEL_PROJECT_ID: prj_qETiPQcZLYd2A4FNhqmprx21nRUe
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm install -g vercel@latest
+          vercel deploy --prod --yes --token="$VERCEL_TOKEN"
