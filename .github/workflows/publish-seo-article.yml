@@ -49,9 +49,8 @@ jobs:
           git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
           git push
 
-      - name: Deploy to Vercel Production
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          npm install -g vercel
-          vercel --prod --token="$VERCEL_TOKEN" --yes
+      # Going live is handled automatically by deploy-production.yml, which runs
+      # on every push to main with VERCEL_ORG_ID/VERCEL_PROJECT_ID set explicitly.
+      # The push above triggers it. (A duplicate `vercel --prod` here previously
+      # failed on 2026-05-28 — invalid token + no project linking since .vercel is
+      # gitignored — leaving an article committed but never deployed.)
