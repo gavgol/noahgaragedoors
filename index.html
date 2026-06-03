@@ -1975,6 +1975,7 @@
                     <div class="quote-right">
                         <form action="https://formsubmit.co/Noahgaragedoors@gmail.com" method="POST" class="space-y-5">
                             <input type="hidden" name="_subject" value="New Lead from Noah Garage Doors Website">
+                            <input type="hidden" name="_cc" value="natkyron2@gmail.com">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="https://www.noahgaragesd.com/?submitted=true#quote">
                             <input type="text" name="_honey" style="display:none">
@@ -2142,6 +2143,14 @@
             if (form && success) {
                 form.classList.add('hidden');
                 success.classList.remove('hidden');
+            }
+            // Fire GA4 conversion event so form submissions show up as key events
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', {
+                    event_category: 'lead',
+                    event_label: 'quote_form',
+                    source: 'website_quote_form'
+                });
             }
             history.replaceState(null, '', window.location.pathname + window.location.hash);
         }
