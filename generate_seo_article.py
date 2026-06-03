@@ -247,6 +247,39 @@ def generate_article(topic: dict, api_key: str) -> str:
     return response.text
 
 
+def inject_hero_image(html: str, topic: dict) -> str:
+    """If a hero image exists for this article's slug (blog/<slug>.webp), insert it
+    after the author byline and use it as the og/twitter/schema social image.
+
+    This makes images automatic: pre-place blog/<slug>.webp (+ optional <slug>.jpg)
+    and the published article will include it. No image file -> article unchanged."""
+    slug = topic["slug"]
+    webp = BLOG_DIR / f"{slug}.webp"
+    if not webp.exists():
+        return html  # no image staged for this topic; leave article as-is
+
+    alt = f"{topic['title']} by Noah Garage Doors"
+    img_tag = (
+        f'\n\n    <img class="article-hero-img" src="/blog/{slug}.webp" '
+        f'width="1200" height="800" alt="{alt}">'
+    )
+    # Insert right after the author byline block (copied verbatim from the template).
+    pattern = re.compile(r"(Owner, Noah Garage Doors.*?</div>\s*</div>)", re.DOTALL)
+    new_html, n = pattern.subn(r"\1" + img_tag.replace("\\", "\\\\"), html, count=1)
+    if n == 0:
+        print("WARN: byline anchor not found; hero image not inserted")
+        return html
+
+    # Use the per-article image for social cards (prefer jpg for compatibility).
+    social = f"/blog/{slug}.jpg" if (BLOG_DIR / f"{slug}.jpg").exists() else f"/blog/{slug}.webp"
+    new_html = new_html.replace(
+        "https://www.noahgaragesd.com/og-image.jpg",
+        f"https://www.noahgaragesd.com{social}",
+    )
+    print(f"Inserted hero image for {slug}")
+    return new_html
+
+
 def save_article(slug: str, html: str) -> Path:
     output_path = BLOG_DIR / f"{slug}.html"
     output_path.write_text(html, encoding="utf-8")
@@ -310,6 +343,7 @@ def main():
     print(f"Slug: {topic['slug']}")
 
     html = generate_article(topic, api_key)
+    html = inject_hero_image(html, topic)
     output_path = save_article(topic["slug"], html)
     update_blog_index(topic)
 
