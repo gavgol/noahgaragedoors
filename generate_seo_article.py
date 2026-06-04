@@ -69,6 +69,7 @@ CONTENT REQUIREMENTS:
 6. Direct, authoritative, friendly tone. No marketing fluff.
 7. NEVER use em dashes. Use commas, colons, or periods instead.
 8. Use service-grid/service-card divs for lists of services when appropriate
+9. INTERNAL LINKS: Within the body, naturally link 2-3 relevant phrases to these service pages (use the exact href, descriptive anchor text, NOT "click here"): /garage-door-springs/ , /garage-door-openers/ , /garage-door-off-track-repair/ , /garage-door-cable-repair/ , /garage-door-maintenance/ , /new-garage-door/ , /emergency-garage-door-repair/ . Example: <a href="/garage-door-springs/">broken garage door spring</a>. Only link phrases that genuinely match the service.
 
 Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav, and footer. Only change: title, meta description, canonical URL, slug, JSON-LD schema, hero badge text, h1, and article body content.
 
@@ -183,7 +184,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-brand">
-        <img src="/logo.webp" alt="Noah Garage Doors logo" style="width:80px;height:80px;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
+        <img src="/logo.webp" alt="Noah Garage Doors logo" style="height:42px;width:auto;object-fit:contain;border-radius:0;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
         <div>
           <div class="nav-brand-text">NOAH GARAGE DOORS</div>
           <div class="nav-brand-sub" style="color:rgba(255,255,255,0.3);font-size:8px;letter-spacing:4px;">Fast. Reliable. Local.</div>
@@ -209,6 +210,19 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     </div>
 
     [ARTICLE CONTENT HERE - use h2, h3, p, ul, ol, service-grid, vs-table, cta-banner, faq-card as needed]
+
+    <div style="margin:40px 0;padding:28px 32px;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
+      <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;">Our Garage Door Services in San Diego</h3>
+      <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+        <li><a href="/garage-door-springs/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Spring Repair &amp; Replacement</a></li>
+        <li><a href="/garage-door-openers/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Garage Door Opener Repair</a></li>
+        <li><a href="/garage-door-off-track-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Off-Track Door Repair</a></li>
+        <li><a href="/garage-door-cable-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Cable Repair</a></li>
+        <li><a href="/garage-door-maintenance/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Maintenance &amp; Tune-Up</a></li>
+        <li><a href="/new-garage-door/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; New Garage Door Installation</a></li>
+        <li><a href="/emergency-garage-door-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; 24/7 Emergency Repair</a></li>
+      </ul>
+    </div>
 
     <div class="sources">
       <p><strong>About Noah Garage Doors:</strong> Locally owned and operated, serving all of San Diego County. Located at 1080 8th Ave, San Diego, CA 92101. Call or text <a href="tel:6195724266">(619) 572-4266</a> or email <a href="mailto:Noahgaragedoors@gmail.com">Noahgaragedoors@gmail.com</a>.</p>
@@ -246,7 +260,17 @@ def generate_article(topic: dict, api_key: str) -> str:
         model="gemini-2.5-flash",
         contents=prompt,
     )
-    return response.text
+    return strip_code_fences(response.text)
+
+
+def strip_code_fences(html: str) -> str:
+    """Remove a leading ```html / ``` fence and trailing ``` fence that the model
+    sometimes wraps around the document (the Santee article shipped with a visible
+    ```html line above <!DOCTYPE>). Returns clean HTML starting at <!DOCTYPE."""
+    s = html.strip()
+    s = re.sub(r"^```[a-zA-Z]*\s*\n", "", s)  # opening fence
+    s = re.sub(r"\n```\s*$", "", s)            # closing fence
+    return s.strip() + "\n"
 
 
 def inject_hero_image(html: str, topic: dict) -> str:
@@ -288,22 +312,44 @@ def save_article(slug: str, html: str) -> Path:
     return output_path
 
 
-def update_blog_index(topic: dict):
+def update_blog_index(topic: dict, html: str = ""):
     index_path = BLOG_DIR / "index.html"
     if not index_path.exists():
         return
 
     date_str = datetime.now().strftime("%B %-d, %Y") if sys.platform != "win32" else datetime.now().strftime("%B %d, %Y").replace(" 0", " ")
     tag = topic.get("city", topic.get("type", "Guide").title())
+    slug = topic["slug"]
+
+    # Unique card description: pull the article's own meta description (never duplicate).
+    desc = ""
+    m = re.search(r'<meta name="description" content="([^"]+)"', html or "")
+    if m:
+        desc = m.group(1).strip()
+    if not desc:
+        city = topic.get("city")
+        desc = (f"Same-day garage door repair for {city} homeowners: springs, openers, cables, and off-track doors. Honest upfront pricing."
+                if city else f"{topic['title']}: expert guidance from Noah Garage Doors. Same-day service across San Diego County, honest pricing.")
+
+    # Card image: use per-slug image if it was staged, else a placeholder tile.
+    if (BLOG_DIR / f"{slug}.jpg").exists():
+        img_html = f'<img src="/blog/{slug}.jpg" alt="{topic["title"]}" class="card-img">'
+    elif (BLOG_DIR / f"{slug}.webp").exists():
+        img_html = f'<img src="/blog/{slug}.webp" alt="{topic["title"]}" class="card-img">'
+    else:
+        img_html = '<div class="card-img-placeholder">&#128679;</div>'
 
     new_card = f"""
-      <a href="/blog/{topic['slug']}.html" class="blog-card">
-        <div class="card-tag">{tag}</div>
-        <div class="card-title">{topic['title']}</div>
-        <div class="card-desc">Expert garage door information for San Diego County homeowners. Same-day service, honest pricing.</div>
-        <div class="card-meta">
-          <span class="card-date">{date_str}</span>
-          <span class="card-read">Read &rarr;</span>
+      <a href="/blog/{slug}.html" class="blog-card">
+        {img_html}
+        <div class="card-body">
+          <div class="card-tag">{tag}</div>
+          <div class="card-title">{topic['title']}</div>
+          <div class="card-desc">{desc}</div>
+          <div class="card-meta">
+            <span class="card-date">{date_str}</span>
+            <span class="card-read">Read &rarr;</span>
+          </div>
         </div>
       </a>"""
 
@@ -347,7 +393,7 @@ def main():
     html = generate_article(topic, api_key)
     html = inject_hero_image(html, topic)
     output_path = save_article(topic["slug"], html)
-    update_blog_index(topic)
+    update_blog_index(topic, html)
 
     print(f"Saved: {output_path}")
     print(f"Preview: http://localhost:3000/blog/{topic['slug']}.html")
