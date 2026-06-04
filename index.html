@@ -2154,6 +2154,19 @@
             }
             history.replaceState(null, '', window.location.pathname + window.location.hash);
         }
+
+        // Track phone-number clicks as a GA4 conversion (many leads call instead of filling the form)
+        document.addEventListener('click', function (e) {
+            var telLink = e.target.closest('a[href^="tel:"]');
+            if (telLink && typeof gtag === 'function') {
+                gtag('event', 'phone_call', {
+                    event_category: 'lead',
+                    event_label: 'phone_click',
+                    phone_number: telLink.getAttribute('href').replace('tel:', ''),
+                    source: 'website_phone_click'
+                });
+            }
+        });
     </script>
 
     <script>
