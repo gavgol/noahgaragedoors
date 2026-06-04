@@ -48,7 +48,9 @@ ARTICLE_PROMPT = """You are writing a high-quality, locally-focused SEO blog art
 
 COMPANY INFO:
 - Name: Noah Garage Doors
-- Phone: (619) 572-4266
+- Phone: (619) 572-4266 (this is the ONLY phone number; never invent another)
+- Email: Noahgaragedoors@gmail.com (this is the ONLY email; NEVER write info@noahgaragesd.com or any other address)
+- Hours: Open 24/7. We work around the clock, every day. If you mention availability, say "24/7", "round-the-clock", or "same-day". NEVER state limited or specific business hours (e.g. do NOT write "7am to 9pm", "Mon-Fri", or any opening/closing time) — that would contradict the rest of the site.
 - Address: 1080 8th Ave, San Diego, CA 92101
 - Key differentiators: Same-day service, lifetime spring warranty, locally owned, upfront honest pricing, experienced background-checked technicians
 - IMPORTANT: Do NOT claim the business is "licensed", "insured", or "bonded" — it does not hold those credentials yet. Never use those words.
