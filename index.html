@@ -1995,6 +1995,7 @@
                             <input type="hidden" name="_cc" value="natkyron2@gmail.com">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="https://www.noahgaragesd.com/?submitted=true#quote">
+                            <input type="hidden" name="lead_source" id="leadSource" value="">
                             <input type="text" name="_honey" style="display:none">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="space-y-1.5">
@@ -2192,6 +2193,28 @@
                 fbq('track', 'Lead', { content_name: 'phone_click' });
             }
         });
+
+        // Capture where each lead came from (UTM or referrer) into the hidden field
+        (function () {
+            var srcEl = document.getElementById('leadSource');
+            if (!srcEl) return;
+            var params = new URLSearchParams(window.location.search);
+            var utmSource = params.get('utm_source');
+            var utmCampaign = params.get('utm_campaign');
+            var source;
+            if (utmSource) {
+                source = utmSource + (utmCampaign ? ' / ' + utmCampaign : '');
+            } else if (document.referrer) {
+                var ref = document.referrer;
+                if (/facebook|fb\.|instagram/i.test(ref)) source = 'Facebook/Instagram';
+                else if (/google/i.test(ref)) source = 'Google';
+                else if (/bing|yahoo|duckduckgo/i.test(ref)) source = 'Other search';
+                else source = ref;
+            } else {
+                source = 'Direct';
+            }
+            srcEl.value = source;
+        })();
     </script>
 
     <script>
