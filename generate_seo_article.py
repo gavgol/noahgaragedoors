@@ -256,11 +256,33 @@ def generate_article(topic: dict, api_key: str) -> str:
         slug=topic["slug"],
         date_iso=date_iso,
     )
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-    )
+    response = _generate_with_retry(client, prompt)
     return strip_code_fences(response.text)
+
+
+def _generate_with_retry(client, prompt, attempts: int = 5):
+    """Call Gemini, retrying transient overloads. The model occasionally returns
+    503 UNAVAILABLE ('high demand') — especially on the free tier, which is
+    deprioritized during spikes. Retry with exponential backoff so a temporary
+    spike doesn't fail the whole scheduled run (this killed the 2026-06-08 run)."""
+    import time
+    from google.genai import errors as genai_errors
+
+    delay = 20  # seconds; 20 -> 40 -> 80 -> 160
+    for attempt in range(1, attempts + 1):
+        try:
+            return client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt,
+            )
+        except genai_errors.ServerError as e:
+            # 503/500/overload are transient; retry. Other errors: re-raise.
+            if attempt == attempts:
+                raise
+            print(f"Gemini transient error (attempt {attempt}/{attempts}): {e}. "
+                  f"Retrying in {delay}s...")
+            time.sleep(delay)
+            delay *= 2
 
 
 def strip_code_fences(html: str) -> str:
