@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Vercel CLI
-        run: npm install -g vercel@latest
+        run: npm install -g vercel@50
 
       - name: Deploy to Vercel production
         run: vercel deploy --prod --yes --token="$VERCEL_TOKEN"

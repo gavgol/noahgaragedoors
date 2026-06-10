@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   generate-and-deploy:
@@ -29,36 +30,42 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install google-genai
+        run: pip install "google-genai==1.47.0"
 
       - name: Generate SEO article
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          REQUESTED_TOPIC: ${{ github.event.inputs.topic }}
         run: |
-          if [ -n "${{ github.event.inputs.topic }}" ]; then
-            python generate_seo_article.py --topic "${{ github.event.inputs.topic }}"
+          if [ -n "$REQUESTED_TOPIC" ]; then
+            python generate_seo_article.py --topic "$REQUESTED_TOPIC"
           else
             python generate_seo_article.py --auto
           fi
 
-      - name: Commit and push new article
+      - name: Validate generated files
+        run: |
+          python -m py_compile generate_seo_article.py
+          test -f sitemap.xml
+          ! git diff -- blog/ sitemap.xml | grep -Eiq '<script|javascript:|onerror=|onload='
+
+      - name: Open review pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config --global user.name "SEO Bot"
           git config --global user.email "bot@noahgaragesd.com"
-          git add blog/
-          git diff --staged --quiet || git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
-          git push
-
-      # Deploy must happen here: the push above is made with the default
-      # GITHUB_TOKEN, and GitHub does NOT let such pushes trigger other workflows
-      # (e.g. deploy-production.yml). So this workflow deploys to production itself,
-      # using the exact same proven setup as deploy-production.yml (explicit
-      # VERCEL_ORG_ID/VERCEL_PROJECT_ID + valid VERCEL_TOKEN).
-      - name: Deploy to Vercel production
-        env:
-          VERCEL_ORG_ID: team_DtG7MDZc4CZpjHLsPauTsGBA
-          VERCEL_PROJECT_ID: prj_qETiPQcZLYd2A4FNhqmprx21nRUe
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          npm install -g vercel@latest
-          vercel deploy --prod --yes --token="$VERCEL_TOKEN"
+          BRANCH="seo-review/$(date +%Y%m%d)-${GITHUB_RUN_ID}"
+          git switch -c "$BRANCH"
+          git add blog/ sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No article changes generated."
+            exit 0
+          fi
+          git commit -m "feat(seo): generate article for editorial review"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --title "SEO article: editorial review required" \
+            --body "Automated draft. Verify every factual, licensing, warranty, review, and service claim before merging." \
+            --base main \
+            --head "$BRANCH"

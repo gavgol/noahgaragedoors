@@ -28,10 +28,10 @@ jobs:
             fi
           }
 
-          check 'formsubmit.co/Noahgaragedoors@gmail.com' 'Form posts to FormSubmit (owner email)'
+          check 'id="quoteForm"'                           'Lead form present'
           check 'name="name"'                              'Name field present'
           check 'name="phone"'                             'Phone field present'
-          check 'submitted=true'                           'Thank-you redirect logic present'
+          check 'formSuccess'                              'Thank-you state present'
           check 'G-HPY4V3C8T5'                             'GA4 tag present'
           check '1708916410247553'                         'Meta Pixel present'
 
