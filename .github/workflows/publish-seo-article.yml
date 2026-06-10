@@ -49,23 +49,48 @@ jobs:
           test -f sitemap.xml
           ! git diff -- blog/ sitemap.xml | grep -Eiq '<script|javascript:|onerror=|onload='
 
-      - name: Open review pull request
+      # Auto-publish clean articles; escalate risky ones to a review PR.
+      # A "risky" article mentions claims we cannot substantiate (licensing,
+      # insurance, warranty, background checks, star ratings, reviews) — those
+      # never auto-publish. Everything else deploys straight to production.
+      - name: Publish or escalate (claim guard)
         env:
           GH_TOKEN: ${{ github.token }}
+          VERCEL_ORG_ID: team_DtG7MDZc4CZpjHLsPauTsGBA
+          VERCEL_PROJECT_ID: prj_qETiPQcZLYd2A4FNhqmprx21nRUe
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
           git config --global user.name "SEO Bot"
           git config --global user.email "bot@noahgaragesd.com"
-          BRANCH="seo-review/$(date +%Y%m%d)-${GITHUB_RUN_ID}"
-          git switch -c "$BRANCH"
-          git add blog/ sitemap.xml
-          if git diff --staged --quiet; then
+
+          # Nothing generated? exit cleanly.
+          if git diff --quiet -- blog/ sitemap.xml; then
             echo "No article changes generated."
             exit 0
           fi
-          git commit -m "feat(seo): generate article for editorial review"
-          git push --set-upstream origin "$BRANCH"
-          gh pr create \
-            --title "SEO article: editorial review required" \
-            --body "Automated draft. Verify every factual, licensing, warranty, review, and service claim before merging." \
-            --base main \
-            --head "$BRANCH"
+
+          # Claim guard: scan ADDED lines for unverifiable marketing claims.
+          CLAIM_RE='licens|insur|bonded|background.?check|warrant|guarantee|certif|[0-9]+[ -]?star|five[ -]?star|\breviews\b|\brated\b'
+          if git diff -- blog/ sitemap.xml | grep -E '^\+' | grep -Eiq "$CLAIM_RE"; then
+            echo "::warning::Claim guard tripped — opening a review PR instead of auto-publishing."
+            BRANCH="seo-review/$(date +%Y%m%d)-${GITHUB_RUN_ID}"
+            git switch -c "$BRANCH"
+            git add blog/ sitemap.xml
+            git commit -m "feat(seo): article needs editorial review (claim guard)"
+            git push --set-upstream origin "$BRANCH"
+            gh pr create \
+              --title "SEO article: editorial review required (claim guard tripped)" \
+              --body "Automated draft flagged by the claim guard (licensing / insurance / warranty / background-check / reviews / star ratings). Verify every claim, then merge to publish." \
+              --base main \
+              --head "$BRANCH"
+            exit 0
+          fi
+
+          # Clean article -> commit to main and deploy in-workflow.
+          # (A bot push uses GITHUB_TOKEN, which can't trigger deploy-production.yml,
+          # so this job deploys to production itself.)
+          git add blog/ sitemap.xml
+          git commit -m "feat(seo): auto-publish new blog article [$(date +%Y-%m-%d)]"
+          git push
+          npm install -g vercel@50
+          vercel deploy --prod --yes --token="$VERCEL_TOKEN"
