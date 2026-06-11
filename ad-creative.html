@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --blue:#2563EB; --blue-d:#1D4ED8; --amber:#F59E0B; --amber-d:#D97706;
+    --bg:#0A0A0F; --text:#FFFFFF;
+  }
+  body{ font-family:'Inter',sans-serif; }
+  .ad{
+    width:1080px; height:1080px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; display:flex; flex-direction:column;
+  }
+  /* top bar */
+  .top{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:30px 44px 24px;
+  }
+  .brand{ display:flex; align-items:center; gap:14px; }
+  .logo{
+    width:54px; height:54px; border-radius:12px;
+    background:linear-gradient(135deg,var(--blue),var(--blue-d));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:26px; box-shadow:0 0 26px rgba(37,99,235,.45);
+  }
+  .brand-name{ font-weight:800; font-size:24px; letter-spacing:.3px; line-height:1.05; }
+  .brand-name span{ display:block; font-weight:600; font-size:14px; color:#9CA3AF; letter-spacing:2px; }
+  .phone{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    padding:12px 20px; border-radius:14px; font-weight:800; font-size:24px;
+  }
+  .phone b{ color:var(--amber); }
+  /* headline */
+  .head{ padding:6px 44px 22px; }
+  .head h1{ font-weight:900; font-size:60px; line-height:.98; letter-spacing:-1px; }
+  .head h1 em{ color:var(--amber); font-style:normal; }
+  /* images */
+  .imgs{ flex:1; display:flex; gap:8px; padding:0 16px; }
+  .col{ flex:1; position:relative; border-radius:18px; overflow:hidden; }
+  .col img{ width:100%; height:100%; object-fit:cover; object-position:center 60%; }
+  .badge{
+    position:absolute; top:18px; left:18px; padding:9px 20px; border-radius:30px;
+    font-weight:900; font-size:22px; letter-spacing:1px; color:#fff;
+  }
+  .b-before{ background:#dc2626; box-shadow:0 6px 20px rgba(220,38,38,.5); }
+  .b-after{ background:#16a34a; box-shadow:0 6px 20px rgba(22,163,74,.5); }
+  /* offer strip */
+  .offer{
+    display:flex; align-items:stretch; gap:0; margin:18px 16px 0;
+    border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.1);
+  }
+  .offer .cell{
+    flex:1; text-align:center; padding:16px 8px; background:rgba(255,255,255,.04);
+    font-weight:800; font-size:20px;
+  }
+  .offer .cell small{ display:block; font-weight:600; font-size:13px; color:#9CA3AF; margin-top:3px; letter-spacing:1px; }
+  .offer .cell.deal{ background:var(--amber); color:#0A0A0F; }
+  .offer .cell.deal small{ color:#7c4a06; }
+  /* cta */
+  .cta-row{ display:flex; align-items:center; gap:18px; padding:20px 24px 26px; }
+  .cta{
+    flex:1; background:linear-gradient(135deg,var(--amber),var(--amber-d));
+    color:#0A0A0F; text-align:center; padding:22px; border-radius:16px;
+    font-weight:900; font-size:30px; letter-spacing:.3px;
+    box-shadow:0 0 34px rgba(245,158,11,.45);
+  }
+  .loc{ text-align:right; font-weight:700; font-size:18px; line-height:1.25; color:#E5E7EB; white-space:nowrap; }
+  .loc span{ color:var(--blue); }
+</style>
+</head>
+<body>
+  <div class="ad">
+    <div class="top">
+      <div class="brand">
+        <div class="logo">N</div>
+        <div class="brand-name">Noah Garage Doors<span>SAN DIEGO</span></div>
+      </div>
+      <div class="phone">📞 <b>(619) 572-4266</b></div>
+    </div>
+
+    <div class="head">
+      <h1>Garage Door <em>Broken or Stuck?</em><br>We Fix It — Same Day.</h1>
+    </div>
+
+    <div class="imgs">
+      <div class="col">
+        <span class="badge b-before">BEFORE</span>
+        <img src="NOAHGRAGEBEFOREAFTER/BEFORE17.jpeg" alt="before">
+      </div>
+      <div class="col">
+        <span class="badge b-after">AFTER</span>
+        <img src="NOAHGRAGEBEFOREAFTER/AFTER17.jpeg" alt="after">
+      </div>
+    </div>
+
+    <div class="offer">
+      <div class="cell deal">$50 OFF<small>ANY REPAIR</small></div>
+      <div class="cell">Same-Day<small>SERVICE</small></div>
+      <div class="cell">Free<small>ESTIMATE</small></div>
+    </div>
+
+    <div class="cta-row">
+      <div class="cta">Get a Free Quote →</div>
+      <div class="loc">Serving <span>All of</span><br>San Diego County</div>
+    </div>
+  </div>
+</body>
+</html>
