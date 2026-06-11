@@ -30,11 +30,20 @@
     <meta name="twitter:image" content="https://www.noahgaragesd.com/og-image.jpg">
 
     <link rel="stylesheet" href="/tailwind.css">
+
+    <!-- Preload the LCP hero image so it starts downloading immediately -->
+    <link rel="preload" as="image" href="hero_new.webp" imagesrcset="gallery/opt/hero_new-800.webp 800w, gallery/opt/hero_new-1200.webp 1200w, hero_new.webp 1672w" imagesizes="100vw" fetchpriority="high">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <!-- Load Google Fonts non-render-blocking (media=print swap), with a noscript fallback -->
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap">
+    </noscript>
     <script src="https://unpkg.com/lucide@1.17.0" defer></script>
 
     <script type="application/ld+json">
@@ -563,7 +572,7 @@
     <header class="md:sticky md:top-0 z-50 w-full px-6 md:px-8 py-0 glass border-b-0">
         <div class="max-w-7xl mx-auto flex items-center justify-between relative" style="min-height:76px;">
             <a href="/" class="flex items-center">
-                <img src="logo.webp" alt="Noah Garage Doors logo" class="nav-logo object-contain">
+                <img src="logo.webp" width="1135" height="564" alt="Noah Garage Doors logo" class="nav-logo object-contain">
             </a>
             <nav class="hidden md:flex items-center gap-7 text-[15px] font-medium text-white/70 absolute left-1/2" style="transform:translateX(-50%)">
                 <a href="#services" class="hover:text-white transition-colors">Services</a>
@@ -616,8 +625,11 @@
         <section class="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <picture>
-                    <source media="(max-width: 767px)" srcset="hero-mobile.jpg">
-                    <img src="hero_new.webp" alt="Noah Garage Doors technicians installing a glass garage door in San Diego, CA" class="w-full h-full object-cover" style="object-position: center 30%;">
+                    <source media="(max-width: 767px)" srcset="hero-mobile.jpg" width="941" height="1672">
+                    <img src="hero_new.webp"
+                        srcset="gallery/opt/hero_new-800.webp 800w, gallery/opt/hero_new-1200.webp 1200w, hero_new.webp 1672w"
+                        sizes="100vw" width="1672" height="941" fetchpriority="high"
+                        alt="Noah Garage Doors technicians installing a glass garage door in San Diego, CA" class="w-full h-full object-cover" style="object-position: center 30%;">
                 </picture>
                 <div class="absolute inset-0 hero-gradient"></div>
             </div>
@@ -1063,11 +1075,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-1">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE17.jpeg')">
-                                <img src="gallery/BEFORE17.jpeg" alt="Old garage door before replacement San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE17-400.webp" srcset="gallery/opt/BEFORE17-400.webp 400w, gallery/opt/BEFORE17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door before replacement San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER17.jpeg')">
-                                <img src="gallery/AFTER17.jpeg" alt="New garage door with windows installed San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER17-400.webp" srcset="gallery/opt/AFTER17-400.webp 400w, gallery/opt/AFTER17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door with windows installed San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1080,11 +1092,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-2">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE8.jpeg')">
-                                <img src="gallery/BEFORE8.jpeg" alt="Old LiftMaster Formula2 opener" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE8-400.webp" srcset="gallery/opt/BEFORE8-400.webp 400w, gallery/opt/BEFORE8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old LiftMaster Formula2 opener" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER8.jpeg')">
-                                <img src="gallery/AFTER8.jpeg" alt="New Chamberlain myQ smart opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER8-400.webp" srcset="gallery/opt/AFTER8-400.webp 400w, gallery/opt/AFTER8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New Chamberlain myQ smart opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1097,11 +1109,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-3">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE1.jpeg')">
-                                <img src="gallery/BEFORE1.jpeg" alt="Old worn garage door springs" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE1-400.webp" srcset="gallery/opt/BEFORE1-400.webp 400w, gallery/opt/BEFORE1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old worn garage door springs" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER1.jpeg')">
-                                <img src="gallery/AFTER1.jpeg" alt="New garage door springs installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER1-400.webp" srcset="gallery/opt/AFTER1-400.webp 400w, gallery/opt/AFTER1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door springs installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1114,11 +1126,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-4">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE14.jpeg')">
-                                <img src="gallery/BEFORE14.jpeg" alt="Old spring with orange tag on arched door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE14-400.webp" srcset="gallery/opt/BEFORE14-400.webp 400w, gallery/opt/BEFORE14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring with orange tag on arched door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER14.jpeg')">
-                                <img src="gallery/AFTER14.jpeg" alt="New spring on arched window garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER14-400.webp" srcset="gallery/opt/AFTER14-400.webp 400w, gallery/opt/AFTER14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on arched window garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1128,587 +1140,84 @@
                         </div>
                     </div>
 
+                    <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-1">
+                        <div class="grid grid-cols-2 h-56 md:h-64">
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE.jpeg')">
+                                <img src="gallery/opt/BEFORE-400.webp" srcset="gallery/opt/BEFORE-400.webp 400w, gallery/opt/BEFORE-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door opener before replacement" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
+                            </div>
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER.jpeg')">
+                                <img src="gallery/opt/AFTER-400.webp" srcset="gallery/opt/AFTER-400.webp 400w, gallery/opt/AFTER-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 border-t border-white/5">
+                            <p class="text-lg font-bold text-white">Opener Upgrade</p>
+                            <p class="text-sm text-white/40">San Diego, CA</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-2">
+                        <div class="grid grid-cols-2 h-56 md:h-64">
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE6.jpeg')">
+                                <img src="gallery/opt/BEFORE6-400.webp" srcset="gallery/opt/BEFORE6-400.webp 400w, gallery/opt/BEFORE6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Broken spring on windowed garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
+                            </div>
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER6.jpeg')">
+                                <img src="gallery/opt/AFTER6-400.webp" srcset="gallery/opt/AFTER6-400.webp 400w, gallery/opt/AFTER6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring installed on windowed door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 border-t border-white/5">
+                            <p class="text-lg font-bold text-white">Spring Repair on Windowed Door</p>
+                            <p class="text-sm text-white/40">San Diego, CA</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-3">
+                        <div class="grid grid-cols-2 h-56 md:h-64">
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE21.jpeg')">
+                                <img src="gallery/opt/BEFORE21-400.webp" srcset="gallery/opt/BEFORE21-400.webp 400w, gallery/opt/BEFORE21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old Chamberlain opener in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
+                            </div>
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER21.jpeg')">
+                                <img src="gallery/opt/AFTER21-400.webp" srcset="gallery/opt/AFTER21-400.webp 400w, gallery/opt/AFTER21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New opener installed in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 border-t border-white/5">
+                            <p class="text-lg font-bold text-white">Opener in Wooden Beam Garage</p>
+                            <p class="text-sm text-white/40">San Diego, CA</p>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-4">
+                        <div class="grid grid-cols-2 h-56 md:h-64">
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE19.jpeg')">
+                                <img src="gallery/opt/BEFORE19-400.webp" srcset="gallery/opt/BEFORE19-400.webp 400w, gallery/opt/BEFORE19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring on glass panel garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
+                            </div>
+                            <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER19.jpeg')">
+                                <img src="gallery/opt/AFTER19-400.webp" srcset="gallery/opt/AFTER19-400.webp 400w, gallery/opt/AFTER19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on glass garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-4 border-t border-white/5">
+                            <p class="text-lg font-bold text-white">Spring on Glass Panel Door</p>
+                            <p class="text-sm text-white/40">San Diego, CA</p>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="text-center reveal">
-                    <button id="openGalleryBtn" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
-                        View More Works <i data-lucide="images" class="w-5 h-5"></i>
-                    </button>
+                    <a href="/gallery/" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+                        View Full Gallery <i data-lucide="images" class="w-5 h-5"></i>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- FULL GALLERY MODAL -->
-        <div id="fullGalleryModal" class="fixed inset-0 z-[100] w-screen h-screen backdrop-blur-xl bg-black/80 hidden flex-col items-center justify-start opacity-0 transition-opacity duration-300 overflow-hidden">
-            <!-- Modal Content -->
-            <div class="w-full h-full max-w-6xl mx-auto bg-[#0a0a0a] md:rounded-t-[2.5rem] md:mt-10 overflow-hidden flex flex-col relative border border-white/10 shadow-2xl transform translate-y-10 transition-transform duration-300" id="fullGalleryModalInner">
-                <!-- Header -->
-                <div class="flex justify-between items-center p-6 md:p-8 bg-black/40 border-b border-white/10 z-20">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-black text-white">Full Job Gallery</h2>
-                        <p class="text-white/50 text-sm mt-1">27+ real jobs completed across San Diego County.</p>
-                    </div>
-                    <button id="closeGalleryBtn" class="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors flex-shrink-0 border border-white/5">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <!-- Scrollable Body -->
-                <div class="overflow-y-auto p-4 md:p-8 flex-1 custom-scrollbar">
-<!-- ─── DOOR INSTALLATIONS ─── -->
-                <div class="mb-16">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-1 h-8 rounded-full" style="background:#2563EB;"></div>
-                        <h3 class="text-xl md:text-2xl font-black text-white">Door Installations</h3>
-                        <span class="text-xs bg-white/10 text-white/50 px-3 py-1 rounded-full font-semibold">5 jobs</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE17.jpeg" alt="Old garage door before replacement San Diego" class="w-full h-full object-cover scale-[1.15] origin-[50%_75%] cursor-pointer" onclick="openLightbox(this.src)" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER17.jpeg" alt="New garage door with windows installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">New Door with Windows</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="relative h-52">
-                                <img src="gallery/NEWINSTALIONBLACKDOOR.jpeg" alt="New modern black garage door San Diego" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-blue-600 text-white px-2 py-0.5 rounded-full">New Install</span>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Modern Black Door</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="relative h-52">
-                                <img src="gallery/WHITEDOORINSTALIION.jpeg" alt="New white garage door installation San Diego" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-blue-600 text-white px-2 py-0.5 rounded-full">New Install</span>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">White Door Installation</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/WHITEDOORINSTALIION2.jpeg" alt="White garage door installed San Diego" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-blue-600 text-white px-2 py-0.5 rounded-full">Install</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/DOORINSTALION.jpeg" alt="Garage door installation San Diego" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-blue-600 text-white px-2 py-0.5 rounded-full">Install</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Door Installations</p>
-                                <p class="text-xs text-white/40">San Diego County</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- ─── OPENER REPLACEMENTS ─── -->
-                <div class="mb-16">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-1 h-8 rounded-full" style="background:#2563EB;"></div>
-                        <h3 class="text-xl md:text-2xl font-black text-white">Opener Replacements</h3>
-                        <span class="text-xs bg-white/10 text-white/50 px-3 py-1 rounded-full font-semibold">10 jobs</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE.jpeg" alt="Old garage door opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER.jpeg" alt="New garage door opener installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Opener Upgrade</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE8.jpeg" alt="Old LiftMaster Formula2 opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER8.jpeg" alt="New Chamberlain myQ smart opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">LiftMaster → Chamberlain myQ</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE10.jpeg" alt="Old Chamberlain opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER10.jpeg" alt="New LiftMaster opener installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Opener Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE11.jpeg" alt="Old LiftMaster Pro opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER11.jpeg" alt="New LiftMaster myQ smart opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">LiftMaster Pro → myQ</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE12.jpeg" alt="Very old LiftMaster opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER12.jpeg" alt="New Chamberlain opener installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Old Opener Replaced</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE18.jpeg" alt="Old LiftMaster Formula2 opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER18.jpeg" alt="New smart opener installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">LiftMaster Upgrade</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE20.jpeg" alt="Old opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER20.jpeg" alt="New Chamberlain smart opener" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Smart Opener Install</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE21.jpeg" alt="Old Chamberlain opener in wooden beam garage" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER21.jpeg" alt="New opener installed in wooden beam garage" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Opener Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE24a.jpeg" alt="Old Genie opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/BEFORE24b.jpeg" alt="New Chamberlain myQ installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Genie → Chamberlain myQ</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE27.jpeg" alt="Very old Craftsman opener before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER27.jpeg" alt="New opener installed replacing Craftsman" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Old Craftsman Replaced</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- ─── SPRING REPAIRS ─── -->
-                <div class="mb-8">
-                    <div class="flex items-center gap-3 mb-8">
-                        <div class="w-1 h-8 rounded-full" style="background:#2563EB;"></div>
-                        <h3 class="text-xl md:text-2xl font-black text-white">Spring Repairs</h3>
-                        <span class="text-xs bg-white/10 text-white/50 px-3 py-1 rounded-full font-semibold">17 jobs</span>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE1.jpeg" alt="Old worn garage door springs" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER1.jpeg" alt="New garage door springs installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE2.jpeg" alt="Broken single garage door spring" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER2.jpeg" alt="New spring installed on garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Broken Spring Repair</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE3.jpeg" alt="Old garage door spring with service tag" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER3.jpeg" alt="New garage door spring installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE4.jpeg" alt="Old garage door springs before replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER4.jpeg" alt="New garage door springs installed" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE5.jpeg" alt="Completely unwound broken garage door spring" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER5.jpeg" alt="New spring after emergency repair" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Emergency Spring Repair</p>
-                                <p class="text-xs text-white/40">San Diego, CA · Completely snapped spring</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE6.jpeg" alt="Broken spring on windowed garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER6.jpeg" alt="New spring installed on windowed door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE7.jpeg" alt="Worn and cracked garage door spring" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER7.jpeg" alt="New spring after replacement" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Worn Spring Replaced</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE9.jpeg" alt="Old silver garage door springs" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER9.jpeg" alt="New springs installed on garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE13.jpeg" alt="Old garage door springs before repair" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER13.jpeg" alt="New garage door springs after repair" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE14.jpeg" alt="Old spring with orange tag on arched door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER14.jpeg" alt="New spring on arched window garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE15.jpeg" alt="Old springs in wooden beam garage" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER15.jpeg" alt="New springs installed in wooden beam garage" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE16.jpeg" alt="Old rusty garage door spring" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER16.jpeg" alt="New spring replacing rusty old one" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Rusty Spring Replaced</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE19.jpeg" alt="Old spring on glass panel garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER19.jpeg" alt="New spring on glass garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Glass Door Spring Repair</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE22.jpeg" alt="Old garage door springs with red cord" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER22.jpeg" alt="New springs installed on white garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE23.jpeg" alt="Old spring on arch window garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER23.jpeg" alt="New spring on arch window garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE25.jpeg" alt="Old spring on diamond window garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER25.jpeg" alt="New spring on diamond window door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Spring Replacement</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                        <div class="glass rounded-2xl overflow-hidden">
-                            <div class="grid grid-cols-2 h-52">
-                                <div class="relative overflow-hidden">
-                                    <img src="gallery/BEFORE26.jpeg" alt="Broken spring on metallic garage door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 left-2 text-[11px] font-black uppercase bg-red-600 text-white px-2 py-0.5 rounded-full">Before</span>
-                                </div>
-                                <div class="relative overflow-hidden border-l border-white/10">
-                                    <img src="gallery/AFTER26.jpeg" alt="New spring installed on metallic door" onclick="openLightbox(this.src)" class="cursor-pointer w-full h-full object-cover" loading="lazy">
-                                    <span class="absolute bottom-2 right-2 text-[11px] font-black uppercase bg-green-600 text-white px-2 py-0.5 rounded-full">After</span>
-                                </div>
-                            </div>
-                            <div class="px-4 py-2.5 border-t border-white/5">
-                                <p class="text-sm font-bold text-white">Broken Spring Repair</p>
-                                <p class="text-xs text-white/40">San Diego, CA</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                </div>
-            </div>
-        </div>
 
         <!-- SERVICE AREAS -->
         <section id="service-areas" class="py-16 px-4 border-y border-white/5"
@@ -1840,21 +1349,21 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <a href="/blog/garage-door-spring-replacement-san-diego.html" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/spring-hero.jpg" alt="Garage door spring replacement in San Diego" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/spring-hero.jpg" srcset="/blog/images/opt/spring-hero-400.webp 400w, /blog/images/opt/spring-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door spring replacement in San Diego" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Spring Replacement in San Diego:<br>Cost & What to Expect</h3>
                             <p class="text-white/40 text-sm mt-2">Learn what garage door spring replacement costs in San Diego and why DIY is dangerous.</p>
                         </div>
                     </a>
                     <a href="/blog/emergency-garage-door-repair-san-diego.html" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/emergency-hero.jpg" alt="Emergency garage door repair San Diego" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/emergency-hero.jpg" srcset="/blog/images/opt/emergency-hero-400.webp 400w, /blog/images/opt/emergency-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Emergency garage door repair San Diego" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Emergency Garage Door Repair:<br>Door Won't Budge</h3>
                             <p class="text-white/40 text-sm mt-2">Your garage door is stuck? Here's what to do right now and when to call a pro in San Diego.</p>
                         </div>
                     </a>
                     <a href="/blog/garage-door-repair-chula-vista.html" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/chula-vista-hero.jpg" alt="Garage door repair in Chula Vista CA" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/chula-vista-hero.jpg" srcset="/blog/images/opt/chula-vista-hero-400.webp 400w, /blog/images/opt/chula-vista-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door repair in Chula Vista CA" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Garage Door Repair in Chula Vista, CA</h3>
                             <p class="text-white/40 text-sm mt-2">Same day garage door service for Chula Vista homeowners. Local experts, fast response.</p>
@@ -2031,7 +1540,7 @@
             <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4 mb-4">
                 <!-- Brand -->
                 <div class="flex items-center gap-3">
-                    <img src="logo.webp" alt="Noah Garage Doors logo" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1);">
+                    <img src="logo.webp" width="1135" height="564" loading="lazy" alt="Noah Garage Doors logo" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1);">
                     <div>
                         <span class="block font-bold text-sm tracking-tighter text-white">NOAH GARAGE DOORS</span>
                         <span class="block text-[9px] text-white/30 uppercase tracking-widest">Fast. Reliable. Local.</span>
@@ -2147,48 +1656,6 @@
     <script src="quote-form.js" defer></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('fullGalleryModal');
-            const modalInner = document.getElementById('fullGalleryModalInner');
-            const openBtn = document.getElementById('openGalleryBtn');
-            const closeBtn = document.getElementById('closeGalleryBtn');
-
-            function openModal() {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                // Trigger reflow
-                void modal.offsetWidth;
-                modal.classList.remove('opacity-0');
-                modalInner.classList.remove('translate-y-10');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeModal() {
-                modal.classList.add('opacity-0');
-                modalInner.classList.add('translate-y-10');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-
-            if (modal && openBtn && closeBtn) {
-                openBtn.addEventListener('click', openModal);
-                closeBtn.addEventListener('click', closeModal);
-
-                // Close on click outside
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
-            }
-
-        });
-    </script>
-
-    <script>
         /* ── Mobile Menu ── */
         function toggleMobileMenu() {
             var menu = document.getElementById('mobile-menu');
@@ -2241,10 +1708,7 @@
             setTimeout(() => {
                 lightboxModal.classList.add('hidden');
                 lightboxModal.classList.remove('flex');
-                const mainModal = document.getElementById('fullGalleryModal');
-                if (mainModal && mainModal.classList.contains('hidden')) {
-                    document.body.style.overflow = '';
-                }
+                document.body.style.overflow = '';
             }, 300);
         };
     </script>
