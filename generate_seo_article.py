@@ -417,6 +417,14 @@ def main():
     output_path = save_article(topic["slug"], html)
     update_blog_index(topic, html)
 
+    # Keep sitemap.xml in sync so the new article is always discoverable.
+    try:
+        import generate_sitemap
+        n = generate_sitemap.build()
+        print(f"Sitemap regenerated: {n} URLs")
+    except Exception as e:
+        print(f"WARN: sitemap regeneration failed: {e}")
+
     print(f"Saved: {output_path}")
     print(f"Preview: http://localhost:3000/blog/{topic['slug']}.html")
 
