@@ -260,29 +260,32 @@ def generate_article(topic: dict, api_key: str) -> str:
     return strip_code_fences(response.text)
 
 
-def _generate_with_retry(client, prompt, attempts: int = 5):
-    """Call Gemini, retrying transient overloads. The model occasionally returns
-    503 UNAVAILABLE ('high demand') — especially on the free tier, which is
-    deprioritized during spikes. Retry with exponential backoff so a temporary
-    spike doesn't fail the whole scheduled run (this killed the 2026-06-08 run)."""
+# Models tried in order. When the primary is overloaded (503 'high demand'),
+# each retry immediately hits a DIFFERENT model instead of hammering the busy one,
+# so a spike on one model doesn't fail the run (killed the 2026-06-08 + 06-11 runs).
+FALLBACK_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
+
+
+def _generate_with_retry(client, prompt, attempts: int = 6):
+    """Call Gemini, rotating across fallback models on transient overloads.
+    503/500 UNAVAILABLE is transient (free tier is deprioritized during spikes);
+    we rotate model + back off so a temporary spike doesn't fail the whole run."""
     import time
     from google.genai import errors as genai_errors
 
-    delay = 20  # seconds; 20 -> 40 -> 80 -> 160
+    delay = 15  # seconds; grows 15 -> 30 -> 60 ... between attempts
     for attempt in range(1, attempts + 1):
+        model = FALLBACK_MODELS[(attempt - 1) % len(FALLBACK_MODELS)]
         try:
-            return client.models.generate_content(
-                model="gemini-2.5-flash",
-                contents=prompt,
-            )
+            return client.models.generate_content(model=model, contents=prompt)
         except genai_errors.ServerError as e:
-            # 503/500/overload are transient; retry. Other errors: re-raise.
+            # 503/500/overload are transient; rotate model + retry. Other errors re-raise.
             if attempt == attempts:
                 raise
-            print(f"Gemini transient error (attempt {attempt}/{attempts}): {e}. "
-                  f"Retrying in {delay}s...")
+            print(f"Gemini transient error on {model} (attempt {attempt}/{attempts}): {e}. "
+                  f"Trying next model in {delay}s...")
             time.sleep(delay)
-            delay *= 2
+            delay = min(delay * 2, 60)
 
 
 def strip_code_fences(html: str) -> str:
