@@ -41,6 +41,22 @@ TOPIC_QUEUE = [
     {"slug": "garage-door-noise-san-diego", "title": "Why Is My Garage Door So Loud? San Diego Homeowners Guide", "type": "guide"},
     {"slug": "garage-door-repair-encinitas", "title": "Garage Door Repair in Encinitas, CA", "type": "city", "city": "Encinitas"},
     {"slug": "garage-door-repair-vista-ca", "title": "Garage Door Repair in Vista, CA", "type": "city", "city": "Vista"},
+    {"slug": "garage-door-wont-close-san-diego", "title": "Garage Door Won't Close in San Diego? Causes and Fixes", "type": "guide"},
+    {"slug": "garage-door-wont-open-san-diego", "title": "Garage Door Won't Open? A San Diego Homeowner's Guide", "type": "guide"},
+    {"slug": "garage-door-sensor-problems-san-diego", "title": "Garage Door Sensor Problems: Why Your Door Won't Close", "type": "guide"},
+    {"slug": "garage-door-remote-not-working", "title": "Garage Door Remote Not Working? Fixes to Try First", "type": "guide"},
+    {"slug": "signs-of-a-broken-garage-door-spring", "title": "7 Signs Your Garage Door Spring Is Broken", "type": "guide"},
+    {"slug": "garage-door-opener-replacement-cost-san-diego", "title": "Garage Door Opener Replacement Cost in San Diego (2026)", "type": "guide"},
+    {"slug": "new-garage-door-cost-san-diego", "title": "How Much Does a New Garage Door Cost in San Diego? (2026)", "type": "guide"},
+    {"slug": "belt-drive-vs-chain-drive-opener", "title": "Belt Drive vs Chain Drive Garage Door Opener: Which Is Best?", "type": "guide"},
+    {"slug": "torsion-vs-extension-springs", "title": "Torsion vs Extension Springs: Which Does Your Door Have?", "type": "guide"},
+    {"slug": "insulated-vs-non-insulated-garage-doors-san-diego", "title": "Insulated vs Non-Insulated Garage Doors: Worth It in San Diego?", "type": "guide"},
+    {"slug": "best-garage-doors-for-coastal-san-diego", "title": "Best Garage Doors for San Diego's Coastal Climate", "type": "guide"},
+    {"slug": "how-often-to-service-garage-door", "title": "How Often Should You Service Your Garage Door?", "type": "guide"},
+    {"slug": "garage-door-auto-reverse-safety-test", "title": "How to Test Your Garage Door's Auto-Reverse Safety Feature", "type": "guide"},
+    {"slug": "how-long-do-garage-door-openers-last", "title": "How Long Do Garage Door Openers Last?", "type": "guide"},
+    {"slug": "garage-door-repair-national-city", "title": "Garage Door Repair in National City, CA", "type": "city", "city": "National City"},
+    {"slug": "garage-door-repair-coronado", "title": "Garage Door Repair in Coronado, CA", "type": "city", "city": "Coronado"},
 ]
 
 
