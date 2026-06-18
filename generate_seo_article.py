@@ -67,9 +67,9 @@ COMPANY INFO:
 - Phone: (619) 572-4266 (this is the ONLY phone number; never invent another)
 - Email: Noahgaragedoors@gmail.com (this is the ONLY email; NEVER write info@noahgaragesd.com or any other address)
 - Hours: Open 24/7. We work around the clock, every day. If you mention availability, say "24/7", "round-the-clock", or "same-day". NEVER state limited or specific business hours (e.g. do NOT write "7am to 9pm", "Mon-Fri", or any opening/closing time) — that would contradict the rest of the site.
-- Address: 1080 8th Ave, San Diego, CA 92101
-- Key differentiators: Same-day service, lifetime spring warranty, locally owned, upfront honest pricing, experienced background-checked technicians
-- IMPORTANT: Do NOT claim the business is "licensed", "insured", or "bonded" — it does not hold those credentials yet. Never use those words.
+- Address: NONE. This is a Service Area Business serving all of San Diego County. NEVER print a street address in the article body or schema; refer only to "San Diego, CA" or "San Diego County".
+- Key differentiators: Same-day service, lifetime spring warranty, locally owned, upfront honest pricing, experienced technicians
+- IMPORTANT: Do NOT claim the business is "licensed", "insured", "bonded", "certified", or "background-checked" — it does not hold those credentials. Never use those words.
 - Service area: All of San Diego County
 
 TOPIC: {topic_title}
@@ -86,6 +86,8 @@ CONTENT REQUIREMENTS:
 7. NEVER use em dashes. Use commas, colons, or periods instead.
 8. Use service-grid/service-card divs for lists of services when appropriate
 9. INTERNAL LINKS: Within the body, naturally link 2-3 relevant phrases to these service pages (use the exact href, descriptive anchor text, NOT "click here"): /garage-door-springs/ , /garage-door-openers/ , /garage-door-off-track-repair/ , /garage-door-cable-repair/ , /garage-door-maintenance/ , /new-garage-door/ , /emergency-garage-door-repair/ . Example: <a href="/garage-door-springs/">broken garage door spring</a>. Only link phrases that genuinely match the service.
+10. FAQPage SCHEMA: Fill the FAQPage JSON-LD block in the <head> with the EXACT same questions and answers as the visible faq-card FAQ section. Answers must be PLAIN TEXT (strip all HTML tags, no <a> links). The number of Question entries must equal the number of faq-card items. Escape any double quotes inside the JSON.
+11. KEYWORD PLACEMENT: Put the primary keyword near the FRONT of the <title> (aim 50-60 chars), in the H1, and within the first 100 words of the body. Write a unique ~155-char meta description.
 
 Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav, and footer. Only change: title, meta description, canonical URL, slug, JSON-LD schema, hero badge text, h1, and article body content.
 
@@ -139,6 +141,17 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
       {{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.noahgaragesd.com/"}},
       {{"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.noahgaragesd.com/blog/"}},
       {{"@type": "ListItem", "position": 3, "name": "[ARTICLE TITLE SHORT]"}}
+    ]
+  }}
+  </script>
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {{"@type": "Question", "name": "[FAQ QUESTION 1 - exact text from the FAQ section]", "acceptedAnswer": {{"@type": "Answer", "text": "[FAQ ANSWER 1 as plain text, no HTML]"}}}},
+      {{"@type": "Question", "name": "[FAQ QUESTION 2]", "acceptedAnswer": {{"@type": "Answer", "text": "[FAQ ANSWER 2]"}}}},
+      {{"@type": "Question", "name": "[FAQ QUESTION 3]", "acceptedAnswer": {{"@type": "Answer", "text": "[FAQ ANSWER 3]"}}}}
     ]
   }}
   </script>
