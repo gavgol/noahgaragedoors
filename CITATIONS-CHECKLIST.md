@@ -16,13 +16,15 @@ Consistency is the whole point — copy-paste the fields below, do not retype.
 | Phone | `(619) 572-4266` |
 | Email | `Noahgaragedoors@gmail.com` |
 | Website | `https://www.noahgaragesd.com` |
-| Address | `1080 8th Ave, San Diego, CA 92101` |
+| Address | **NONE — this is a Service Area Business.** Do NOT enter a street address. Where a site forces one, set it as "service-area / hide address" and enter only the service area. |
 | Hours | `Open 24 hours, 7 days a week` |
 | Primary category | `Garage door repair service` (or "Garage door supplier") |
 | Service area | San Diego County |
 
-> ❗ Before publishing the address anywhere: confirm `1080 8th Ave` is a real address you
-> control. If not, list as **service-area business** (no street address shown) instead.
+> ❗ **Never enter a street address.** Noah Garage Doors has no public storefront — it's a
+> service-area business. Listing a fake or uncontrolled address on directories is the #1 cause
+> of Google suspensions and breaks NAP consistency. Always pick "I deliver to / serve customers
+> at their location" and hide the address. This must match the GBP setup exactly.
 
 ---
 
