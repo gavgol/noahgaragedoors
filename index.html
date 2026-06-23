@@ -990,7 +990,7 @@
                 #rev-track::-webkit-scrollbar{display:none;}
                 @media (min-width:768px){#rev-track{padding-left:6%;padding-right:6%;}}
                 @media (min-width:1024px){#rev-track{padding-left:2%;padding-right:2%;}}
-                .rev-card{flex:0 0 72%;max-width:360px;scroll-snap-align:center;transform-origin:center center;transition:transform .14s ease-out,opacity .14s ease-out;}
+                .rev-card{flex:0 0 72%;max-width:360px;transform-origin:center center;}
                 @media (min-width:768px){.rev-card{flex:0 0 42%;}}
                 @media (min-width:1024px){.rev-card{flex:0 0 30%;}}
                 .rev-arrow{transition:all .2s ease;}
@@ -1016,7 +1016,7 @@
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
 
-                    <div id="rev-track" style="display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;align-items:stretch;">
+                    <div id="rev-track" style="display:flex;gap:1rem;overflow-x:auto;align-items:stretch;">
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
                                 <div style="display:flex;align-items:center;gap:.85rem;">
@@ -1173,81 +1173,150 @@
                 (function () {
                     var track = document.getElementById('rev-track');
                     if (!track) return;
-                    var cards = track.querySelectorAll('.rev-card');
                     var prev = document.getElementById('rev-prev');
                     var next = document.getElementById('rev-next');
                     var dotsWrap = document.getElementById('rev-dots');
+
+                    // --- Build a seamless infinite loop ------------------------------
+                    // Clone the whole set before and after the originals (3 identical
+                    // sets). We keep the scroll position inside the middle set and jump
+                    // by exactly one set width at the edges — invisible because the
+                    // sets are identical — so scrolling never hits a "wall".
+                    var originals = Array.prototype.slice.call(track.querySelectorAll('.rev-card'));
+                    var origCount = originals.length;
+                    var before = document.createDocumentFragment();
+                    var after = document.createDocumentFragment();
+                    originals.forEach(function (c) {
+                        var a = c.cloneNode(true); a.setAttribute('aria-hidden', 'true'); before.appendChild(a);
+                        var b = c.cloneNode(true); b.setAttribute('aria-hidden', 'true'); after.appendChild(b);
+                    });
+                    track.insertBefore(before, track.firstChild);
+                    track.appendChild(after);
+                    if (window.lucide && lucide.createIcons) lucide.createIcons();
+                    var cards = track.querySelectorAll('.rev-card');
 
                     function step() {
                         if (cards.length < 2) return cards[0].offsetWidth;
                         return cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left;
                     }
-                    // Build one dot per card.
-                    for (var i = 0; i < cards.length; i++) {
+                    function setWidth() { return step() * origCount; }
+
+                    // Dots: one per real review.
+                    for (var i = 0; i < origCount; i++) {
                         var d = document.createElement('button');
                         d.className = 'rev-dot' + (i === 0 ? ' active' : '');
                         d.setAttribute('aria-label', 'Go to review ' + (i + 1));
                         d.style.cssText = 'width:9px;height:9px;border-radius:9999px;background:rgba(255,255,255,.25);border:none;padding:0;';
-                        (function (idx) {
-                            d.addEventListener('click', function () {
-                                track.scrollTo({ left: idx * step(), behavior: 'smooth' });
-                            });
-                        })(i);
+                        (function (idx) { d.addEventListener('click', function () { goToReview(idx); }); })(i);
                         dotsWrap.appendChild(d);
                     }
                     var dots = dotsWrap.children;
-
-                    function active() { return Math.round(track.scrollLeft / step()); }
                     function syncDots() {
-                        var a = active();
+                        var s = step(); if (s <= 0) return;
+                        var a = ((Math.round(track.scrollLeft / s) % origCount) + origCount) % origCount;
                         for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === a);
                     }
 
-                    // Arc / coverflow effect: each card tilts & drops along a curve
-                    // based on its horizontal distance from the centre of the track.
+                    // Arc / coverflow: tilt + drop each card by its distance from centre.
                     function updateArc() {
                         var tr = track.getBoundingClientRect();
                         var center = tr.left + tr.width / 2;
                         var halfw = tr.width / 2;
+                        var ns = [];
                         for (var i = 0; i < cards.length; i++) {
-                            // Rotation/scale are about the card centre and translateY
-                            // is vertical, so the horizontal centre stays stable here.
-                            var r = cards[i].getBoundingClientRect();
-                            var cc = r.left + r.width / 2;
-                            var n = (cc - center) / halfw;          // 0 at centre, ±1 at edges
-                            var nc = Math.max(-1.15, Math.min(1.15, n));
-                            var rot = nc * 12;                      // deg: left tilts CCW, right CW
-                            var drop = nc * nc * 60 - 22;           // px: centre pops up, edges drop
+                            var r = cards[i].getBoundingClientRect();   // read phase
+                            ns.push((r.left + r.width / 2 - center) / halfw);
+                        }
+                        for (var j = 0; j < cards.length; j++) {        // write phase
+                            var nc = Math.max(-1.15, Math.min(1.15, ns[j]));
+                            var rot = nc * 12;
+                            var drop = nc * nc * 60 - 22;
                             var scale = 1 - Math.min(Math.abs(nc), 1) * 0.05;
                             var op = 1 - Math.min(Math.abs(nc), 1.2) * 0.28;
-                            cards[i].style.transform =
+                            cards[j].style.transform =
                                 'translateY(' + drop.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
-                            cards[i].style.opacity = op.toFixed(2);
-                            cards[i].style.zIndex = String(200 - Math.round(Math.abs(nc) * 100));
+                            cards[j].style.opacity = op.toFixed(2);
+                            cards[j].style.zIndex = String(200 - Math.round(Math.abs(nc) * 100));
                         }
                     }
 
-                    prev.addEventListener('click', function () {
-                        track.scrollBy({ left: -step(), behavior: 'smooth' });
+                    // --- Motion engine ----------------------------------------------
+                    var SPEED = 0.5;            // px per frame of gentle auto-drift
+                    var paused = false;
+                    var resumeTimer = null;
+                    var anim = null;            // active arrow/dot animation, if any
+
+                    function scheduleResume(ms) {
+                        clearTimeout(resumeTimer);
+                        resumeTimer = setTimeout(function () { paused = false; }, ms);
+                    }
+                    function shift(dx) {        // jump that also keeps an in-flight anim aligned
+                        track.scrollLeft += dx;
+                        if (anim) { anim.from += dx; anim.target += dx; }
+                    }
+                    function wrap() {
+                        var w = setWidth(); if (w <= 0) return;
+                        if (track.scrollLeft >= 2 * w) shift(-w);
+                        else if (track.scrollLeft <= 0) shift(w);
+                    }
+                    function animateTo(target) {
+                        paused = true;
+                        anim = { from: track.scrollLeft, target: target, t0: performance.now(), dur: 480 };
+                        scheduleResume(3000);
+                    }
+                    function goToReview(idx) {
+                        var tr = track.getBoundingClientRect();
+                        var center = tr.left + tr.width / 2;
+                        var best = null, bestd = Infinity;
+                        for (var k = 0; k < cards.length; k++) {
+                            if (k % origCount !== idx) continue;
+                            var r = cards[k].getBoundingClientRect();
+                            var cc = r.left + r.width / 2, dd = Math.abs(cc - center);
+                            if (dd < bestd) { bestd = dd; best = cc; }
+                        }
+                        if (best !== null) animateTo(track.scrollLeft + (best - center));
+                    }
+
+                    next.addEventListener('click', function () { animateTo(track.scrollLeft + step()); });
+                    prev.addEventListener('click', function () { animateTo(track.scrollLeft - step()); });
+
+                    // Pause while the visitor is reading / interacting.
+                    ['mouseenter', 'pointerdown', 'touchstart'].forEach(function (e) {
+                        track.addEventListener(e, function () { paused = true; clearTimeout(resumeTimer); anim = null; }, { passive: true });
                     });
-                    next.addEventListener('click', function () {
-                        track.scrollBy({ left: step(), behavior: 'smooth' });
+                    ['mouseleave', 'pointerup', 'touchend', 'touchcancel'].forEach(function (e) {
+                        track.addEventListener(e, function () { scheduleResume(1600); }, { passive: true });
                     });
-                    var raf;
-                    track.addEventListener('scroll', function () {
-                        if (raf) cancelAnimationFrame(raf);
-                        raf = requestAnimationFrame(updateArc);
-                    });
-                    var t;
-                    track.addEventListener('scroll', function () {
-                        clearTimeout(t);
-                        t = setTimeout(syncDots, 80);
-                    });
+
+                    // Don't animate when the section is off-screen.
+                    var visible = true;
+                    if ('IntersectionObserver' in window) {
+                        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(track);
+                    }
+
+                    function frame(now) {
+                        if (visible) {
+                            if (anim) {
+                                var p = Math.min(1, (now - anim.t0) / anim.dur);
+                                var e = 1 - Math.pow(1 - p, 3);
+                                track.scrollLeft = anim.from + (anim.target - anim.from) * e;
+                                if (p >= 1) anim = null;
+                            } else if (!paused) {
+                                track.scrollLeft += SPEED;
+                            }
+                            wrap();
+                            updateArc();
+                            syncDots();
+                        }
+                        requestAnimationFrame(frame);
+                    }
+
                     window.addEventListener('resize', updateArc);
-                    // Centre on the first card and paint the initial arc.
+                    // Start inside the middle set, then run the loop.
                     requestAnimationFrame(function () {
-                        track.scrollLeft = 0;
+                        track.scrollLeft = setWidth();
                         updateArc();
+                        requestAnimationFrame(frame);
                     });
                 })();
             </script>
