@@ -63,22 +63,37 @@
     bar.id = "ngd-mobile-contact";
     bar.setAttribute("aria-label", "Contact Noah Garage Doors");
     bar.innerHTML =
-      '<a href="tel:' + PHONE + '">Call now</a>' +
+      '<a href="tel:' + PHONE + '">' +
+      '<span style="font-size:19px;line-height:1">📞</span>' +
+      '<span>Call now</span></a>' +
       '<a href="sms:' + PHONE + '?&body=' +
       encodeURIComponent("Hi Noah, I need help with my garage door.") +
-      '">Text us</a>';
+      '">' +
+      '<span style="font-size:19px;line-height:1">💬</span>' +
+      '<span>Text us</span></a>';
     bar.style.cssText =
       "position:fixed;left:12px;right:12px;bottom:12px;z-index:2147482000;" +
-      "display:flex;gap:8px;padding:8px;background:rgba(10,15,30,.94);" +
-      "border:1px solid rgba(255,255,255,.14);border-radius:16px;" +
+      "display:flex;gap:10px;padding:8px;background:rgba(10,15,30,.94);" +
+      "border:1px solid rgba(255,255,255,.14);border-radius:18px;" +
       "box-shadow:0 10px 30px rgba(0,0,0,.4);";
     Array.prototype.forEach.call(bar.querySelectorAll("a"), function (link) {
       link.style.cssText =
-        "flex:1;padding:12px 10px;border-radius:11px;text-align:center;" +
-        "font:700 15px system-ui,sans-serif;text-decoration:none;color:white;" +
-        "background:#2563eb;";
+        "flex:1;padding:14px 10px;border-radius:13px;text-align:center;" +
+        "display:flex;align-items:center;justify-content:center;gap:8px;" +
+        "font:800 15.5px system-ui,sans-serif;letter-spacing:.2px;" +
+        "text-decoration:none;color:white;" +
+        "background:linear-gradient(135deg,#3b82f6,#1d4ed8);" +
+        "box-shadow:0 6px 16px rgba(37,99,235,.45);" +
+        "transition:transform .12s ease;-webkit-tap-highlight-color:transparent;";
+      link.addEventListener("touchstart", function () {
+        link.style.transform = "scale(.96)";
+      }, { passive: true });
+      link.addEventListener("touchend", function () {
+        link.style.transform = "scale(1)";
+      });
     });
-    bar.lastChild.style.background = "#0f766e";
+    bar.lastChild.style.background = "linear-gradient(135deg,#14b8a6,#0d9488)";
+    bar.lastChild.style.boxShadow = "0 6px 16px rgba(13,148,136,.45)";
     document.body.appendChild(bar);
 
     var media = window.matchMedia("(min-width: 768px)");
