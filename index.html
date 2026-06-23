@@ -993,9 +993,9 @@
                 .rev-card{flex:0 0 72%;max-width:360px;transform-origin:center center;}
                 @media (min-width:768px){.rev-card{flex:0 0 42%;}}
                 @media (min-width:1024px){.rev-card{flex:0 0 30%;}}
-                .rev-arrow{transition:all .2s ease;}
+                .rev-arrow{transition:all .2s ease;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;}
                 .rev-arrow:hover{background:rgba(59,130,246,.25);border-color:rgba(59,130,246,.5);}
-                .rev-dot{transition:all .25s ease;cursor:pointer;}
+                .rev-dot{transition:all .25s ease;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
                 .rev-dot.active{width:26px;background:#3b82f6;}
             </style>
             <div class="max-w-6xl mx-auto">
@@ -1241,7 +1241,8 @@
                     }
 
                     // --- Motion engine ----------------------------------------------
-                    var SPEED = 0.5;            // px per frame of gentle auto-drift
+                    var SPEED = 75;            // px per SECOND of gentle auto-drift (frame-rate independent)
+                    var lastTs = null;
                     var paused = false;
                     var resumeTimer = null;
                     var anim = null;            // active arrow/dot animation, if any
@@ -1280,11 +1281,11 @@
                     next.addEventListener('click', function () { animateTo(track.scrollLeft + step()); });
                     prev.addEventListener('click', function () { animateTo(track.scrollLeft - step()); });
 
-                    // Pause while the visitor is reading / interacting.
-                    ['mouseenter', 'pointerdown', 'touchstart'].forEach(function (e) {
-                        track.addEventListener(e, function () { paused = true; clearTimeout(resumeTimer); anim = null; }, { passive: true });
-                    });
-                    ['mouseleave', 'pointerup', 'touchend', 'touchcancel'].forEach(function (e) {
+                    // Pause only while actually dragging on touch, so a swipe doesn't
+                    // fight the auto-drift. On desktop it keeps drifting (always looks
+                    // alive); arrows/dots pause briefly via their own animation.
+                    track.addEventListener('touchstart', function () { paused = true; clearTimeout(resumeTimer); anim = null; }, { passive: true });
+                    ['touchend', 'touchcancel'].forEach(function (e) {
                         track.addEventListener(e, function () { scheduleResume(1600); }, { passive: true });
                     });
 
@@ -1296,17 +1297,22 @@
 
                     function frame(now) {
                         if (visible) {
+                            if (lastTs === null) lastTs = now;
+                            var dt = Math.min(0.05, (now - lastTs) / 1000); // clamp after tab was idle
+                            lastTs = now;
                             if (anim) {
                                 var p = Math.min(1, (now - anim.t0) / anim.dur);
                                 var e = 1 - Math.pow(1 - p, 3);
                                 track.scrollLeft = anim.from + (anim.target - anim.from) * e;
                                 if (p >= 1) anim = null;
                             } else if (!paused) {
-                                track.scrollLeft += SPEED;
+                                track.scrollLeft += SPEED * dt;
                             }
                             wrap();
                             updateArc();
                             syncDots();
+                        } else {
+                            lastTs = null;
                         }
                         requestAnimationFrame(frame);
                     }
