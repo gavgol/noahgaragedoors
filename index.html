@@ -395,32 +395,6 @@
             }
         }
 
-        /* Floating phone button */
-        .floating-phone {
-            position: fixed;
-            bottom: 32px;
-            right: 20px;
-            z-index: 999;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--brand-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px var(--brand-accent-glow);
-            transition: transform 0.3s, box-shadow 0.2s, opacity 0.3s;
-            animation: blue-pulse 2.5s ease-in-out infinite;
-            opacity: 0;
-            pointer-events: none;
-        }
-        @keyframes blue-pulse {
-            0%, 100% { box-shadow: 0 0 20px var(--brand-accent-glow); }
-            50% { box-shadow: 0 0 40px var(--brand-accent-glow), 0 0 60px rgba(37,99,235,0.2); }
-        }
-        .floating-phone.visible { opacity: 1; pointer-events: auto; }
-        .floating-phone:hover { transform: scale(1.1); box-shadow: 0 4px 30px var(--brand-accent-glow); }
-        @media (min-width: 768px) { .floating-phone { display: none; } }
 
         /* Promo ticket notches */
         .promo-ticket { position: relative; overflow: visible !important; }
@@ -1855,11 +1829,6 @@
         </div>
     </footer>
 
-    <!-- Floating Phone Button (mobile) -->
-    <a href="tel:6195724266" class="floating-phone" aria-label="Call Noah Garage Doors">
-        <i data-lucide="phone" class="w-6 h-6 text-white"></i>
-    </a>
-
     <script>
         if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
         document.querySelectorAll('.faq-btn').forEach(btn => {
@@ -1882,28 +1851,6 @@
             }
         });
 
-        // Show floating phone after scrolling past hero, hide above footer
-        var floatingPhone = document.querySelector('.floating-phone');
-        var siteFooter = document.querySelector('footer');
-        if (floatingPhone) {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > window.innerHeight * 0.5) {
-                    floatingPhone.classList.add('visible');
-                } else {
-                    floatingPhone.classList.remove('visible');
-                }
-                if (siteFooter) {
-                    var footerTop = siteFooter.getBoundingClientRect().top;
-                    var defaultBottom = 32;
-                    var btnSize = 48 + defaultBottom + 16;
-                    if (footerTop < window.innerHeight) {
-                        floatingPhone.style.bottom = (window.innerHeight - footerTop + 16) + 'px';
-                    } else {
-                        floatingPhone.style.bottom = defaultBottom + 'px';
-                    }
-                }
-            });
-        }
 
         // Track phone-number clicks as a GA4 conversion (many leads call instead of filling the form)
         document.addEventListener('click', function (e) {
