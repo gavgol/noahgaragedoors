@@ -1229,12 +1229,12 @@
                         }
                         for (var j = 0; j < cards.length; j++) {        // write phase
                             var nc = Math.max(-1.15, Math.min(1.15, ns[j]));
-                            var rot = nc * 12;
-                            var drop = nc * nc * 60 - 22;
-                            var scale = 1 - Math.min(Math.abs(nc), 1) * 0.05;
-                            var op = 1 - Math.min(Math.abs(nc), 1.2) * 0.28;
+                            var rot = nc * 10;
+                            var drop = nc * nc * 55 - 20;
+                            var op = 1 - Math.min(Math.abs(nc), 1.2) * 0.26;
+                            // No scale (scaling text softens it); rotation + drop give depth.
                             cards[j].style.transform =
-                                'translateY(' + drop.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+                                'translateY(' + drop.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg)';
                             cards[j].style.opacity = op.toFixed(2);
                             cards[j].style.zIndex = String(200 - Math.round(Math.abs(nc) * 100));
                         }
@@ -1281,9 +1281,10 @@
                     next.addEventListener('click', function () { animateTo(track.scrollLeft + step()); });
                     prev.addEventListener('click', function () { animateTo(track.scrollLeft - step()); });
 
-                    // Pause only while actually dragging on touch, so a swipe doesn't
-                    // fight the auto-drift. On desktop it keeps drifting (always looks
-                    // alive); arrows/dots pause briefly via their own animation.
+                    // Pause to let visitors read: hover (desktop) or touch (mobile).
+                    // Moving the cursor off the carousel resumes the gentle drift.
+                    track.addEventListener('mouseenter', function () { paused = true; clearTimeout(resumeTimer); });
+                    track.addEventListener('mouseleave', function () { clearTimeout(resumeTimer); paused = false; });
                     track.addEventListener('touchstart', function () { paused = true; clearTimeout(resumeTimer); anim = null; }, { passive: true });
                     ['touchend', 'touchcancel'].forEach(function (e) {
                         track.addEventListener(e, function () { scheduleResume(1600); }, { passive: true });
