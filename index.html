@@ -1787,7 +1787,14 @@
                     </div>
                     <!-- Right: form -->
                     <div class="quote-right">
-                        <form id="quoteForm" class="space-y-5">
+                        <form id="quoteForm" class="space-y-5" method="post" action="/">
+                            <noscript>
+                                <div class="mb-4 p-4 rounded-xl text-sm" style="border:1px solid rgba(59,130,246,.25);background:rgba(59,130,246,.10)">
+                                    This quote form needs JavaScript. Please call or text us at
+                                    <a href="tel:6195724266" class="font-bold underline">(619) 572-4266</a>
+                                    and we'll help you right away.
+                                </div>
+                            </noscript>
                             <input type="hidden" name="lead_source" id="leadSource" value="">
                             <input type="hidden" name="form_started_at" id="formStartedAt" value="">
                             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
@@ -1804,31 +1811,32 @@
                                 </div>
                             </div>
                             <div class="space-y-1.5 relative">
-                                <label class="text-[10px] font-black uppercase tracking-widest text-white/40">Service Needed</label>
+                                <label id="serviceLabel" class="text-[10px] font-black uppercase tracking-widest text-white/40">Service Needed</label>
                                 <input type="hidden" name="service" id="serviceInput" value="Spring Replacement">
                                 <div class="relative" id="customSelect">
                                     <button type="button" id="selectBtn"
+                                        aria-haspopup="listbox" aria-expanded="false" aria-controls="selectDropdown" aria-labelledby="serviceLabel selectText"
                                         class="w-full h-14 bg-white/5 border border-white/10 rounded-xl px-5 outline-none transition-all font-light text-white/60 cursor-pointer text-left flex items-center justify-between"
-                                        onclick="document.getElementById('selectDropdown').classList.toggle('hidden')">
+                                        onclick="var d=document.getElementById('selectDropdown');d.classList.toggle('hidden');this.setAttribute('aria-expanded', d.classList.contains('hidden')?'false':'true')">
                                         <span id="selectText">Spring Replacement</span>
                                         <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                     </button>
-                                    <div id="selectDropdown" class="hidden absolute top-full left-0 right-0 mt-2 border border-white/15 rounded-2xl overflow-hidden z-50 shadow-2xl" style="background:#111118; max-height:260px; overflow-y:auto;">
+                                    <div id="selectDropdown" role="listbox" aria-labelledby="serviceLabel" class="hidden absolute top-full left-0 right-0 mt-2 border border-white/15 rounded-2xl overflow-hidden z-50 shadow-2xl" style="background:#111118; max-height:260px; overflow-y:auto;">
                                         <div class="py-2" id="selectOptions">
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" style="hover-background:#2563EB22" onclick="selectService(this)">Spring Replacement</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" onclick="selectService(this)">Off Track Repair</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" onclick="selectService(this)">Opener Installation</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" onclick="selectService(this)">Track Adjustments</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" onclick="selectService(this)">Full Door Replacement</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" onclick="selectService(this)">Maintenance ($49 Special)</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm" onclick="selectService(this)">Inspection Preparation</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" style="hover-background:#2563EB22" role="option" onclick="selectService(this)">Spring Replacement</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Off Track Repair</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Opener Installation</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Track Adjustments</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Full Door Replacement</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Maintenance ($49 Special)</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm" role="option" onclick="selectService(this)">Inspection Preparation</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-[10px] font-black uppercase tracking-widest text-white/40">Describe Your Issue (Optional)</label>
-                                <textarea name="message" maxlength="2000" placeholder="e.g. My garage door spring snapped..."
+                                <label for="quoteMessage" class="text-[10px] font-black uppercase tracking-widest text-white/40">Describe Your Issue (Optional)</label>
+                                <textarea id="quoteMessage" name="message" maxlength="2000" placeholder="e.g. My garage door spring snapped..."
                                     class="w-full h-24 bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-blue-500/40 transition-all font-light resize-none"></textarea>
                             </div>
                             <button id="quoteSubmit" type="submit"
@@ -1912,12 +1920,14 @@
             document.getElementById('selectText').textContent = el.textContent;
             document.getElementById('serviceInput').value = el.textContent;
             document.getElementById('selectDropdown').classList.add('hidden');
+            document.getElementById('selectBtn').setAttribute('aria-expanded', 'false');
         }
 
         document.addEventListener('click', function(e) {
             var cs = document.getElementById('customSelect');
             if (cs && !cs.contains(e.target)) {
                 document.getElementById('selectDropdown').classList.add('hidden');
+                document.getElementById('selectBtn').setAttribute('aria-expanded', 'false');
             }
         });
 
