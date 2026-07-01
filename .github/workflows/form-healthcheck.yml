@@ -18,22 +18,32 @@ jobs:
           echo "Fetching $URL"
           HTML=$(curl -fsSL --retry 3 "$URL")
 
+          # Analytics is consent-gated: GA4 + Meta Pixel are loaded by
+          # cookie-consent.js AFTER cookie consent, so their IDs are NOT in the
+          # raw page HTML. Verify the loader is linked, then check the IDs
+          # inside the consent script itself.
+          CONSENT_URL="https://www.noahgaragesd.com/cookie-consent.js"
+          echo "Fetching $CONSENT_URL"
+          CONSENT=$(curl -fsSL --retry 3 "$CONSENT_URL")
+
           fail=0
           check() {
-            if printf '%s' "$HTML" | grep -qF "$1"; then
-              echo "PASS: $2"
+            # $1 = content, $2 = marker, $3 = label
+            if printf '%s' "$1" | grep -qF "$2"; then
+              echo "PASS: $3"
             else
-              echo "FAIL: $2  (missing: $1)"
+              echo "FAIL: $3  (missing: $2)"
               fail=1
             fi
           }
 
-          check 'id="quoteForm"'                           'Lead form present'
-          check 'name="name"'                              'Name field present'
-          check 'name="phone"'                             'Phone field present'
-          check 'formSuccess'                              'Thank-you state present'
-          check 'G-HPY4V3C8T5'                             'GA4 tag present'
-          check '1708916410247553'                         'Meta Pixel present'
+          check "$HTML"    'id="quoteForm"'      'Lead form present'
+          check "$HTML"    'name="name"'         'Name field present'
+          check "$HTML"    'name="phone"'        'Phone field present'
+          check "$HTML"    'formSuccess'         'Thank-you state present'
+          check "$HTML"    'cookie-consent.js'   'Consent-gated analytics loader linked'
+          check "$CONSENT" 'G-HPY4V3C8T5'        'GA4 tag present (in cookie-consent.js)'
+          check "$CONSENT" '1708916410247553'    'Meta Pixel present (in cookie-consent.js)'
 
           if [ "$fail" -ne 0 ]; then
             echo "::error::Lead form health check FAILED - the live site is missing the form or tracking. Investigate immediately."
