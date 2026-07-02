@@ -7,30 +7,54 @@
   <meta name="description" content="Privacy Policy for Noah Garage Doors. Learn how we handle your personal information when you contact us for garage door repair in San Diego.">
   <link rel="canonical" href="https://www.noahgaragesd.com/privacy-policy.html">
   <link rel="icon" type="image/webp" href="/logo.webp">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #0a0a0a; color: #e0e0e0; font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.8; }
-    .nav { background: #0a0a0a; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
-    .nav a { color: #fff; text-decoration: none; font-weight: 700; }
-    .nav-cta { background: #2563EB; color: #fff !important; padding: 8px 18px; border-radius: 999px; font-size: 13px; }
-    .wrap { max-width: 760px; margin: 60px auto; padding: 0 24px 80px; }
-    h1 { font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 8px; }
-    .updated { color: #666; font-size: 14px; margin-bottom: 40px; }
-    h2 { font-size: 22px; font-weight: 700; color: #fff; margin: 36px 0 12px; }
-    p { color: #c0c0c0; margin-bottom: 16px; }
-    a { color: #2563EB; }
-    .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 24px; text-align: center; color: #555; font-size: 14px; }
+    body { background: #0a0a0a; color: #e0e0e0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+    .nav { background: #0a0a0a; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 0; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand-text { font-weight: 900; color: #fff; text-transform: uppercase; font-size: 14px; letter-spacing: -0.02em; line-height: 1.1; }
+    .nav-brand-sub { display: none; }
+    .nav-phone { display: none; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }
+    .nav-phone:hover { color: #2563EB; }
+    .nav-cta { background: #2563EB; color: #fff; padding: 8px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 13px; transition: all 0.2s; white-space: nowrap; }
+    .nav-cta:hover { background: #1D4ED8; transform: translateY(-1px); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    @media (min-width: 768px) { .nav-brand-text { font-size: 16px; letter-spacing: 1.5px; } .nav-brand-sub { display: block; font-size: 8px; color: rgba(255,255,255,0.3); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; } .nav-phone { display: flex; color: #fff; } .nav-cta { padding: 10px 22px; font-size: 14px; } .nav-right { gap: 20px; } }
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+    .article-wrap h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; color: #ffffff; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .updated { color: #666; font-size: 14px; margin-bottom: 24px; }
+    .article-wrap h2 { font-size: 22px; font-weight: 700; color: #ffffff; margin-top: 40px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid rgba(37,99,235,0.3); }
+    .article-wrap p { margin-bottom: 18px; color: #c8c8c8; }
+    .article-wrap strong { color: #ffffff; font-weight: 600; }
+    .article-wrap a { color: #2563EB; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.3); transition: border-color 0.2s; }
+    .article-wrap a:hover { border-bottom-color: #2563EB; }
+    .footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 24px; text-align: center; color: #666; font-size: 14px; }
     .footer a { color: #2563EB; text-decoration: none; }
+    .footer-areas { color: #555; margin-top: 12px; font-size: 13px; }
   </style>
 </head>
 <body>
   <nav class="nav">
-    <a href="/">&#8592; Noah Garage Doors</a>
-    <a href="tel:6195724266" class="nav-cta">Call (619) 572-4266</a>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="/logo.webp" alt="Noah Garage Doors logo" style="height:42px;width:auto;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));">
+        <div>
+          <div class="nav-brand-text">NOAH GARAGE DOORS</div>
+          <div class="nav-brand-sub">Fast. Reliable. Local.</div>
+        </div>
+      </a>
+      <div class="nav-right">
+        <a href="tel:6195724266" class="nav-phone">&#9742; (619) 572-4266</a>
+        <a href="/#quote" class="nav-cta">Free Estimate</a>
+      </div>
+    </div>
   </nav>
-  <div class="wrap">
+
+  <article class="article-wrap">
     <h1>Privacy Policy</h1>
     <p class="updated">Last updated: July 2, 2026</p>
 
@@ -68,10 +92,12 @@
     San Diego, CA<br>
     <a href="tel:6195724266">(619) 572-4266</a><br>
     <a href="mailto:Noahgaragedoors@gmail.com">Noahgaragedoors@gmail.com</a></p>
-  </div>
+  </article>
+
   <footer class="footer">
-    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved.</p>
+    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | San Diego, CA</p>
+    <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
   </footer>
-    <script src="/cookie-consent.js" defer></script>
+  <script src="/cookie-consent.js" defer></script>
 </body>
 </html>
