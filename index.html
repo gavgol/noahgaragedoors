@@ -1908,6 +1908,16 @@
                                 <textarea id="quoteMessage" name="message" maxlength="2000" placeholder="e.g. My garage door spring snapped..."
                                     class="w-full h-24 bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-blue-500/40 transition-all font-light resize-none"></textarea>
                             </div>
+                            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:2px;">
+                                <input id="quoteSmsConsent" name="sms_consent" type="checkbox"
+                                    style="margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
+                                <label for="quoteSmsConsent" style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300; cursor:pointer;">
+                                    It's OK to text me about my service and offers. Msg &amp; data rates may apply, reply STOP to opt out. Consent is not required to get a quote.
+                                    <a href="/sms-terms.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">SMS Terms</a>
+                                    &middot;
+                                    <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">Privacy Policy</a>
+                                </label>
+                            </div>
                             <button id="quoteSubmit" type="submit"
                                 class="w-full h-16 accent-bg text-white rounded-xl font-black text-base uppercase tracking-widest accent-bg-hover transition-all shadow-xl animate-pulse-glow disabled:cursor-not-allowed disabled:opacity-60"><span id="quoteSubmitText">Request Free Quote →</span></button>
                             <div id="formError" class="hidden text-center py-3 px-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-300 text-sm" role="alert" tabindex="-1"></div>

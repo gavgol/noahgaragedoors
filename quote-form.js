@@ -56,6 +56,10 @@
             phone: value('phone'),
             service: value('service'),
             message: value('message'),
+            sms_consent: (function () {
+                var c = form.elements.namedItem('sms_consent');
+                return !!(c && c.checked);
+            })(),
             source: value('lead_source'),
             website: value('website'),
             form_started_at: Number(value('form_started_at')),
