@@ -164,6 +164,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     "author": {{"@type": "Person", "name": "Noah", "url": "https://www.noahgaragesd.com/about"}},
     "publisher": {{"@type": "Organization", "name": "Noah Garage Doors", "logo": {{"@type": "ImageObject", "url": "https://www.noahgaragesd.com/logo.webp"}}}},
     "datePublished": "{date_iso}",
+    "dateModified": "{date_iso}",
     "mainEntityOfPage": {{"@type": "WebPage", "@id": "https://www.noahgaragesd.com/blog/{slug}.html"}}
   }}
   </script>
