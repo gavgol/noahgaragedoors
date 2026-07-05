@@ -161,7 +161,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     "headline": "[ARTICLE H1]",
     "description": "[META DESC]",
     "image": "https://www.noahgaragesd.com/og-image.jpg",
-    "author": {{"@type": "Person", "name": "Noah", "url": "https://www.noahgaragesd.com/about"}},
+    "author": {{"@type": "Person", "name": "Noah", "url": "https://www.noahgaragesd.com/#about"}},
     "publisher": {{"@type": "Organization", "name": "Noah Garage Doors", "logo": {{"@type": "ImageObject", "url": "https://www.noahgaragesd.com/logo.webp"}}}},
     "datePublished": "{date_iso}",
     "dateModified": "{date_iso}",
