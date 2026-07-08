@@ -99,6 +99,28 @@ TOPIC_QUEUE = [
     {"slug": "best-garage-door-brands-san-diego", "title": "Best Garage Door Brands for San Diego Homes", "type": "guide"},
     {"slug": "garage-door-maintenance-checklist-san-diego", "title": "Garage Door Maintenance Checklist for San Diego Homeowners", "type": "guide"},
 
+    # --- 9-month expansion (added 2026-07-07): more SD neighborhoods/cities, services, how-to guides ---
+    {"slug": "garage-door-repair-fallbrook", "title": "Garage Door Repair in Fallbrook, CA", "type": "city", "city": "Fallbrook"},
+    {"slug": "how-to-manually-open-a-garage-door", "title": "How to Manually Open a Garage Door: Step-by-Step", "type": "guide"},
+    {"slug": "garage-door-hinge-replacement-san-diego", "title": "Garage Door Hinge Replacement in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-lakeside", "title": "Garage Door Repair in Lakeside, CA", "type": "city", "city": "Lakeside"},
+    {"slug": "how-to-reset-a-garage-door-opener", "title": "How to Reset a Garage Door Opener", "type": "guide"},
+    {"slug": "garage-door-tune-up-san-diego", "title": "Garage Door Tune-Up Service in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-alpine", "title": "Garage Door Repair in Alpine, CA", "type": "city", "city": "Alpine"},
+    {"slug": "garage-door-opener-wont-work-after-power-outage", "title": "Garage Door Opener Won't Work After a Power Outage?", "type": "guide"},
+    {"slug": "garage-door-lock-repair-san-diego", "title": "Garage Door Lock Repair in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-scripps-ranch", "title": "Garage Door Repair in Scripps Ranch, CA", "type": "city", "city": "Scripps Ranch"},
+    {"slug": "why-is-my-garage-door-vibrating-or-shaking", "title": "Why Is My Garage Door Vibrating or Shaking?", "type": "guide"},
+    {"slug": "glass-garage-door-installation-san-diego", "title": "Glass Garage Door Installation in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-pacific-beach", "title": "Garage Door Repair in Pacific Beach, CA", "type": "city", "city": "Pacific Beach"},
+    {"slug": "modern-vs-traditional-garage-doors", "title": "Modern vs Traditional Garage Doors: Which Suits Your Home?", "type": "guide"},
+    {"slug": "wood-garage-door-installation-san-diego", "title": "Wood Garage Door Installation in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-clairemont", "title": "Garage Door Repair in Clairemont, CA", "type": "city", "city": "Clairemont"},
+    {"slug": "how-to-choose-a-garage-door-color", "title": "How to Choose a Garage Door Color for Your San Diego Home", "type": "guide"},
+    {"slug": "garage-door-safety-inspection-san-diego", "title": "Garage Door Safety Inspection in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-rancho-santa-fe", "title": "Garage Door Repair in Rancho Santa Fe, CA", "type": "city", "city": "Rancho Santa Fe"},
+    {"slug": "garage-door-repair-cardiff", "title": "Garage Door Repair in Cardiff, CA", "type": "city", "city": "Cardiff"},
+
 ]
 
 
