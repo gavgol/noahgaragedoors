@@ -1958,17 +1958,24 @@
                                     class="w-full h-24 bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-blue-500/40 transition-all font-light resize-none"></textarea>
                             </div>
                             <div style="display:flex; align-items:flex-start; gap:10px; padding-top:2px;">
+                                <input id="quoteSmsService" name="sms_consent_service" type="checkbox"
+                                    style="margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
+                                <label for="quoteSmsService" style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300; cursor:pointer;">
+                                    By checking this box, you agree to receive transactional and informational text messages about your service request and appointments from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.
+                                </label>
+                            </div>
+                            <div style="display:flex; align-items:flex-start; gap:10px;">
                                 <input id="quoteSmsConsent" name="sms_consent" type="checkbox"
                                     style="margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
                                 <label for="quoteSmsConsent" style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300; cursor:pointer;">
-                                    Yes, text me about promotions and special offers from Noah Garage Doors. Optional. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help, STOP to opt out. This is not required to get a quote or service.
-                                    <a href="/sms-terms.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">SMS Terms</a>
-                                    &middot;
-                                    <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">Privacy Policy</a>
+                                    By checking this box, you agree to receive promotional and marketing text messages from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.
                                 </label>
                             </div>
                             <p style="font-size:10px; line-height:1.5; color:rgba(255,255,255,0.35); font-weight:300; margin:0;">
-                                By submitting this form you agree that Noah Garage Doors may call or text you about your request and appointment. Message frequency varies, msg &amp; data rates may apply, reply HELP for help or STOP to opt out.
+                                Both boxes are optional and not required to get a quote or service.
+                                <a href="/sms-terms.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">SMS Terms</a>
+                                &middot;
+                                <a href="/privacy-policy.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">Privacy Policy</a>
                             </p>
                             <button id="quoteSubmit" type="submit"
                                 class="w-full h-16 accent-bg text-white rounded-xl font-black text-base uppercase tracking-widest accent-bg-hover transition-all shadow-xl animate-pulse-glow disabled:cursor-not-allowed disabled:opacity-60"><span id="quoteSubmitText">Request Free Quote →</span></button>
