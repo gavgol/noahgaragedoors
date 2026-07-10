@@ -75,7 +75,8 @@
       "position:fixed;left:12px;right:12px;bottom:12px;z-index:2147482000;" +
       "display:flex;gap:10px;padding:8px;background:rgba(10,15,30,.94);" +
       "border:1px solid rgba(255,255,255,.14);border-radius:18px;" +
-      "box-shadow:0 10px 30px rgba(0,0,0,.4);";
+      "box-shadow:0 10px 30px rgba(0,0,0,.4);" +
+      "transition:transform .28s ease,opacity .28s ease;";
     Array.prototype.forEach.call(bar.querySelectorAll("a"), function (link) {
       link.style.cssText =
         "flex:1;padding:14px 10px;border-radius:13px;text-align:center;" +
@@ -97,11 +98,19 @@
     document.body.appendChild(bar);
 
     var media = window.matchMedia("(min-width: 768px)");
+    // On the homepage the hero already shows Call/Quote buttons, so the bar
+    // stays hidden until the visitor scrolls past the first screen.
+    var isHome = location.pathname === "/" || /\/index\.html$/.test(location.pathname);
     function sync() {
       bar.style.display = media.matches ? "none" : "flex";
+      var show = !isHome || window.scrollY > window.innerHeight * 0.8;
+      bar.style.transform = show ? "translateY(0)" : "translateY(140%)";
+      bar.style.opacity = show ? "1" : "0";
+      bar.style.pointerEvents = show ? "auto" : "none";
     }
     sync();
     media.addEventListener("change", sync);
+    window.addEventListener("scroll", sync, { passive: true });
   }
 
   function addConsentBanner() {

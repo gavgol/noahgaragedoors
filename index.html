@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- Optional analytics are loaded by cookie-consent.js after consent. -->
+    <!-- Optional analytics are loaded by cookie-consent.js?v=2 after consent. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noah Garage Doors | San Diego Garage Door Repair</title>
@@ -542,6 +542,15 @@
         }
         .quote-right { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); padding: 3rem 2.5rem; }
     </style>
+<style>
+      /* Trust band: compact 2-col grid on mobile instead of a tall stacked list */
+      @media (max-width:639px){
+        .trust-band{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;justify-items:start;font-size:.8rem;padding-top:14px;padding-bottom:14px;}
+        .trust-band>span{align-items:flex-start;line-height:1.3;}
+        .trust-band>span:first-child{grid-column:1/-1;justify-self:center;}
+        .trust-band i{margin-top:1px;}
+      }
+    </style>
 </head>
 
 <body class="antialiased galaxy-bg"
@@ -653,7 +662,7 @@
 
         <!-- TRUST BAND -->
         <div class="w-full border-b border-white/5" style="background:rgba(255,255,255,0.03);">
-            <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-white/70">
+            <div class="trust-band max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-white/70">
                 <span class="flex items-center gap-1.5"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400 shrink-0"></i><span class="text-white font-bold">4.8</span><span class="text-white/40 font-normal">· 22 Google Reviews</span></span>
                 <span class="text-white/20 hidden sm:block">|</span>
                 <span class="flex items-center gap-1.5"><i data-lucide="thumbs-up" class="w-4 h-4 text-yellow-400 shrink-0"></i>Free, No-Obligation Estimates</span>
@@ -2212,7 +2221,7 @@
         });
     </script>
 
-    <script src="/cookie-consent.js" defer></script>
+    <script src="/cookie-consent.js?v=2" defer></script>
 </body>
 
 </html>
