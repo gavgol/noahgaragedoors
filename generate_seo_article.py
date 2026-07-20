@@ -263,6 +263,12 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     .vs-table th {{ background: rgba(37,99,235,0.15); color: #fff; font-weight: 600; padding: 12px 16px; text-align: left; border: 1px solid rgba(37,99,235,0.2); }}
     .vs-table td {{ padding: 12px 16px; border: 1px solid rgba(255,255,255,0.06); color: #c8c8c8; font-size: 15px; }}
     .vs-table tr:nth-child(even) td {{ background: rgba(255,255,255,0.02); }}
+    .toc {{ background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; }}
+    .toc-title {{ color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }}
+    .toc ol {{ margin: 0; padding-left: 20px; color: #c8c8c8; }}
+    .toc li {{ margin-bottom: 6px; }}
+    .toc a {{ color: #9db8e8; border-bottom: none; }}
+    .toc a:hover {{ color: #2563EB; }}
     @media (max-width: 640px) {{ .nav-phone {{ display: none; }} .article-wrap h2 {{ font-size: 22px; }} .cta-banner {{ padding: 28px 20px; }} .cta-btn {{ display: block; margin: 8px 0; }} .service-grid {{ grid-template-columns: 1fr; }} .vs-table {{ font-size: 14px; }} }}
   </style>
 </head>
@@ -311,12 +317,12 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     </div>
 
     <div class="sources">
-      <p><strong>About Noah Garage Doors:</strong> Locally owned and operated, serving all of San Diego County. Located at 1080 8th Ave, San Diego, CA 92101. Call or text <a href="tel:6195724266">(619) 572-4266</a> or email <a href="mailto:Noahgaragedoors@gmail.com">Noahgaragedoors@gmail.com</a>.</p>
+      <p><strong>About Noah Garage Doors:</strong> Locally owned and operated, serving all of San Diego County. Call or text <a href="tel:6195724266">(619) 572-4266</a> or email <a href="mailto:Noahgaragedoors@gmail.com">Noahgaragedoors@gmail.com</a>.</p>
     </div>
   </article>
 
   <footer class="footer">
-    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | 1080 8th Ave, San Diego, CA 92101</p>
+    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved.</p>
     <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
   </footer>
   <script src="/cookie-consent.js?v=2" defer></script>
@@ -417,6 +423,95 @@ def inject_hero_image(html: str, topic: dict) -> str:
     return new_html
 
 
+def inject_toc(html: str) -> str:
+    """Insert a jump-link table of contents right after the byline/hero image,
+    built deterministically from the article's own <h2> headings (never AI-written,
+    so it always matches the real section order). Skipped for short articles."""
+    article_match = re.search(r'(<article class="article-wrap">.*?</article>)', html, re.DOTALL)
+    if not article_match:
+        return html
+    article_html = article_match.group(1)
+
+    headings = list(re.finditer(r"<h2>(.*?)</h2>", article_html))
+    if len(headings) < 3:
+        return html  # not worth a TOC for a short article
+
+    toc_items = []
+    new_article_html = article_html
+    for i, m in enumerate(headings, start=1):
+        heading_text = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        anchor_id = f"s{i}"
+        toc_items.append(f'<li><a href="#{anchor_id}">{heading_text}</a></li>')
+        new_article_html = new_article_html.replace(m.group(0), f'<h2 id="{anchor_id}">{m.group(1)}</h2>', 1)
+
+    toc_html = (
+        '\n    <nav class="toc" aria-label="Table of contents">\n'
+        '      <div class="toc-title">In This Guide</div>\n'
+        "      <ol>\n        " + "\n        ".join(toc_items) + "\n      </ol>\n    </nav>\n"
+    )
+
+    insertion_pattern = re.compile(
+        r'(Owner, Noah Garage Doors.*?</div>\s*</div>(?:\s*<img class="article-hero-img"[^>]*>)?)',
+        re.DOTALL,
+    )
+    new_article_html, n = insertion_pattern.subn(lambda mm: mm.group(1) + toc_html, new_article_html, count=1)
+    if n == 0:
+        return html
+
+    return html.replace(article_html, new_article_html, 1)
+
+
+_STOPWORDS = {
+    "garage", "door", "doors", "san", "diego", "ca", "the", "a", "an", "in", "for",
+    "how", "to", "is", "are", "of", "and", "your", "you", "what", "when", "why",
+    "does", "do", "vs", "guide", "county", "2026", "best", "which",
+}
+
+
+def _keywords(title: str) -> set:
+    words = re.findall(r"[a-zA-Z']+", title.lower())
+    return {w for w in words if w not in _STOPWORDS and len(w) > 2}
+
+
+def inject_related_articles(html: str, topic: dict) -> str:
+    """Add a 'Related Guides' box linking to 3-4 other published articles picked by
+    keyword overlap with this article's title (falls back to most recent). This is
+    the blog-to-blog internal linking every article was previously missing."""
+    all_files = sorted(BLOG_DIR.glob("*.html"), key=lambda p: p.stat().st_mtime, reverse=True)
+    self_kw = _keywords(topic["title"])
+    scored = []
+    for idx, f in enumerate(all_files):
+        if f.stem in (topic["slug"], "index"):
+            continue
+        t = next((t for t in TOPIC_QUEUE if t["slug"] == f.stem), None)
+        title = t["title"] if t else f.stem.replace("-", " ").title()
+        score = len(self_kw & _keywords(title))
+        scored.append((score, idx, f.stem, title))
+    if not scored:
+        return html
+    scored.sort(key=lambda c: (-c[0], c[1]))
+    picks = scored[:4]
+
+    items = "\n".join(
+        f'        <li><a href="/blog/{slug}.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; {title}</a></li>'
+        for _, _, slug, title in picks
+    )
+    related_html = (
+        '\n    <div style="margin:40px 0 0;padding:28px 32px;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.08);">\n'
+        '      <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;">Related Guides</h3>\n'
+        '      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px;">\n'
+        f"{items}\n"
+        "      </ul>\n    </div>\n"
+    )
+
+    # Anchor to the article's closing tag rather than the services box: that box's
+    # markup has drifted across template revisions (svc-grid vs inline services list),
+    # but every published article has exactly one </article>.
+    if "</article>" not in html:
+        return html
+    return html.replace("</article>", related_html + "  </article>", 1)
+
+
 def save_article(slug: str, html: str) -> Path:
     output_path = BLOG_DIR / f"{slug}.html"
     output_path.write_text(html, encoding="utf-8")
@@ -503,6 +598,8 @@ def main():
 
     html = generate_article(topic, api_key)
     html = inject_hero_image(html, topic)
+    html = inject_toc(html)
+    html = inject_related_articles(html, topic)
     output_path = save_article(topic["slug"], html)
     update_blog_index(topic, html)
 

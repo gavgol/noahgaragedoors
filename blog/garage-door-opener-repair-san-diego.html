@@ -178,6 +178,12 @@
     .symptom-card { background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.15); border-radius: 10px; padding: 16px; font-size: 15px; color: #c8c8c8; }
     .symptom-card strong { color: #fff; display: block; margin-bottom: 4px; font-size: 14px; }
     @media (max-width: 600px) { .symptom-grid { grid-template-columns: 1fr; } .nav-phone { display: none; } .cta-btn { display: block; margin: 8px 0; } }
+      .toc { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; }
+    .toc-title { color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .toc ol { margin: 0; padding-left: 20px; color: #c8c8c8; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: #9db8e8; border-bottom: none; }
+    .toc a:hover { color: #2563EB; }
   </style>
 </head>
 <body>
@@ -208,12 +214,24 @@
     <strong style="color:#fff;">Noah</strong> &bull; Owner, Noah Garage Doors &bull; San Diego, CA
   </div>
 </div>
+    <nav class="toc" aria-label="Table of contents">
+      <div class="toc-title">In This Guide</div>
+      <ol>
+        <li><a href="#s1">Common Garage Door Opener Symptoms and What They Mean</a></li>
+        <li><a href="#s2">The Sensor Issue: San Diego's #1 Opener Call</a></li>
+        <li><a href="#s3">When Your Opener Needs to Be Replaced (Not Just Repaired)</a></li>
+        <li><a href="#s4">What Opener Brands Do We Work With in San Diego?</a></li>
+        <li><a href="#s5">How Much Does Garage Door Opener Repair Cost in San Diego?</a></li>
+        <li><a href="#s6">Frequently Asked Questions</a></li>
+      </ol>
+    </nav>
+
 
     <img src="/blog/images/opener-hero.jpg" alt="Garage door opener installation by a Noah Garage Doors technician in San Diego" style="width:100%;border-radius:12px;margin-bottom:36px;display:block;object-fit:cover;max-height:480px;">
 
     <p>You hit the button on your remote or wall panel, and nothing happens. Or the door starts moving, grinds to a halt, and reverses. Maybe the light on the opener flashes but the motor doesn't engage. If you're in San Diego County and your garage door opener has stopped cooperating, you've landed in the right place. This guide covers the most common opener problems, what each symptom usually means, and when you need a technician versus a quick DIY fix.</p>
 
-    <h2>Common Garage Door Opener Symptoms and What They Mean</h2>
+    <h2 id="s1">Common Garage Door Opener Symptoms and What They Mean</h2>
 
     <div class="symptom-grid">
       <div class="symptom-card"><strong>Remote works, wall button doesn't</strong>Likely a faulty wall button or wiring; usually a quick, inexpensive repair.</div>
@@ -224,7 +242,7 @@
       <div class="symptom-card"><strong>Opener runs, but slowly or loudly</strong>Worn drive rail, lack of lubrication, or the spring system is overloading the motor.</div>
     </div>
 
-    <h2>The Sensor Issue: San Diego's #1 Opener Call</h2>
+    <h2 id="s2">The Sensor Issue: San Diego's #1 Opener Call</h2>
     <p>By far the most common opener complaint we handle across San Diego County, from <strong>Scripps Ranch to National City</strong>, is the safety sensor problem. Every modern garage door opener has two small sensors near the base of the door tracks: one sends an infrared beam, one receives it. If the beam is broken or the sensors are out of alignment, the opener refuses to close the door as a safety measure.</p>
 
     <p>How to diagnose it yourself: look at the LED lights on both sensors. If one is blinking or unlit, you've found your problem. Common causes include:</p>
@@ -236,7 +254,7 @@
     </ul>
     <p>Try wiping the lenses with a dry cloth and gently adjusting the sensor bracket. If that doesn't solve it, give us a call. Sensor realignment is one of our fastest repairs.</p>
 
-    <h2>When Your Opener Needs to Be Replaced (Not Just Repaired)</h2>
+    <h2 id="s3">When Your Opener Needs to Be Replaced (Not Just Repaired)</h2>
     <p>We always try to repair before recommending replacement, but some situations call for a new unit:</p>
     <ul>
       <li>The opener is more than 15 years old and the motor or circuit board has failed</li>
@@ -245,7 +263,7 @@
       <li>You want smart-home connectivity (WiFi, app control, camera) your old unit can't support</li>
     </ul>
 
-    <h2>What Opener Brands Do We Work With in San Diego?</h2>
+    <h2 id="s4">What Opener Brands Do We Work With in San Diego?</h2>
     <p>We install, repair, and program all major brands:</p>
     <ul>
       <li><strong>LiftMaster</strong>: our most-installed brand, excellent reliability and parts availability</li>
@@ -255,7 +273,7 @@
       <li><strong>Marantec</strong>, <strong>Linear</strong>, <strong>Wayne Dalton</strong>: we service these too</li>
     </ul>
 
-    <h2>How Much Does Garage Door Opener Repair Cost in San Diego?</h2>
+    <h2 id="s5">How Much Does Garage Door Opener Repair Cost in San Diego?</h2>
     <p>Cost varies based on what's wrong. Here's a general range:</p>
     <ul>
       <li><strong>Sensor realignment or reprogramming:</strong> $75–$150</li>
@@ -281,7 +299,7 @@
       <a href="/#quote" class="cta-btn outline">Get a Free Quote &rarr;</a>
     </div>
 
-    <h2>Frequently Asked Questions</h2>
+    <h2 id="s6">Frequently Asked Questions</h2>
 
     <div class="faq-card">
       <span class="faq-q">My garage door opener light is blinking. What does that mean?</span>
@@ -324,6 +342,16 @@
         <li><a href="/garage-door-maintenance/"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span>Maintenance &amp; Tune-Up</span></a></li>
         <li><a href="/new-garage-door/"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span>New Garage Door Installation</span></a></li>
         <li><a href="/emergency-garage-door-repair/"><span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span>24/7 Emergency Repair</span></a></li>
+      </ul>
+    </div>
+  
+    <div style="margin:40px 0 0;padding:28px 32px;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
+      <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;">Related Guides</h3>
+      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px;">
+        <li><a href="/blog/garage-door-off-track-repair-san-diego.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Garage Door Off Track Repair San Diego</a></li>
+        <li><a href="/blog/emergency-garage-door-repair-san-diego.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Emergency Garage Door Repair San Diego</a></li>
+        <li><a href="/blog/smart-garage-door-opener-san-diego.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Smart Garage Door Opener Installation in San Diego</a></li>
+        <li><a href="/blog/how-much-does-garage-door-repair-cost-san-diego.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; How Much Does Garage Door Repair Cost San Diego</a></li>
       </ul>
     </div>
   </article>
