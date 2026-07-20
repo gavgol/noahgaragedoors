@@ -25,6 +25,11 @@ except ImportError:
 
 BLOG_DIR = Path(__file__).parent / "blog"
 
+# Shared "go" icon for svc-grid link cards (services box + related-guides box).
+ICON = ('<span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M5 12h14M13 6l6 6-6 6"/></svg></span>')
+
 # Topic queue — add new topics here. Script picks the next unpublished one.
 TOPIC_QUEUE = [
     {"slug": "garage-door-repair-poway", "title": "Garage Door Repair in Poway, CA", "type": "city", "city": "Poway"},
@@ -269,6 +274,13 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     .toc li {{ margin-bottom: 6px; }}
     .toc a {{ color: #9db8e8; border-bottom: none; }}
     .toc a:hover {{ color: #2563EB; }}
+    .svc-block {{ margin: 40px 0 0; padding: 28px 32px; background: rgba(255,255,255,0.04); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); }}
+    .svc-block h3 {{ font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 18px; letter-spacing: 0.05em; text-transform: uppercase; }}
+    .svc-grid {{ list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }}
+    .svc-grid a {{ display: flex; align-items: center; gap: 12px; padding: 13px 16px; background: rgba(37,99,235,0.06); border: 1px solid rgba(37,99,235,0.18); border-radius: 12px; color: #eaf0fc; text-decoration: none; font-weight: 600; font-size: 0.94rem; line-height: 1.25; transition: background .2s, border-color .2s, transform .2s; }}
+    .svc-grid a:hover {{ background: rgba(37,99,235,0.14); border-color: rgba(37,99,235,0.5); transform: translateY(-2px); }}
+    .svc-ic {{ display: flex; width: 30px; height: 30px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 8px; background: rgba(37,99,235,0.16); color: #3b82f6; }}
+    .svc-ic svg {{ width: 16px; height: 16px; }}
     @media (max-width: 640px) {{ .nav-phone {{ display: none; }} .article-wrap h2 {{ font-size: 22px; }} .cta-banner {{ padding: 28px 20px; }} .cta-btn {{ display: block; margin: 8px 0; }} .service-grid {{ grid-template-columns: 1fr; }} .vs-table {{ font-size: 14px; }} }}
   </style>
 </head>
@@ -303,16 +315,16 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
 
     [ARTICLE CONTENT HERE - use h2, h3, p, ul, ol, service-grid, vs-table, cta-banner, faq-card as needed]
 
-    <div style="margin:40px 0;padding:28px 32px;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
-      <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;">Our Garage Door Services in San Diego</h3>
-      <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
-        <li><a href="/garage-door-springs/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Spring Repair &amp; Replacement</a></li>
-        <li><a href="/garage-door-openers/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Garage Door Opener Repair</a></li>
-        <li><a href="/garage-door-off-track-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Off-Track Door Repair</a></li>
-        <li><a href="/garage-door-cable-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Cable Repair</a></li>
-        <li><a href="/garage-door-maintenance/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; Maintenance &amp; Tune-Up</a></li>
-        <li><a href="/new-garage-door/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; New Garage Door Installation</a></li>
-        <li><a href="/emergency-garage-door-repair/" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; 24/7 Emergency Repair</a></li>
+    <div class="svc-block">
+      <h3>Our Garage Door Services in San Diego</h3>
+      <ul class="svc-grid">
+        <li><a href="/garage-door-springs/">{ICON}<span>Spring Repair &amp; Replacement</span></a></li>
+        <li><a href="/garage-door-openers/">{ICON}<span>Garage Door Opener Repair</span></a></li>
+        <li><a href="/garage-door-off-track-repair/">{ICON}<span>Off-Track Door Repair</span></a></li>
+        <li><a href="/garage-door-cable-repair/">{ICON}<span>Cable Repair</span></a></li>
+        <li><a href="/garage-door-maintenance/">{ICON}<span>Maintenance &amp; Tune-Up</span></a></li>
+        <li><a href="/new-garage-door/">{ICON}<span>New Garage Door Installation</span></a></li>
+        <li><a href="/emergency-garage-door-repair/">{ICON}<span>24/7 Emergency Repair</span></a></li>
       </ul>
     </div>
 
@@ -347,6 +359,7 @@ def generate_article(topic: dict, api_key: str) -> str:
         topic_type=topic.get("type", "service"),
         slug=topic["slug"],
         date_iso=date_iso,
+        ICON=ICON,
     )
     response = _generate_with_retry(client, prompt)
     return strip_code_fences(response.text)
@@ -493,13 +506,13 @@ def inject_related_articles(html: str, topic: dict) -> str:
     picks = scored[:4]
 
     items = "\n".join(
-        f'        <li><a href="/blog/{slug}.html" style="color:#2563EB;text-decoration:none;font-weight:500;">&rarr; {title}</a></li>'
+        f'        <li><a href="/blog/{slug}.html">{ICON}<span>{title}</span></a></li>'
         for _, _, slug, title in picks
     )
     related_html = (
-        '\n    <div style="margin:40px 0 0;padding:28px 32px;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.08);">\n'
-        '      <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:0.05em;text-transform:uppercase;">Related Guides</h3>\n'
-        '      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px;">\n'
+        '\n    <div class="svc-block">\n'
+        "      <h3>Related Guides</h3>\n"
+        '      <ul class="svc-grid">\n'
         f"{items}\n"
         "      </ul>\n    </div>\n"
     )
