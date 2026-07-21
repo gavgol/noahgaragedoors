@@ -335,9 +335,11 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
 
   <footer class="footer">
     <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved.</p>
+    <p style="margin-top:8px;"><a href="/privacy-policy.html">Privacy Policy</a> &bull; <a href="/accessibility.html">Accessibility</a></p>
     <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
   </footer>
   <script src="/cookie-consent.js?v=2" defer></script>
+  <script src="/accessibility.js?v=1" defer></script>
 </body>
 </html>
 """
