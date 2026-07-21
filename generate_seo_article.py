@@ -339,7 +339,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
     <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
   </footer>
   <script src="/cookie-consent.js?v=2" defer></script>
-  <script src="/accessibility.js?v=1" defer></script>
+  <script src="/accessibility.js?v=2" defer></script>
 </body>
 </html>
 """
