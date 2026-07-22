@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "noahgaragesd.com" }],
       "destination": "https://www.noahgaragesd.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/blog/emergency-garage-door-repair-san-diego.html",
+      "destination": "/emergency-garage-door-repair/",
+      "permanent": true
     }
   ],
   "headers": [

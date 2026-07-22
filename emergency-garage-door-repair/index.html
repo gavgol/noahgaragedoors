@@ -43,11 +43,13 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"Do you charge extra for emergency or after-hours calls?","acceptedAnswer":{"@type":"Answer","text":"We are transparent about our pricing. We'll give you the exact cost over the phone before dispatching, no hidden fees or surprise charges after the job."}},
-      {"@type":"Question","name":"How fast can you get to me in San Diego?","acceptedAnswer":{"@type":"Answer","text":"We aim for a 1–3 hour response window across San Diego County. For urgent situations like a door stuck open, we prioritize dispatch immediately."}},
-      {"@type":"Question","name":"My garage door is stuck open at night, what should I do?","acceptedAnswer":{"@type":"Answer","text":"Call us right away at (619) 572-4266. A door stuck open is a security risk. While you wait, do not leave vehicles or valuables in the garage unattended. We carry parts on our trucks and can typically secure the door same night."}},
-      {"@type":"Question","name":"What qualifies as a garage door emergency?","acceptedAnswer":{"@type":"Answer","text":"Any situation that leaves your home unsecured (door stuck open), traps your vehicle inside (broken spring, off-track), or poses a safety hazard (cables snapped, panels falling). Call us and we'll advise on urgency."}},
-      {"@type":"Question","name":"Can you fix it in one visit?","acceptedAnswer":{"@type":"Answer","text":"Yes, in most cases. We stock the most common springs, cables, rollers, and opener parts on every truck, allowing us to complete most emergency repairs in a single visit without waiting for parts."}}
+      {"@type":"Question","name":"How fast can Noah Garage Doors respond to an emergency in San Diego?","acceptedAnswer":{"@type":"Answer","text":"Response times vary by location and time of day, but we typically arrive within 1 to 3 hours for emergency calls across San Diego County. For central areas like Downtown, Hillcrest, North Park, and Mission Valley, we are usually closer and can often get there sooner. For outlying areas like Alpine, Ramona, or Valley Center we route our technicians efficiently across the county so you are not waiting all day."}},
+      {"@type":"Question","name":"Do you charge extra for emergency or after-hours calls?","acceptedAnswer":{"@type":"Answer","text":"Some companies charge significant after-hours premiums. We charge fair pricing around the clock. There is no dispatch fee and the estimate is free, and we do not inflate part prices or labor rates for nighttime or weekend calls. You get the exact cost before we dispatch, with no hidden fees or surprise charges after the job."}},
+      {"@type":"Question","name":"My garage door is stuck open at night, what should I do right now?","acceptedAnswer":{"@type":"Answer","text":"Call us right away at (619) 572-4266. A door stuck open leaves your home exposed. While you wait, lock the interior door between the garage and your living space, move valuables away from the garage opening, and do not try to pull a partially open door down, it can fall suddenly. We carry parts on our trucks and can typically secure the door the same night."}},
+      {"@type":"Question","name":"What qualifies as a garage door emergency?","acceptedAnswer":{"@type":"Answer","text":"Any situation that leaves your home unsecured (door stuck open), traps your vehicle inside (broken spring, off track, dead opener), or creates a safety hazard (snapped cables, a door that can fall). Call us and we will tell you honestly how urgent it is."}},
+      {"@type":"Question","name":"My car is trapped inside, can I open the door myself?","acceptedAnswer":{"@type":"Answer","text":"Only if the door is fully closed and the spring is intact. Pull the red emergency release cord hanging from the trolley until it clicks, then lift the door evenly with both hands from the bottom center. If it feels extremely heavy or will not move, stop. That usually means a broken spring, and a garage door weighs 150 to 400 pounds without spring support."}},
+      {"@type":"Question","name":"Can you fix it in one visit?","acceptedAnswer":{"@type":"Answer","text":"Yes, in most cases. We stock the most common springs, cables, rollers, and opener parts on every truck, allowing us to complete most emergency repairs in a single visit without waiting for parts to be ordered. Every repair includes a safety inspection at no extra charge, and the springs we install carry the manufacturer's warranty."}},
+      {"@type":"Question","name":"What areas do you cover for 24/7 emergency service?","acceptedAnswer":{"@type":"Answer","text":"We cover all of San Diego County, including Oceanside, Carlsbad, Vista, San Marcos, Escondido, Valley Center, Bonsall, Encinitas, Del Mar, Poway, Ramona, San Diego, El Cajon, Alpine, Chula Vista, Bonita, and Jamul. If you are in San Diego County we service your area, 24 hours a day, 7 days a week."}}
     ]
   }
   </script>
@@ -72,7 +74,7 @@
     .glass-red { background:rgba(220,38,38,0.08); border:1px solid rgba(220,38,38,0.2); }
     .accent-bg { background-color:var(--brand-accent); } .accent-bg:hover { background-color:var(--brand-accent-hover); }
     .urgent-bg { background-color:var(--brand-urgent); } .urgent-bg:hover { background-color:var(--brand-urgent-hover); }
-    .floating-phone { position:fixed;bottom:32px;right:20px;z-index:999;width:56px;height:56px;border-radius:50%;background:var(--brand-urgent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--brand-urgent-glow);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s; }
+    .floating-phone { position:fixed;bottom:32px;right:20px;z-index:999;width:56px;height:56px;border-radius:50%;background:#dc2626;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(220,38,38,0.45);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s; }
     .floating-phone.visible { opacity:1;pointer-events:auto; }
     @media (min-width:768px) { .floating-phone { display:none; } }
     #mobile-menu { position:fixed;inset:0;z-index:200;background:rgba(10,10,15,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
@@ -103,7 +105,7 @@
         <a href="tel:6195724266" class="hidden sm:flex" style="align-items:center;gap:8px;font-size:0.875rem;font-weight:700;color:#fff;text-decoration:none;">
           <i data-lucide="phone" style="width:16px;height:16px;"></i> (619) 572-4266
         </a>
-        <a href="/#quote" class="hidden sm:inline-flex" style="padding:8px 20px;background:var(--brand-urgent);color:#fff;border-radius:999px;font-size:0.875rem;font-weight:800;text-decoration:none;">CALL NOW</a>
+        <a href="/#quote" class="hidden sm:inline-flex" style="padding:8px 20px;background:#dc2626;color:#fff;border-radius:999px;font-size:0.875rem;font-weight:800;text-decoration:none;">CALL NOW</a>
         <button onclick="toggleMenu()" class="sm:hidden" style="padding:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:8px;cursor:pointer;">
           <div style="width:20px;height:2px;background:#fff;margin-bottom:5px;"></div><div style="width:20px;height:2px;background:#fff;margin-bottom:5px;"></div><div style="width:20px;height:2px;background:#fff;"></div>
         </button>
@@ -198,15 +200,46 @@
         </div>
       </div>
 
+      <!-- Safety warning -->
+      <div class="glass-red" style="border-radius:16px;padding:24px 26px;margin-bottom:60px;">
+        <div style="font-weight:800;color:#f87171;margin-bottom:8px;">Important Safety Warning</div>
+        <p style="color:rgba(255,255,255,0.7);line-height:1.7;font-size:0.95rem;margin:0;">In any garage door emergency, disconnect the automatic opener by pulling the red emergency release cord hanging from the trolley, and do not force the door open or closed. A garage door weighs 150 to 400 pounds. Without proper spring tension it can fall without warning.</p>
+      </div>
+
+      <!-- What not to do -->
+      <div style="margin-bottom:60px;">
+        <h2 class="font-display" style="font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:16px;">What Not to Do in a Garage Door Emergency</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:20px;">We see the aftermath of DIY attempts every week, and it is almost always more expensive than the original problem, sometimes dangerous too.</p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;">
+          <li class="glass" style="border-radius:14px;padding:16px 20px;color:rgba(255,255,255,0.65);line-height:1.65;font-size:0.95rem;"><strong style="color:#fff;">Do not force the door open or closed.</strong> If the spring is broken, the full weight of the door is unsupported. Forcing it risks injury and can damage panels, cables, and the opener carriage.</li>
+          <li class="glass" style="border-radius:14px;padding:16px 20px;color:rgba(255,255,255,0.65);line-height:1.65;font-size:0.95rem;"><strong style="color:#fff;">Do not wind or unwind a spring yourself.</strong> Torsion springs are under enormous tension. That is a job for a trained technician with the right tools, no exceptions. See our <a href="/garage-door-springs/" style="color:#7ca4f5;text-decoration:none;">garage door spring repair page</a> for how the job is actually done.</li>
+          <li class="glass" style="border-radius:14px;padding:16px 20px;color:rgba(255,255,255,0.65);line-height:1.65;font-size:0.95rem;"><strong style="color:#fff;">Do not keep hitting the opener button.</strong> If the door is not moving freely, running the motor over and over burns it out and turns a small repair into an opener replacement.</li>
+          <li class="glass" style="border-radius:14px;padding:16px 20px;color:rgba(255,255,255,0.65);line-height:1.65;font-size:0.95rem;"><strong style="color:#fff;">Do not ignore a door stuck partly open.</strong> A door balanced on a broken spring or a loose cable can come down without warning. Keep people and cars out from under it.</li>
+        </ul>
+      </div>
+
+      <!-- Manual release -->
+      <div style="margin-bottom:60px;">
+        <h2 class="font-display" style="font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:16px;">Car Trapped Inside? How to Use the Manual Release Safely</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:20px;">If you need to get your car out before we arrive, you can disengage the opener yourself. Do it in this order:</p>
+        <ol style="list-style:none;padding:0;margin:0;counter-reset:emg;display:flex;flex-direction:column;gap:14px;">
+          <li style="position:relative;padding-left:52px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.95rem;"><span style="position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#7ca4f5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">1</span><strong style="color:#fff;">Make sure the door is fully closed</strong> before pulling the release. If it is partly open and the spring is broken, stop and call us instead.</li>
+          <li style="position:relative;padding-left:52px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.95rem;"><span style="position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#7ca4f5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">2</span><strong style="color:#fff;">Find the red emergency release cord</strong> hanging from the trolley on the overhead track. It normally has a red handle.</li>
+          <li style="position:relative;padding-left:52px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.95rem;"><span style="position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#7ca4f5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">3</span><strong style="color:#fff;">Pull the cord straight down</strong> and slightly toward the door until you hear a click. That disconnects the door from the drive carriage.</li>
+          <li style="position:relative;padding-left:52px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.95rem;"><span style="position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#7ca4f5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">4</span><strong style="color:#fff;">Lift the door with both hands</strong> evenly from the bottom center. If it feels extremely heavy or will not budge, stop. The spring is likely broken and the door is not safe to lift.</li>
+          <li style="position:relative;padding-left:52px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.95rem;"><span style="position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(37,99,235,0.2);border:1px solid rgba(37,99,235,0.4);color:#7ca4f5;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:0.85rem;">5</span><strong style="color:#fff;">Secure the door before you drive out.</strong> Clamp the track or have someone hold it. Never leave a door propped open unattended when the spring is broken.</li>
+        </ol>
+      </div>
+
       <!-- Response info -->
       <div style="margin-bottom:60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
         <div class="glass" style="border-radius:20px;padding:28px;text-align:center;">
-          <div class="font-display" style="font-size:2.5rem;font-weight:900;color:var(--brand-urgent);margin-bottom:8px;">24/7</div>
+          <div class="font-display" style="font-size:2.5rem;font-weight:900;color:var(--brand-accent);margin-bottom:8px;">24/7</div>
           <div style="font-weight:700;margin-bottom:6px;">Always Available</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Including nights, weekends & holidays</div>
         </div>
         <div class="glass" style="border-radius:20px;padding:28px;text-align:center;">
-          <div class="font-display" style="font-size:2.5rem;font-weight:900;color:var(--brand-urgent);margin-bottom:8px;">1–3 hr</div>
+          <div class="font-display" style="font-size:2.5rem;font-weight:900;color:var(--brand-accent);margin-bottom:8px;">1–3 hr</div>
           <div style="font-weight:700;margin-bottom:6px;">Response Time</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Across San Diego County</div>
         </div>
@@ -220,6 +253,22 @@
           <div style="font-weight:700;margin-bottom:6px;">Dispatch Fee</div>
           <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Free estimate, upfront pricing</div>
         </div>
+      </div>
+
+      <!-- Why 24/7 in San Diego -->
+      <div style="margin-bottom:60px;">
+        <h2 class="font-display" style="font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:16px;">Why Real 24/7 Service Matters in San Diego</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:16px;">San Diego County spreads across dozens of separate communities, from beach towns to inland valleys, and traffic on the I-5, I-8, and SR-94 makes the morning window tight. Missing it because the garage will not open is not just annoying, it costs you the whole day.</p>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:16px;">In HOA governed neighborhoods, which are everywhere in Rancho Bernardo, Mira Mesa, Scripps Ranch, and Otay Ranch, a door stuck open can also earn you a violation notice on top of the repair. Most HOA rules require garage doors to stay closed when the garage is not in use.</p>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:16px;">San Diego also has a large military community. Service members at MCAS Miramar, Naval Base San Diego, and Naval Base Coronado have strict reporting times, and "call someone tomorrow" is not an option. We take those calls all the time.</p>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin:0;">So when we say 24/7, we mean a real technician dispatched to your address at any hour, not an answering service that calls you back in the morning. If your door is refusing to move but it is not urgent yet, our guides on <a href="/blog/garage-door-wont-open-san-diego.html" style="color:#7ca4f5;text-decoration:none;">a garage door that will not open</a> and <a href="/blog/garage-door-wont-close-san-diego.html" style="color:#7ca4f5;text-decoration:none;">a garage door that will not close</a> walk through the checks you can safely do yourself first.</p>
+      </div>
+
+      <!-- What happens when you call -->
+      <div style="margin-bottom:60px;">
+        <h2 class="font-display" style="font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:16px;">What Happens When You Call Us</h2>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:16px;">Call <a href="tel:6195724266" style="color:#7ca4f5;text-decoration:none;font-weight:700;">(619) 572-4266</a> and tell us your address and what the door is doing. We confirm availability, give you a realistic arrival window, and talk you through the immediate safety steps while you wait. Our technicians carry the most common springs, cables, rollers, and opener parts on the truck, so in most cases the repair is finished in one visit.</p>
+        <p style="color:rgba(255,255,255,0.65);line-height:1.7;margin:0;">Pricing is quoted before we start, and it does not change because it is 2 AM instead of 2 PM. Every repair includes a safety inspection at no extra charge, and the springs we install carry the manufacturer's warranty. If you want to know what typical repairs run in this market, see our breakdown of <a href="/blog/how-much-does-garage-door-repair-cost-san-diego.html" style="color:#7ca4f5;text-decoration:none;">garage door repair costs in San Diego</a>. You can also reach us any time at <a href="mailto:Noahgaragedoors@gmail.com" style="color:#7ca4f5;text-decoration:none;">Noahgaragedoors@gmail.com</a>, though for an emergency the phone is always faster.</p>
       </div>
 
       <!-- Service areas -->
@@ -251,28 +300,49 @@
               Do you charge extra for emergency or after-hours calls?
               <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
             </button>
-            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">We're transparent about our pricing. You'll get the exact cost before we dispatch, no hidden fees or surprise charges when the job is done.</div>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Some companies charge significant after-hours premiums. We charge fair pricing around the clock. There is no dispatch fee and the estimate is free, and we do not inflate part prices or labor rates for nighttime or weekend calls. You get the exact cost before we dispatch, with no hidden fees or surprise charges after the job.</div>
           </div>
           <div class="glass" style="border-radius:16px;overflow:hidden;">
             <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
-              How fast can you get to me in San Diego?
+              How fast can Noah Garage Doors respond to an emergency in San Diego?
               <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
             </button>
-            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">We aim for a 1–3 hour response window across San Diego County. For urgent situations like a door stuck open at night, we prioritize dispatch immediately.</div>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Response times vary by location and time of day, but we typically arrive within 1 to 3 hours for emergency calls across San Diego County. For central areas like Downtown, Hillcrest, North Park, and Mission Valley, we are usually closer and can often get there sooner. For outlying areas like Alpine, Ramona, or Valley Center we route our technicians efficiently across the county so you are not waiting all day.</div>
           </div>
           <div class="glass" style="border-radius:16px;overflow:hidden;">
             <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
-              My garage door is stuck open at night, what should I do?
+              My garage door is stuck open at night, what should I do right now?
               <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
             </button>
-            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Call us right away at (619) 572-4266. While you wait, move valuables inside and don't leave the garage unattended. We carry parts on our trucks and can typically secure the door the same night.</div>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Call us right away at (619) 572-4266. A door stuck open leaves your home exposed. While you wait, lock the interior door between the garage and your living space, move valuables away from the garage opening, and do not try to pull a partially open door down, it can fall suddenly. We carry parts on our trucks and can typically secure the door the same night.</div>
           </div>
           <div class="glass" style="border-radius:16px;overflow:hidden;">
             <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
               Can you fix it in one visit?
               <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
             </button>
-            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Yes, in most cases. We stock the most common springs, cables, rollers, and opener parts on every truck, allowing us to complete most emergency repairs in a single visit without waiting for parts to be ordered.</div>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Yes, in most cases. We stock the most common springs, cables, rollers, and opener parts on every truck, allowing us to complete most emergency repairs in a single visit without waiting for parts to be ordered. Every repair includes a safety inspection at no extra charge, and the springs we install carry the manufacturer's warranty.</div>
+          </div>
+          <div class="glass" style="border-radius:16px;overflow:hidden;">
+            <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
+              What qualifies as a garage door emergency?
+              <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
+            </button>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Any situation that leaves your home unsecured (door stuck open), traps your vehicle inside (broken spring, off track, dead opener), or creates a safety hazard (snapped cables, a door that can fall). Call us and we will tell you honestly how urgent it is.</div>
+          </div>
+          <div class="glass" style="border-radius:16px;overflow:hidden;">
+            <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
+              My car is trapped inside, can I open the door myself?
+              <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
+            </button>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Only if the door is fully closed and the spring is intact. Pull the red emergency release cord hanging from the trolley until it clicks, then lift the door evenly with both hands from the bottom center. If it feels extremely heavy or will not move, stop. That usually means a broken spring, and a garage door weighs 150 to 400 pounds without spring support.</div>
+          </div>
+          <div class="glass" style="border-radius:16px;overflow:hidden;">
+            <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">
+              What areas do you cover for 24/7 emergency service?
+              <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i>
+            </button>
+            <div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">We cover all of San Diego County, including Oceanside, Carlsbad, Vista, San Marcos, Escondido, Valley Center, Bonsall, Encinitas, Del Mar, Poway, Ramona, San Diego, El Cajon, Alpine, Chula Vista, Bonita, and Jamul. If you are in San Diego County we service your area, 24 hours a day, 7 days a week.</div>
           </div>
         </div>
       </div>
@@ -302,34 +372,34 @@
     </section>
 
     <!-- BIG CTA -->
+    <section class="rel-guides" style="max-width:900px;margin:0 auto;padding:60px 24px;">
+      <style>
+        .rel-guides h2{font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:20px;}
+        .rel-guides .rg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px;}
+        .rel-guides .rg-grid a{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:14px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:600;font-size:0.92rem;line-height:1.35;transition:transform .15s ease,border-color .15s ease,background .15s ease;}
+        .rel-guides .rg-grid a:hover{transform:translateY(-2px);border-color:rgba(96,140,240,0.45);background:rgba(37,99,235,0.10);}
+        .rel-guides .rg-ic{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:rgba(37,99,235,0.18);display:flex;align-items:center;justify-content:center;}
+        .rel-guides .rg-ic svg{width:15px;height:15px;stroke:#7ca4f5;}
+      </style>
+      <h2 class="font-display">Garage Door Tips &amp; Guides</h2>
+      <div class="rg-grid">
+        <a class="glass" href="/blog/garage-door-spring-replacement-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Spring Replacement in San Diego</span></a>
+        <a class="glass" href="/blog/garage-door-off-track-repair-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Off-Track? What to Do</span></a>
+        <a class="glass" href="/blog/garage-door-wont-close-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Won't Close? Causes and Fixes</span></a>
+        <a class="glass" href="/blog/how-much-does-garage-door-repair-cost-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Repair Cost in San Diego</span></a>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
     <section style="background:linear-gradient(135deg,#3d0000,#1a0000);padding:70px 24px;text-align:center;border-top:1px solid rgba(220,38,38,0.2);">
       <div style="max-width:600px;margin:0 auto;">
         <div style="font-size:3rem;margin-bottom:12px;">🚨</div>
-        <div class="font-display" style="font-size:clamp(2rem,5vw,3rem);font-weight:900;text-transform:uppercase;margin-bottom:12px;">Don't Wait, <span style="color:var(--brand-urgent);">Call Right Now.</span></div>
+        <div class="font-display" style="font-size:clamp(2rem,5vw,3rem);font-weight:900;text-transform:uppercase;margin-bottom:12px;">Don't Wait, <span style="color:#dc2626;">Call Right Now.</span></div>
         <p style="color:rgba(255,255,255,0.65);margin-bottom:28px;line-height:1.6;">Every hour your garage is stuck open is an hour your home is at risk. We're ready to dispatch a technician now.</p>
         <a href="tel:6195724266" style="display:inline-flex;align-items:center;gap:12px;background:#dc2626;color:#fff;font-weight:900;font-size:1.3rem;padding:20px 40px;border-radius:999px;text-decoration:none;box-shadow:0 4px 40px rgba(220,38,38,0.5);">
           <i data-lucide="phone" style="width:24px;height:24px;"></i> (619) 572-4266
         </a>
         <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:16px;">24/7 · Same-Day · San Diego County</p>
-      </div>
-    </section>
-  
-    <!-- RELATED GUIDES -->
-    <section class="rel-guides" style="max-width:900px;margin:0 auto;padding:0 24px 60px;">
-      <style>
-        .rel-guides h2{font-size:1.4rem;font-weight:800;margin-bottom:18px;}
-        .rel-guides .rg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
-        .rel-guides .rg-grid a{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);text-decoration:none;font-weight:600;font-size:0.92rem;line-height:1.35;transition:transform .15s ease,border-color .15s ease,background .15s ease;}
-        .rel-guides .rg-grid a:hover{transform:translateY(-2px);border-color:rgba(96,140,240,0.45);background:rgba(37,99,235,0.10);}
-        .rel-guides .rg-ic{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:rgba(37,99,235,0.18);display:flex;align-items:center;justify-content:center;}
-        .rel-guides .rg-ic svg{width:15px;height:15px;stroke:#7ca4f5;}
-      </style>
-      <h2>Garage Door Tips &amp; Guides</h2>
-      <div class="rg-grid">
-        <a href="/blog/emergency-garage-door-repair-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Emergency Garage Door Repair in San Diego</span></a>
-        <a href="/blog/garage-door-off-track-repair-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Off-Track? What to Do</span></a>
-        <a href="/blog/garage-door-wont-close-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Won't Close? Causes and Fixes</span></a>
-        <a href="/blog/how-much-does-garage-door-repair-cost-san-diego.html"><span class="rg-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span><span>Garage Door Repair Cost in San Diego</span></a>
       </div>
     </section>
   </main>

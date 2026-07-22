@@ -30,102 +30,141 @@ ICON = ('<span class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="curre
         'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">'
         '<path d="M5 12h14M13 6l6 6-6 6"/></svg></span>')
 
-# Topic queue — add new topics here. Script picks the next unpublished one.
+# Topic queue - the script publishes the FIRST slug here that has no blog/<slug>.html yet.
+# QUEUE ORDER IS THE PUBLISHING SCHEDULE. See SEO-ROADMAP.md before adding or reordering.
+# Rebuilt 2026-07-22 from live Google Search Console data (28d ending 2026-07-21).
+# Ordering logic: (1) emergency cluster support, (2) queries where the site already sits
+# at position 10-25, (3) distinct commercial services, (4) new-door buying cluster.
 TOPIC_QUEUE = [
-    {"slug": "garage-door-repair-poway", "title": "Garage Door Repair in Poway, CA", "type": "city", "city": "Poway"},
-    {"slug": "garage-door-repair-la-mesa", "title": "Garage Door Repair in La Mesa, CA", "type": "city", "city": "La Mesa"},
-    {"slug": "garage-door-repair-escondido", "title": "Garage Door Repair in Escondido, CA", "type": "city", "city": "Escondido"},
-    {"slug": "garage-door-repair-carlsbad", "title": "Garage Door Repair in Carlsbad, CA", "type": "city", "city": "Carlsbad"},
-    {"slug": "garage-door-repair-santee", "title": "Garage Door Repair in Santee, CA", "type": "city", "city": "Santee"},
-    {"slug": "garage-door-cable-repair-san-diego", "title": "Garage Door Cable Replacement in San Diego", "type": "service"},
-    {"slug": "garage-door-maintenance-san-diego", "title": "Garage Door Maintenance in San Diego: What's Included", "type": "service"},
-    {"slug": "garage-door-panel-repair-san-diego", "title": "Garage Door Panel Repair in San Diego", "type": "service"},
-    {"slug": "smart-garage-door-opener-san-diego", "title": "Smart Garage Door Opener Installation in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-vs-replacement-san-diego", "title": "Garage Door Repair vs Replacement: San Diego Guide", "type": "guide"},
-    {"slug": "how-long-do-garage-door-springs-last", "title": "How Long Do Garage Door Springs Last in San Diego?", "type": "guide"},
-    {"slug": "garage-door-noise-san-diego", "title": "Why Is My Garage Door So Loud? San Diego Homeowners Guide", "type": "guide"},
-    {"slug": "garage-door-repair-encinitas", "title": "Garage Door Repair in Encinitas, CA", "type": "city", "city": "Encinitas"},
-    {"slug": "garage-door-repair-vista-ca", "title": "Garage Door Repair in Vista, CA", "type": "city", "city": "Vista"},
-    {"slug": "garage-door-wont-close-san-diego", "title": "Garage Door Won't Close in San Diego? Causes and Fixes", "type": "guide"},
-    {"slug": "garage-door-wont-open-san-diego", "title": "Garage Door Won't Open? A San Diego Homeowner's Guide", "type": "guide"},
-    {"slug": "garage-door-sensor-problems-san-diego", "title": "Garage Door Sensor Problems: Why Your Door Won't Close", "type": "guide"},
-    {"slug": "garage-door-remote-not-working", "title": "Garage Door Remote Not Working? Fixes to Try First", "type": "guide"},
-    {"slug": "signs-of-a-broken-garage-door-spring", "title": "7 Signs Your Garage Door Spring Is Broken", "type": "guide"},
+    # ---------- TIER 1: emergency + trust cluster (weeks 1-4) ----------
+    # Supports /emergency-garage-door-repair/ (the old blog post was merged into it
+    # on 2026-07-22; together they held 292 impr @ pos 16.6) and the query
+    # "emergency garage door repair" (195 impr @ pos 12.8, 0 clicks).
+    {"slug": "how-to-manually-open-a-garage-door", "title": "How to Manually Open a Garage Door: Step-by-Step", "type": "guide"},
+    {"slug": "garage-door-opener-wont-work-after-power-outage", "title": "Garage Door Opener Won't Work After a Power Outage?", "type": "guide"},
+    {"slug": "garage-door-opens-a-few-inches-then-stops", "title": "Garage Door Opens a Few Inches Then Stops: Causes and Fixes", "type": "guide"},
+    {"slug": "garage-door-opener-humming-wont-move", "title": "Garage Door Opener Hums But Won't Move: What It Means", "type": "guide"},
+    {"slug": "how-to-choose-a-garage-door-company-san-diego", "title": "How to Choose a Garage Door Repair Company in San Diego", "type": "guide"},
+    {"slug": "garage-door-repair-scams-to-avoid", "title": "Garage Door Repair Scams to Avoid in San Diego", "type": "guide"},
+    {"slug": "diy-vs-professional-garage-door-repair", "title": "DIY vs Professional Garage Door Repair: When to Call a Pro", "type": "guide"},
+    {"slug": "garage-door-repair-la-jolla", "title": "Garage Door Repair in La Jolla, CA", "type": "city", "city": "La Jolla"},
+
+    # ---------- TIER 2: opener cluster (weeks 5-8) ----------
+    # Query "garage door opener repair" already at pos 13.3; /garage-door-openers/ at pos 38.4.
     {"slug": "garage-door-opener-replacement-cost-san-diego", "title": "Garage Door Opener Replacement Cost in San Diego (2026)", "type": "guide"},
-    {"slug": "new-garage-door-cost-san-diego", "title": "How Much Does a New Garage Door Cost in San Diego? (2026)", "type": "guide"},
+    {"slug": "how-long-do-garage-door-openers-last", "title": "How Long Do Garage Door Openers Last?", "type": "guide"},
     {"slug": "belt-drive-vs-chain-drive-opener", "title": "Belt Drive vs Chain Drive Garage Door Opener: Which Is Best?", "type": "guide"},
+    {"slug": "garage-door-remote-programming-guide", "title": "How to Program a Garage Door Remote: San Diego Guide", "type": "guide"},
+    {"slug": "liftmaster-opener-repair-san-diego", "title": "LiftMaster Garage Door Opener Repair in San Diego", "type": "service"},
+    {"slug": "garage-door-opener-battery-backup-california-law", "title": "California Battery Backup Law for Garage Door Openers", "type": "guide"},
+    {"slug": "garage-door-opener-wifi-app-setup-san-diego", "title": "Connecting a Garage Door Opener to Wi-Fi and Your Phone", "type": "guide"},
+
+    # ---------- TIER 3: distinct parts + commercial services (weeks 9-12) ----------
+    {"slug": "garage-door-roller-replacement-san-diego", "title": "Garage Door Roller Replacement in San Diego", "type": "service"},
+    {"slug": "garage-door-keypad-repair-san-diego", "title": "Garage Door Keypad Repair in San Diego", "type": "service"},
+    {"slug": "garage-door-weather-seal-replacement-san-diego", "title": "Garage Door Weather Seal Replacement in San Diego", "type": "service"},
+    {"slug": "garage-door-hinge-replacement-san-diego", "title": "Garage Door Hinge Replacement in San Diego", "type": "service"},
+    {"slug": "commercial-garage-door-repair-san-diego", "title": "Commercial Garage Door Repair in San Diego", "type": "service"},
+    {"slug": "garage-door-repair-san-marcos", "title": "Garage Door Repair in San Marcos, CA", "type": "city", "city": "San Marcos"},
+
+    # ---------- TIER 4: diagnostics + maintenance (weeks 13-16) ----------
+    {"slug": "garage-door-off-balance-san-diego", "title": "Is Your Garage Door Off Balance? How to Tell and Fix It", "type": "guide"},
     {"slug": "torsion-vs-extension-springs", "title": "Torsion vs Extension Springs: Which Does Your Door Have?", "type": "guide"},
-    {"slug": "insulated-vs-non-insulated-garage-doors-san-diego", "title": "Insulated vs Non-Insulated Garage Doors: Worth It in San Diego?", "type": "guide"},
-    {"slug": "best-garage-doors-for-coastal-san-diego", "title": "Best Garage Doors for San Diego's Coastal Climate", "type": "guide"},
+    {"slug": "how-to-lubricate-a-garage-door", "title": "How to Lubricate a Garage Door the Right Way", "type": "guide"},
     {"slug": "how-often-to-service-garage-door", "title": "How Often Should You Service Your Garage Door?", "type": "guide"},
     {"slug": "garage-door-auto-reverse-safety-test", "title": "How to Test Your Garage Door's Auto-Reverse Safety Feature", "type": "guide"},
-    {"slug": "how-long-do-garage-door-openers-last", "title": "How Long Do Garage Door Openers Last?", "type": "guide"},
-    {"slug": "garage-door-repair-national-city", "title": "Garage Door Repair in National City, CA", "type": "city", "city": "National City"},
-    {"slug": "garage-door-repair-coronado", "title": "Garage Door Repair in Coronado, CA", "type": "city", "city": "Coronado"},
-    # --- 6-month expansion (added 2026-07-03): more SD-County cities, service pages, and how-to/cost guides ---
-    {"slug": "garage-door-repair-san-marcos", "title": "Garage Door Repair in San Marcos, CA", "type": "city", "city": "San Marcos"},
-    {"slug": "garage-door-opens-a-few-inches-then-stops", "title": "Garage Door Opens a Few Inches Then Stops: Causes and Fixes", "type": "guide"},
-    {"slug": "garage-door-roller-replacement-san-diego", "title": "Garage Door Roller Replacement in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-lemon-grove", "title": "Garage Door Repair in Lemon Grove, CA", "type": "city", "city": "Lemon Grove"},
-    {"slug": "garage-door-reverses-before-closing", "title": "Garage Door Reverses Before Closing: San Diego Guide", "type": "guide"},
-    {"slug": "garage-door-track-repair-san-diego", "title": "Garage Door Track Repair in San Diego", "type": "service"},
+    {"slug": "garage-door-security-tips-san-diego", "title": "Garage Door Security Tips for San Diego Homeowners", "type": "guide"},
     {"slug": "garage-door-repair-spring-valley", "title": "Garage Door Repair in Spring Valley, CA", "type": "city", "city": "Spring Valley"},
-    {"slug": "garage-door-stuck-open-san-diego", "title": "Garage Door Stuck Open? San Diego Troubleshooting Guide", "type": "guide"},
-    {"slug": "garage-door-weather-seal-replacement-san-diego", "title": "Garage Door Weather Seal Replacement in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-imperial-beach", "title": "Garage Door Repair in Imperial Beach, CA", "type": "city", "city": "Imperial Beach"},
-    {"slug": "garage-door-opener-humming-wont-move", "title": "Garage Door Opener Hums But Won't Move: What It Means", "type": "guide"},
-    {"slug": "garage-door-opener-installation-san-diego", "title": "Garage Door Opener Installation in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-solana-beach", "title": "Garage Door Repair in Solana Beach, CA", "type": "city", "city": "Solana Beach"},
-    {"slug": "garage-door-off-balance-san-diego", "title": "Is Your Garage Door Off Balance? How to Tell and Fix It", "type": "guide"},
-    {"slug": "liftmaster-opener-repair-san-diego", "title": "LiftMaster Garage Door Opener Repair in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-del-mar", "title": "Garage Door Repair in Del Mar, CA", "type": "city", "city": "Del Mar"},
-    {"slug": "garage-door-spring-cost-san-diego", "title": "How Much Does Garage Door Spring Replacement Cost in San Diego?", "type": "guide"},
-    {"slug": "chamberlain-opener-repair-san-diego", "title": "Chamberlain Garage Door Opener Repair in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-rancho-bernardo", "title": "Garage Door Repair in Rancho Bernardo, CA", "type": "city", "city": "Rancho Bernardo"},
-    {"slug": "garage-door-remote-programming-guide", "title": "How to Program a Garage Door Remote: San Diego Guide", "type": "guide"},
-    {"slug": "genie-opener-repair-san-diego", "title": "Genie Garage Door Opener Repair in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-la-jolla", "title": "Garage Door Repair in La Jolla, CA", "type": "city", "city": "La Jolla"},
-    {"slug": "how-to-choose-a-garage-door-company-san-diego", "title": "How to Choose a Garage Door Repair Company in San Diego", "type": "guide"},
-    {"slug": "garage-door-keypad-repair-san-diego", "title": "Garage Door Keypad Repair in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-point-loma", "title": "Garage Door Repair in Point Loma, CA", "type": "city", "city": "Point Loma"},
-    {"slug": "garage-door-repair-scams-to-avoid", "title": "Garage Door Repair Scams to Avoid in San Diego", "type": "guide"},
-    {"slug": "garage-door-bottom-seal-replacement-san-diego", "title": "Garage Door Bottom Seal Replacement in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-mira-mesa", "title": "Garage Door Repair in Mira Mesa, CA", "type": "city", "city": "Mira Mesa"},
-    {"slug": "single-vs-double-garage-door", "title": "Single vs Double Garage Doors: Which Is Right for You?", "type": "guide"},
-    {"slug": "new-garage-door-installation-san-diego", "title": "New Garage Door Installation in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-bonita", "title": "Garage Door Repair in Bonita, CA", "type": "city", "city": "Bonita"},
-    {"slug": "steel-vs-wood-garage-doors", "title": "Steel vs Wood Garage Doors: A San Diego Buyer's Guide", "type": "guide"},
-    {"slug": "garage-door-repair-ramona", "title": "Garage Door Repair in Ramona, CA", "type": "city", "city": "Ramona"},
-    {"slug": "does-a-new-garage-door-add-home-value", "title": "Does a New Garage Door Add Home Value in San Diego?", "type": "guide"},
-    {"slug": "signs-you-need-a-new-garage-door", "title": "7 Signs You Need a New Garage Door", "type": "guide"},
-    {"slug": "diy-vs-professional-garage-door-repair", "title": "DIY vs Professional Garage Door Repair: When to Call a Pro", "type": "guide"},
-    {"slug": "garage-door-spring-snapped-what-to-do", "title": "Garage Door Spring Snapped? What to Do Next", "type": "guide"},
-    {"slug": "how-long-does-garage-door-installation-take", "title": "How Long Does Garage Door Installation Take?", "type": "guide"},
-    {"slug": "best-garage-door-brands-san-diego", "title": "Best Garage Door Brands for San Diego Homes", "type": "guide"},
-    {"slug": "garage-door-maintenance-checklist-san-diego", "title": "Garage Door Maintenance Checklist for San Diego Homeowners", "type": "guide"},
 
-    # --- 9-month expansion (added 2026-07-07): more SD neighborhoods/cities, services, how-to guides ---
-    {"slug": "garage-door-repair-fallbrook", "title": "Garage Door Repair in Fallbrook, CA", "type": "city", "city": "Fallbrook"},
-    {"slug": "how-to-manually-open-a-garage-door", "title": "How to Manually Open a Garage Door: Step-by-Step", "type": "guide"},
-    {"slug": "garage-door-hinge-replacement-san-diego", "title": "Garage Door Hinge Replacement in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-lakeside", "title": "Garage Door Repair in Lakeside, CA", "type": "city", "city": "Lakeside"},
-    {"slug": "how-to-reset-a-garage-door-opener", "title": "How to Reset a Garage Door Opener", "type": "guide"},
-    {"slug": "garage-door-tune-up-san-diego", "title": "Garage Door Tune-Up Service in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-alpine", "title": "Garage Door Repair in Alpine, CA", "type": "city", "city": "Alpine"},
-    {"slug": "garage-door-opener-wont-work-after-power-outage", "title": "Garage Door Opener Won't Work After a Power Outage?", "type": "guide"},
+    # ---------- TIER 5: new-door buying cluster (weeks 17-22) ----------
+    # Props up /new-garage-door/ (146 impr but pos 47.5, the weakest high-impression page).
+    {"slug": "new-garage-door-cost-san-diego", "title": "How Much Does a New Garage Door Cost in San Diego? (2026)", "type": "guide"},
+    {"slug": "signs-you-need-a-new-garage-door", "title": "7 Signs You Need a New Garage Door", "type": "guide"},
+    {"slug": "how-to-measure-for-a-new-garage-door", "title": "How to Measure for a New Garage Door", "type": "guide"},
+    {"slug": "insulated-vs-non-insulated-garage-doors-san-diego", "title": "Insulated vs Non-Insulated Garage Doors: Worth It in San Diego?", "type": "guide"},
+    {"slug": "best-garage-doors-for-coastal-san-diego", "title": "Best Garage Doors for San Diego's Coastal Climate", "type": "guide"},
+    {"slug": "steel-vs-wood-garage-doors", "title": "Steel vs Wood Garage Doors: A San Diego Buyer's Guide", "type": "guide"},
+    {"slug": "single-vs-double-garage-door", "title": "Single vs Double Garage Doors: Which Is Right for You?", "type": "guide"},
+    {"slug": "best-garage-door-brands-san-diego", "title": "Best Garage Door Brands for San Diego Homes", "type": "guide"},
+    {"slug": "does-a-new-garage-door-add-home-value", "title": "Does a New Garage Door Add Home Value in San Diego?", "type": "guide"},
+    {"slug": "how-long-does-garage-door-installation-take", "title": "How Long Does Garage Door Installation Take?", "type": "guide"},
+    {"slug": "garage-door-repair-national-city", "title": "Garage Door Repair in National City, CA", "type": "city", "city": "National City"},
+    {"slug": "garage-door-window-replacement-san-diego", "title": "Garage Door Window Replacement in San Diego", "type": "service"},
+    {"slug": "rv-garage-door-installation-san-diego", "title": "RV and Oversized Garage Door Installation in San Diego", "type": "service"},
+    {"slug": "garage-door-installation-permit-san-diego", "title": "Do You Need a Permit for a Garage Door in San Diego?", "type": "guide"},
+    {"slug": "garage-door-repair-for-hoa-and-condos-san-diego", "title": "Garage Door Repair for HOAs and Condos in San Diego", "type": "service"},
+]
+
+# =====================================================================================
+# PARKED - removed from the live queue 2026-07-22 during the GSC-driven cleanup.
+# Nothing here is deleted. Move an item back into TOPIC_QUEUE only if the stated
+# reason no longer holds. See SEO-ROADMAP.md, section "Rules for future topics".
+# =====================================================================================
+
+# PARKED - removed 2026-07-22, reason: duplicates an existing service page and/or an
+# already published blog post (would cannibalize a page that is already ranking).
+PARKED_DUPLICATES = [
+    {"slug": "garage-door-track-repair-san-diego", "title": "Garage Door Track Repair in San Diego", "type": "service"},  # /garage-door-off-track-repair/ + blog/garage-door-off-track-repair-san-diego.html
+    {"slug": "garage-door-opener-installation-san-diego", "title": "Garage Door Opener Installation in San Diego", "type": "service"},  # /garage-door-openers/
+    {"slug": "new-garage-door-installation-san-diego", "title": "New Garage Door Installation in San Diego", "type": "service"},  # /new-garage-door/
+    {"slug": "garage-door-tune-up-san-diego", "title": "Garage Door Tune-Up Service in San Diego", "type": "service"},  # /garage-door-maintenance/ + blog/garage-door-maintenance-san-diego.html
+    {"slug": "garage-door-safety-inspection-san-diego", "title": "Garage Door Safety Inspection in San Diego", "type": "service"},  # /garage-door-maintenance/
+    {"slug": "garage-door-maintenance-checklist-san-diego", "title": "Garage Door Maintenance Checklist for San Diego Homeowners", "type": "guide"},  # blog maintenance post + how-often-to-service-garage-door
+    {"slug": "glass-garage-door-installation-san-diego", "title": "Glass Garage Door Installation in San Diego", "type": "service"},  # thin subtopic of /new-garage-door/
+    {"slug": "wood-garage-door-installation-san-diego", "title": "Wood Garage Door Installation in San Diego", "type": "service"},  # thin subtopic of /new-garage-door/ + steel-vs-wood
+    {"slug": "garage-door-stuck-open-san-diego", "title": "Garage Door Stuck Open? San Diego Troubleshooting Guide", "type": "guide"},  # blog/garage-door-wont-close-san-diego.html
+    {"slug": "garage-door-reverses-before-closing", "title": "Garage Door Reverses Before Closing: San Diego Guide", "type": "guide"},  # blog/garage-door-sensor-problems-san-diego.html
+    {"slug": "why-is-my-garage-door-vibrating-or-shaking", "title": "Why Is My Garage Door Vibrating or Shaking?", "type": "guide"},  # blog/garage-door-noise-san-diego.html
+    {"slug": "how-to-reset-a-garage-door-opener", "title": "How to Reset a Garage Door Opener", "type": "guide"},  # blog/garage-door-remote-not-working.html + remote-programming-guide
+    {"slug": "modern-vs-traditional-garage-doors", "title": "Modern vs Traditional Garage Doors: Which Suits Your Home?", "type": "guide"},  # steel-vs-wood + single-vs-double cover it
+]
+
+# PARKED - removed 2026-07-22, reason: same topic as another queued item, or same
+# manufacturer, so the copy would be near identical.
+PARKED_INTERNAL_DUPLICATES = [
+    {"slug": "garage-door-bottom-seal-replacement-san-diego", "title": "Garage Door Bottom Seal Replacement in San Diego", "type": "service"},  # identical to weather-seal-replacement
+    {"slug": "chamberlain-opener-repair-san-diego", "title": "Chamberlain Garage Door Opener Repair in San Diego", "type": "service"},  # same manufacturer as LiftMaster
+    {"slug": "genie-opener-repair-san-diego", "title": "Genie Garage Door Opener Repair in San Diego", "type": "service"},  # third templated brand page
+]
+
+# PARKED - removed 2026-07-22, reason: spring topic is saturated. Already live:
+# /garage-door-springs/, blog/garage-door-spring-replacement-san-diego.html,
+# blog/how-long-do-garage-door-springs-last.html, blog/signs-of-a-broken-garage-door-spring.html
+PARKED_SPRING_SATURATION = [
+    {"slug": "garage-door-spring-cost-san-diego", "title": "How Much Does Garage Door Spring Replacement Cost in San Diego?", "type": "guide"},
+    {"slug": "garage-door-spring-snapped-what-to-do", "title": "Garage Door Spring Snapped? What to Do Next", "type": "guide"},
+]
+
+# PARKED - removed 2026-07-22, reason: negligible search demand or commercial intent.
+PARKED_LOW_DEMAND = [
     {"slug": "garage-door-lock-repair-san-diego", "title": "Garage Door Lock Repair in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-scripps-ranch", "title": "Garage Door Repair in Scripps Ranch, CA", "type": "city", "city": "Scripps Ranch"},
-    {"slug": "why-is-my-garage-door-vibrating-or-shaking", "title": "Why Is My Garage Door Vibrating or Shaking?", "type": "guide"},
-    {"slug": "glass-garage-door-installation-san-diego", "title": "Glass Garage Door Installation in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-pacific-beach", "title": "Garage Door Repair in Pacific Beach, CA", "type": "city", "city": "Pacific Beach"},
-    {"slug": "modern-vs-traditional-garage-doors", "title": "Modern vs Traditional Garage Doors: Which Suits Your Home?", "type": "guide"},
-    {"slug": "wood-garage-door-installation-san-diego", "title": "Wood Garage Door Installation in San Diego", "type": "service"},
-    {"slug": "garage-door-repair-clairemont", "title": "Garage Door Repair in Clairemont, CA", "type": "city", "city": "Clairemont"},
     {"slug": "how-to-choose-a-garage-door-color", "title": "How to Choose a Garage Door Color for Your San Diego Home", "type": "guide"},
-    {"slug": "garage-door-safety-inspection-san-diego", "title": "Garage Door Safety Inspection in San Diego", "type": "service"},
+]
+
+# PARKED - removed 2026-07-22, reason: city-page bloat. The 12 published city posts do
+# not rank for their own city query and the homepage outranks them. Example:
+# "garage door repair chula vista ca" = homepage 65 impr @ pos 40.7 vs the Chula Vista
+# post 1 impr @ pos 68. Do NOT reinstate until the four kept city pages prove the
+# format can rank. See SEO-ROADMAP.md.
+PARKED_CITIES = [
+    {"slug": "garage-door-repair-coronado", "title": "Garage Door Repair in Coronado, CA", "type": "city", "city": "Coronado"},
+    {"slug": "garage-door-repair-lemon-grove", "title": "Garage Door Repair in Lemon Grove, CA", "type": "city", "city": "Lemon Grove"},
+    {"slug": "garage-door-repair-imperial-beach", "title": "Garage Door Repair in Imperial Beach, CA", "type": "city", "city": "Imperial Beach"},
+    {"slug": "garage-door-repair-solana-beach", "title": "Garage Door Repair in Solana Beach, CA", "type": "city", "city": "Solana Beach"},
+    {"slug": "garage-door-repair-del-mar", "title": "Garage Door Repair in Del Mar, CA", "type": "city", "city": "Del Mar"},
+    {"slug": "garage-door-repair-rancho-bernardo", "title": "Garage Door Repair in Rancho Bernardo, CA", "type": "city", "city": "Rancho Bernardo"},
+    {"slug": "garage-door-repair-point-loma", "title": "Garage Door Repair in Point Loma, CA", "type": "city", "city": "Point Loma"},
+    {"slug": "garage-door-repair-mira-mesa", "title": "Garage Door Repair in Mira Mesa, CA", "type": "city", "city": "Mira Mesa"},
+    {"slug": "garage-door-repair-bonita", "title": "Garage Door Repair in Bonita, CA", "type": "city", "city": "Bonita"},
+    {"slug": "garage-door-repair-ramona", "title": "Garage Door Repair in Ramona, CA", "type": "city", "city": "Ramona"},
+    {"slug": "garage-door-repair-fallbrook", "title": "Garage Door Repair in Fallbrook, CA", "type": "city", "city": "Fallbrook"},
+    {"slug": "garage-door-repair-lakeside", "title": "Garage Door Repair in Lakeside, CA", "type": "city", "city": "Lakeside"},
+    {"slug": "garage-door-repair-alpine", "title": "Garage Door Repair in Alpine, CA", "type": "city", "city": "Alpine"},
+    {"slug": "garage-door-repair-scripps-ranch", "title": "Garage Door Repair in Scripps Ranch, CA", "type": "city", "city": "Scripps Ranch"},
+    {"slug": "garage-door-repair-pacific-beach", "title": "Garage Door Repair in Pacific Beach, CA", "type": "city", "city": "Pacific Beach"},
+    {"slug": "garage-door-repair-clairemont", "title": "Garage Door Repair in Clairemont, CA", "type": "city", "city": "Clairemont"},
     {"slug": "garage-door-repair-rancho-santa-fe", "title": "Garage Door Repair in Rancho Santa Fe, CA", "type": "city", "city": "Rancho Santa Fe"},
     {"slug": "garage-door-repair-cardiff", "title": "Garage Door Repair in Cardiff, CA", "type": "city", "city": "Cardiff"},
-
 ]
 
 
@@ -135,10 +174,11 @@ COMPANY INFO:
 - Name: Noah Garage Doors
 - Phone: (619) 572-4266 (this is the ONLY phone number; never invent another)
 - Email: Noahgaragedoors@gmail.com (this is the ONLY email; NEVER write info@noahgaragesd.com or any other address)
-- Hours: Open 24/7. We work around the clock, every day. If you mention availability, say "24/7", "round-the-clock", or "same-day". NEVER state limited or specific business hours (e.g. do NOT write "7am to 9pm", "Mon-Fri", or any opening/closing time) — that would contradict the rest of the site.
+- Hours: Open 24/7. We work around the clock, every day. If you mention availability, say "24/7", "round-the-clock", or "same-day". NEVER state limited or specific business hours (e.g. do NOT write "7am to 9pm", "Mon-Fri", or any opening/closing time). That would contradict the rest of the site.
 - Address: NONE. This is a Service Area Business serving all of San Diego County. NEVER print a street address in the article body or schema; refer only to "San Diego, CA" or "San Diego County".
-- Key differentiators: Same-day service, lifetime spring warranty, locally owned, upfront honest pricing, experienced technicians
-- IMPORTANT: Do NOT claim the business is "licensed", "insured", "bonded", "certified", or "background-checked" — it does not hold those credentials. Never use those words.
+- Key differentiators: Same-day service, manufacturer's warranty on parts, locally owned, upfront honest pricing, experienced technicians
+- IMPORTANT: Do NOT claim the business is "licensed", "insured", "bonded", "certified", or "background-checked". It does not hold those credentials. Never use those words.
+- WARRANTY WORDING: Always write "manufacturer's warranty". NEVER write "lifetime warranty", "lifetime spring warranty", or any other lifetime guarantee.
 - Service area: All of San Diego County
 
 TOPIC: {topic_title}
