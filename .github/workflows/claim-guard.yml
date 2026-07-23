@@ -29,3 +29,10 @@ jobs:
 
       - name: Scan every page for unsubstantiated claims
         run: python tools/claim_guard.py
+
+      # Quality, not safety. Runs here rather than in deploy-production.yml on
+      # purpose: the claim guard blocks a deploy because shipping an
+      # unsubstantiated claim is a legal problem, whereas a dead link or a
+      # sitemap gap should be loud without holding production hostage.
+      - name: Structural SEO audit
+        run: python tools/seo_audit.py
