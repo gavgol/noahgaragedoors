@@ -72,10 +72,10 @@ The service pages that already exist as `/<slug>/index.html` are: `emergency-gar
 
 | Parked slug | Cannibalizes |
 |---|---|
-| `garage-door-track-repair-san-diego` | `/garage-door-off-track-repair/` AND `blog/garage-door-off-track-repair-san-diego.html` (double overlap) |
+| `garage-door-track-repair-san-diego` | `/garage-door-off-track-repair/` (blog dupe merged in and 301d, 2026-07) |
 | `garage-door-opener-installation-san-diego` | `/garage-door-openers/` |
 | `new-garage-door-installation-san-diego` | `/new-garage-door/` |
-| `garage-door-tune-up-san-diego` | `/garage-door-maintenance/` and `blog/garage-door-maintenance-san-diego.html` |
+| `garage-door-tune-up-san-diego` | `/garage-door-maintenance/` (blog dupe merged in and 301d, 2026-07) |
 | `garage-door-safety-inspection-san-diego` | `/garage-door-maintenance/` |
 | `garage-door-maintenance-checklist-san-diego` | the published maintenance post plus `how-often-to-service-garage-door` |
 | `glass-garage-door-installation-san-diego` | thin subtopic of `/new-garage-door/` |
@@ -99,7 +99,7 @@ slug against every published `blog/*.html` and every service page directory.
 
 ### 2.3 Cut: spring topic saturation (2)
 
-Already live: `/garage-door-springs/`, `blog/garage-door-spring-replacement-san-diego.html`,
+Already live: `/garage-door-springs/`,
 `blog/how-long-do-garage-door-springs-last.html`, and `blog/signs-of-a-broken-garage-door-spring.html`
 (the last one was already published, so it left the queue on its own).
 

@@ -10,6 +10,26 @@
       "source": "/blog/emergency-garage-door-repair-san-diego.html",
       "destination": "/emergency-garage-door-repair/",
       "permanent": true
+    },
+    {
+      "source": "/blog/garage-door-spring-replacement-san-diego.html",
+      "destination": "/garage-door-springs/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/garage-door-off-track-repair-san-diego.html",
+      "destination": "/garage-door-off-track-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/garage-door-opener-repair-san-diego.html",
+      "destination": "/garage-door-openers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/garage-door-maintenance-san-diego.html",
+      "destination": "/garage-door-maintenance/",
+      "permanent": true
     }
   ],
   "headers": [

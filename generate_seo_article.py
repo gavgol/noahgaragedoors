@@ -104,10 +104,10 @@ TOPIC_QUEUE = [
 # PARKED - removed 2026-07-22, reason: duplicates an existing service page and/or an
 # already published blog post (would cannibalize a page that is already ranking).
 PARKED_DUPLICATES = [
-    {"slug": "garage-door-track-repair-san-diego", "title": "Garage Door Track Repair in San Diego", "type": "service"},  # /garage-door-off-track-repair/ + blog/garage-door-off-track-repair-san-diego.html
+    {"slug": "garage-door-track-repair-san-diego", "title": "Garage Door Track Repair in San Diego", "type": "service"},  # /garage-door-off-track-repair/ (blog dupe merged in 2026-07)
     {"slug": "garage-door-opener-installation-san-diego", "title": "Garage Door Opener Installation in San Diego", "type": "service"},  # /garage-door-openers/
     {"slug": "new-garage-door-installation-san-diego", "title": "New Garage Door Installation in San Diego", "type": "service"},  # /new-garage-door/
-    {"slug": "garage-door-tune-up-san-diego", "title": "Garage Door Tune-Up Service in San Diego", "type": "service"},  # /garage-door-maintenance/ + blog/garage-door-maintenance-san-diego.html
+    {"slug": "garage-door-tune-up-san-diego", "title": "Garage Door Tune-Up Service in San Diego", "type": "service"},  # /garage-door-maintenance/ (blog dupe merged in 2026-07)
     {"slug": "garage-door-safety-inspection-san-diego", "title": "Garage Door Safety Inspection in San Diego", "type": "service"},  # /garage-door-maintenance/
     {"slug": "garage-door-maintenance-checklist-san-diego", "title": "Garage Door Maintenance Checklist for San Diego Homeowners", "type": "guide"},  # blog maintenance post + how-often-to-service-garage-door
     {"slug": "glass-garage-door-installation-san-diego", "title": "Glass Garage Door Installation in San Diego", "type": "service"},  # thin subtopic of /new-garage-door/
@@ -128,7 +128,7 @@ PARKED_INTERNAL_DUPLICATES = [
 ]
 
 # PARKED - removed 2026-07-22, reason: spring topic is saturated. Already live:
-# /garage-door-springs/, blog/garage-door-spring-replacement-san-diego.html,
+# /garage-door-springs/,
 # blog/how-long-do-garage-door-springs-last.html, blog/signs-of-a-broken-garage-door-spring.html
 PARKED_SPRING_SATURATION = [
     {"slug": "garage-door-spring-cost-san-diego", "title": "How Much Does Garage Door Spring Replacement Cost in San Diego?", "type": "guide"},
@@ -181,13 +181,33 @@ COMPANY INFO:
 - WARRANTY WORDING: Always write "manufacturer's warranty". NEVER write "lifetime warranty", "lifetime spring warranty", or any other lifetime guarantee.
 - Service area: All of San Diego County
 
+CANONICAL PRICE LIST (2026, San Diego market rates):
+This is the ONLY source of prices. NEVER invent a price, a range, or a "starting at" figure that is not
+in this list. If a job is not listed, describe the work WITHOUT a number and say the exact cost is quoted
+after a free assessment. Copy these ranges verbatim, including the dollar signs and the word "to".
+- Torsion spring replacement, single spring: $220 to $450
+- Torsion spring replacement, double spring or double door: $380 to $650
+- Opener repair: $125 to $350
+- Opener replacement, including installation: $450 to $950
+- Cable replacement, pair: $150 to $300
+- Off-track door repair: $150 to $400
+- Roller replacement, full set: $150 to $300
+- Safety sensor repair or replacement: $95 to $200
+- Tune-up and safety inspection, regular price: $99 to $199
+- New garage door, installed: $1,200 to $4,500 (single car $1,200 to $2,800, double car $1,800 to $4,500)
+- The $49 tune-up is a promotional offer. Refer to it as a promotion or special, never as the regular price.
+Every price on this site must agree with every other page. Two different prices for the same job is worse
+than no price at all, because a customer who finds both stops trusting all of them.
+
 TOPIC: {topic_title}
 TYPE: {topic_type}
 SLUG: {slug}
 
 CONTENT REQUIREMENTS:
 1. Article body: 800-1100 words of genuinely useful content
-2. Include at least one price/cost table if relevant (use class="vs-table")
+2. Include at least one price/cost table if relevant (use class="vs-table"). Every figure in it MUST come
+   from the CANONICAL PRICE LIST above, copied exactly. If the topic has no listed price, omit the table
+   rather than estimating one.
 3. Include 3-4 FAQ items using the faq-card divs shown below
 4. Include one CTA banner in the middle and one at the end (use cta-banner div)
 5. Be specific to San Diego: mention real neighborhoods, local climate factors
