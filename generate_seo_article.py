@@ -14,6 +14,7 @@ import sys
 import json
 import argparse
 import re
+import hashlib
 from datetime import datetime
 from pathlib import Path
 
@@ -465,20 +466,50 @@ def strip_code_fences(html: str) -> str:
     return s.strip() + "\n"
 
 
-def inject_hero_image(html: str, topic: dict) -> str:
-    """If a hero image exists for this article's slug (blog/<slug>.webp), insert it
-    after the author byline and use it as the og/twitter/schema social image.
+# Branded fallback heroes, used only when no per-slug image is staged. These are
+# real interior job photos (garage door + opener), so they suit the opener and
+# troubleshooting guides that make up most of the queue. Add a matching
+# blog/<slug>.webp any time you want a specific image instead.
+FALLBACK_HERO_IMAGES = [
+    "/blog/images/guide-default-1.jpg",
+    "/blog/images/guide-default-2.jpg",
+    "/blog/images/guide-default-3.jpg",
+    "/blog/images/guide-default-4.jpg",
+]
 
-    This makes images automatic: pre-place blog/<slug>.webp (+ optional <slug>.jpg)
-    and the published article will include it. No image file -> article unchanged."""
-    slug = topic["slug"]
+
+def _hero_sources(slug: str):
+    """(img_src, social_src) for the article's hero, or (None, None) if nothing
+    is available. A staged blog/<slug>.webp always wins; otherwise fall back to a
+    deterministic pick from the branded default pool, so an article is NEVER
+    published without a hero image. That gap is what left how-to-manually-open
+    and garage-door-repair-carlsbad imageless. The pick is a stable md5 of the
+    slug (not Python's per-process hash), so the same article keeps the same
+    fallback across runs."""
     webp = BLOG_DIR / f"{slug}.webp"
-    if not webp.exists():
-        return html  # no image staged for this topic; leave article as-is
+    if webp.exists():
+        social = f"/blog/{slug}.jpg" if (BLOG_DIR / f"{slug}.jpg").exists() else f"/blog/{slug}.webp"
+        return f"/blog/{slug}.webp", social
+    pool = [p for p in FALLBACK_HERO_IMAGES if (BLOG_DIR.parent / p.lstrip("/")).exists()]
+    if not pool:
+        return None, None
+    pick = pool[int(hashlib.md5(slug.encode()).hexdigest(), 16) % len(pool)]
+    return pick, pick  # jpg works for both the <img> and the social card
+
+
+def inject_hero_image(html: str, topic: dict) -> str:
+    """Insert a hero image after the author byline and use it as the
+    og/twitter/schema social image. Prefers a staged blog/<slug>.webp; otherwise
+    uses a branded fallback so no article ships imageless. See _hero_sources."""
+    slug = topic["slug"]
+    img_src, social = _hero_sources(slug)
+    if not img_src:
+        print("WARN: no hero image available (no per-slug image, empty fallback pool)")
+        return html
 
     alt = f"{topic['title']} by Noah Garage Doors"
     img_tag = (
-        f'\n\n    <img class="article-hero-img" src="/blog/{slug}.webp" '
+        f'\n\n    <img class="article-hero-img" src="{img_src}" '
         f'width="1200" height="800" alt="{alt}">'
     )
     # Insert right after the author byline block (copied verbatim from the template).
@@ -488,13 +519,11 @@ def inject_hero_image(html: str, topic: dict) -> str:
         print("WARN: byline anchor not found; hero image not inserted")
         return html
 
-    # Use the per-article image for social cards (prefer jpg for compatibility).
-    social = f"/blog/{slug}.jpg" if (BLOG_DIR / f"{slug}.jpg").exists() else f"/blog/{slug}.webp"
     new_html = new_html.replace(
         "https://www.noahgaragesd.com/og-image.jpg",
         f"https://www.noahgaragesd.com{social}",
     )
-    print(f"Inserted hero image for {slug}")
+    print(f"Inserted hero image for {slug}: {img_src}")
     return new_html
 
 
