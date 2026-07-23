@@ -69,9 +69,9 @@ jobs:
             exit 0
           fi
 
-          # Claim guard: scan ADDED lines for unverifiable marketing claims.
-          CLAIM_RE='licens|insur|bonded|background.?check|warrant|guarantee|certif|[0-9]+[ -]?star|five[ -]?star|\breviews\b|\brated\b'
-          if git diff -- blog/ sitemap.xml | grep -E '^\+' | grep -Eiq "$CLAIM_RE"; then
+          # Claim guard: same rules as tools/claim_guard.py, which is also the
+          # blocking gate in deploy-production.yml. One definition, not two.
+          if ! python tools/claim_guard.py $(git diff --name-only -- blog/); then
             echo "::warning::Claim guard tripped — opening a review PR instead of auto-publishing."
             BRANCH="seo-review/$(date +%Y%m%d)-${GITHUB_RUN_ID}"
             git switch -c "$BRANCH"

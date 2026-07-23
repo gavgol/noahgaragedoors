@@ -1,0 +1,31 @@
+name: Claim Guard
+
+# Blocks copy the business cannot substantiate: licensing/insurance/bonding,
+# background checks, lifetime warranties, invented star ratings or review
+# counts, guaranteed arrival windows, and em-dashes.
+#
+# This runs on the FILES, not on one generator's output, because the previous
+# guard lived inside publish-seo-article.yml and stopped covering anything the
+# moment article publishing moved to a different routine.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  claim-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scan every page for unsubstantiated claims
+        run: python tools/claim_guard.py

@@ -22,6 +22,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # Blocking gate. A page that claims licensing, insurance, a lifetime
+      # warranty, a made-up rating or a guaranteed arrival window must not reach
+      # production, whoever or whatever wrote it.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Claim guard
+        run: python tools/claim_guard.py
+
       - name: Install Vercel CLI
         run: npm install -g vercel@50
 
