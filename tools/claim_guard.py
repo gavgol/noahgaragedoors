@@ -20,7 +20,7 @@ generate_seo_article.py):
   - The company holds no contractor licence. Nothing may claim or imply
     licensed / insured / bonded / certified / background-checked.
   - Warranties are the manufacturer's. There is no lifetime warranty.
-  - The rating is 4.9 from 43 reviews. No other figure may appear.
+  - The rating is 4.9 from 44 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
   - No em-dashes in customer-facing copy.
 """
@@ -54,10 +54,10 @@ RULES = [
     ),
     (
         'rating',
-        # Any star rating or review count that is not the real 4.9 / 43.
+        # Any star rating or review count that is not the real 4.9 / 44.
         r'\b(?!4\.9\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
-        r'|\b(?!43\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
-        'The real figures are 4.9 stars from 43 reviews. Do not use any other number.',
+        r'|\b(?!44\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
+        'The real figures are 4.9 stars from 44 reviews. Do not use any other number.',
         None,
     ),
     (
