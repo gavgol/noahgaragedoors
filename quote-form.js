@@ -50,11 +50,17 @@
 
         if (!form.reportValidity()) return;
 
+        var serviceValue = value('service');
+        if (!serviceValue) {
+            showError('Please select a service before submitting.');
+            return;
+        }
+
         setSending(true);
         var payload = {
             name: value('name'),
             phone: value('phone'),
-            service: value('service'),
+            service: serviceValue,
             message: value('message'),
             sms_consent: (function () {
                 var c = form.elements.namedItem('sms_consent');

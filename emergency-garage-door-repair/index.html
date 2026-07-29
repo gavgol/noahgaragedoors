@@ -106,15 +106,15 @@
           <i data-lucide="phone" style="width:16px;height:16px;"></i> (619) 572-4266
         </a>
         <a href="/#quote" class="hidden sm:inline-flex" style="padding:8px 20px;background:#dc2626;color:#fff;border-radius:999px;font-size:0.875rem;font-weight:800;text-decoration:none;">CALL NOW</a>
-        <button onclick="toggleMenu()" class="sm:hidden" style="padding:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:8px;cursor:pointer;">
+        <button id="hamburger" onclick="toggleMenu()" class="sm:hidden" aria-haspopup="true" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" style="padding:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:8px;cursor:pointer;">
           <div style="width:20px;height:2px;background:#fff;margin-bottom:5px;"></div><div style="width:20px;height:2px;background:#fff;margin-bottom:5px;"></div><div style="width:20px;height:2px;background:#fff;"></div>
         </button>
       </div>
     </div>
   </header>
 
-  <div id="mobile-menu">
-    <button class="menu-close-btn" onclick="toggleMenu()" style="padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:50%;cursor:pointer;">
+  <div id="mobile-menu" aria-hidden="true">
+    <button class="menu-close-btn" onclick="toggleMenu()" aria-label="Close menu" style="padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:50%;cursor:pointer;">
       <svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <a href="/#services" onclick="toggleMenu()">Services</a>
@@ -431,7 +431,21 @@
 
   <script>
     if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
-    function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+    function toggleMenu() {
+      var m = document.getElementById("mobile-menu");
+      var b = document.getElementById("hamburger");
+      var open = m.classList.toggle("open");
+      m.setAttribute("aria-hidden", open ? "false" : "true");
+      if (b) b.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) { var fl = m.querySelector("a, button"); if (fl) fl.focus(); }
+      else if (b) { b.focus(); }
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        var m2 = document.getElementById("mobile-menu");
+        if (m2 && m2.classList.contains("open")) toggleMenu();
+      }
+    });
     function toggleFaq(btn) { btn.nextElementSibling.classList.toggle('open'); btn.querySelector('.chevron').classList.toggle('rotated'); }
     window.addEventListener('scroll', function() {
       var fp = document.getElementById('floatingPhone');

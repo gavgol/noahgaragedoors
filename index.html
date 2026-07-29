@@ -2312,13 +2312,13 @@
                             </div>
                             <div class="space-y-1.5 relative">
                                 <label id="serviceLabel" class="text-[10px] font-black uppercase tracking-widest text-white/40">Service Needed</label>
-                                <input type="hidden" name="service" id="serviceInput" value="Spring Replacement">
+                                <input type="hidden" name="service" id="serviceInput" value="">
                                 <div class="relative" id="customSelect">
                                     <button type="button" id="selectBtn"
                                         aria-haspopup="listbox" aria-expanded="false" aria-controls="selectDropdown" aria-labelledby="serviceLabel selectText"
                                         class="w-full h-14 bg-white/5 border border-white/10 rounded-xl px-5 outline-none transition-all font-light text-white/60 cursor-pointer text-left flex items-center justify-between"
                                         onclick="var d=document.getElementById('selectDropdown');d.classList.toggle('hidden');this.setAttribute('aria-expanded', d.classList.contains('hidden')?'false':'true')">
-                                        <span id="selectText">Spring Replacement</span>
+                                        <span id="selectText" class="text-white/40">Select a service…</span>
                                         <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                     </button>
                                     <div id="selectDropdown" role="listbox" aria-labelledby="serviceLabel" class="hidden absolute top-full left-0 right-0 mt-2 border border-white/15 rounded-2xl overflow-hidden z-50 shadow-2xl" style="background:#111118; max-height:260px; overflow-y:auto;">
@@ -2329,7 +2329,10 @@
                                             <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Track Adjustments</div>
                                             <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Full Door Replacement</div>
                                             <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Maintenance ($49 Special)</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm" role="option" onclick="selectService(this)">Inspection Preparation</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Cable Repair</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Emergency Repair</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Inspection Preparation</div>
+                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm" role="option" onclick="selectService(this)">Other / Not Sure</div>
                                         </div>
                                     </div>
                                 </div>
@@ -2439,7 +2442,9 @@
         });
 
         function selectService(el) {
-            document.getElementById('selectText').textContent = el.textContent;
+            var selectText = document.getElementById('selectText');
+            selectText.textContent = el.textContent;
+            selectText.classList.remove('text-white/40');
             document.getElementById('serviceInput').value = el.textContent;
             document.getElementById('selectDropdown').classList.add('hidden');
             document.getElementById('selectBtn').setAttribute('aria-expanded', 'false');
