@@ -1,0 +1,22 @@
+# Defense-in-depth: production deploys run via GitHub Actions from a clean
+# `actions/checkout`, so these untracked local files never reach that path.
+# This only matters if someone ever runs `vercel deploy` from this working
+# directory directly (bypassing the workflow) — keep it in sync with the
+# untracked local content below.
+reviews/img/_pending/
+reviews/img/_review20/
+reviews/img/_review30/
+reviews/img/_reviewtech/
+reviews/img/_superseded/
+social-carousels/
+tools/fonts/
+tools/build_ready_to_post_today.py
+tools/make_noah_carousels_v5.py
+tools/make_noah_carousels_v6.py
+tools/make_noah_carousels_x.py
+tools/make_noah_premium_template_v2.py
+tools/make_premium_viral_set.py
+tools/make_social_carousels.py
+tools/make_social_carousels_v2.py
+__pycache__/
+*.pyc
