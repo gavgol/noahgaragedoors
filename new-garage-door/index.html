@@ -75,9 +75,6 @@
     .glass-green { background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); }
     .accent-bg { background-color:var(--brand-accent); } .accent-bg:hover { background-color:var(--brand-accent-hover); }
     .urgent-bg { background-color:var(--brand-urgent); } .urgent-bg:hover { background-color:var(--brand-urgent-hover); }
-    .floating-phone { position:fixed;bottom:32px;right:20px;z-index:999;width:56px;height:56px;border-radius:50%;background:var(--brand-urgent);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--brand-urgent-glow);opacity:0;pointer-events:none;transition:opacity 0.3s,transform 0.3s; }
-    .floating-phone.visible { opacity:1;pointer-events:auto; }
-    @media (min-width:768px) { .floating-phone { display:none; } }
     #mobile-menu { position:fixed;inset:0;z-index:200;background:rgba(10,10,15,0.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:translateY(-100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1); }
     #mobile-menu.open { transform:translateY(0); }
     #mobile-menu a { font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;text-transform:uppercase;color:rgba(255,255,255,0.7);text-decoration:none;padding:0.5rem 0;width:100%;text-align:center; }
@@ -425,8 +422,6 @@
     <div style="max-width:1280px;margin:16px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.06em;"><span>© 2026 Noah Garage Doors. All rights reserved.</span><span>San Diego, CA</span></div>
   </footer>
 
-  <a href="tel:6195724266" class="floating-phone" id="floatingPhone" aria-label="Call Noah Garage Doors"><i data-lucide="phone" style="width:24px;height:24px;color:#fff;"></i></a>
-
   <script>
     if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
     function toggleMenu() {
@@ -445,9 +440,8 @@
       }
     });
     function toggleFaq(btn) { btn.nextElementSibling.classList.toggle('open'); btn.querySelector('.chevron').classList.toggle('rotated'); }
-    window.addEventListener('scroll', function() { var fp=document.getElementById('floatingPhone'); if(window.scrollY>300)fp.classList.add('visible');else fp.classList.remove('visible'); });
   </script>
     <script src="/cookie-consent.js?v=2" defer></script>
-    <script src="/accessibility.js?v=2" defer></script>
+    <script src="/accessibility.js?v=3" defer></script>
 </body>
 </html>

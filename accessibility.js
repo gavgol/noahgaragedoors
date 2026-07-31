@@ -176,13 +176,39 @@
 
   var isHome = location.pathname === "/" || /\/index\.html$/.test(location.pathname);
   var revealed = !isHome;
+  var overFooter = false;
   function setShown(show) {
-    btn.style.opacity = show ? "1" : "0";
-    btn.style.transform = show ? "scale(1)" : "scale(.6)";
-    btn.style.pointerEvents = show ? "auto" : "none";
+    var visible = show && !overFooter;
+    btn.style.opacity = visible ? "1" : "0";
+    btn.style.transform = visible ? "scale(1)" : "scale(.6)";
+    btn.style.pointerEvents = visible ? "auto" : "none";
   }
   function revealNow() { if (!revealed) { revealed = true; setShown(true); } }
-  function onScrollReveal() { if (window.scrollY > window.innerHeight * 0.8) revealNow(); }
+  // Two-way on the homepage: hide again on scrolling back near the hero
+  // (not just a one-time reveal) so it doesn't sit on the hero's own trust
+  // badges if someone scrolls back to the top after it was first revealed.
+  // Hysteresis (0.5 vs 0.8) avoids flicker right at one threshold.
+  function onScrollReveal() {
+    if (window.scrollY > window.innerHeight * 0.8) {
+      if (!revealed) { revealed = true; }
+      setShown(true);
+    } else if (window.scrollY < window.innerHeight * 0.5 && revealed) {
+      revealed = false;
+      setShown(false);
+    }
+  }
+  // On every page (not just home): don't sit on top of the footer's phone
+  // number / social links while it's in view.
+  var footerEl = document.querySelector("footer");
+  if (footerEl && "IntersectionObserver" in window) {
+    new IntersectionObserver(
+      function (entries) {
+        overFooter = entries[0].isIntersecting;
+        setShown(revealed);
+      },
+      { rootMargin: "0px 0px -10% 0px" }
+    ).observe(footerEl);
+  }
 
   // ---- scrim ----------------------------------------------------------------
   var scrim = document.createElement("div");
