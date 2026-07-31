@@ -393,11 +393,17 @@
             padding: 12px;
         }
 
-        /* Custom dropdown options hover */
-        #selectOptions > div:hover,
-        #selectOptions > div:active {
-            background: rgba(37,99,235,0.18) !important;
-            color: #fff !important;
+        /* Native "Service Needed" select styled to match the other form fields */
+        .native-select-dark {
+            color-scheme: dark;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23ffffff66' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 16px;
+            padding-right: 2.75rem;
         }
 
         .nav-logo {
@@ -729,7 +735,7 @@
                                 <span class="px-3 py-0.5 bg-white/20 rounded-full text-[10px] font-black uppercase tracking-widest">Limited Time</span>
                                 <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-70">Intro Special</span>
                             </div>
-                            <h3 class="font-display text-2xl sm:text-3xl uppercase text-white">Full Garage Door Maintenance &amp; Safety&nbsp;Check</h3>
+                            <h2 class="font-display text-2xl sm:text-3xl uppercase text-white">Full Garage Door Maintenance &amp; Safety&nbsp;Check</h2>
                         </div>
                     </div>
                     <div class="promo-right flex items-center gap-6 shrink-0">
@@ -2341,51 +2347,41 @@
                                 </div>
                             </div>
                             <div class="space-y-1.5 relative">
-                                <label id="serviceLabel" class="text-[10px] font-black uppercase tracking-widest text-white/40">Service Needed</label>
-                                <input type="hidden" name="service" id="serviceInput" value="">
-                                <div class="relative" id="customSelect">
-                                    <button type="button" id="selectBtn"
-                                        aria-haspopup="listbox" aria-expanded="false" aria-controls="selectDropdown" aria-labelledby="serviceLabel selectText"
-                                        class="w-full h-14 bg-white/5 border border-white/10 rounded-xl px-5 outline-none transition-all font-light text-white/60 cursor-pointer text-left flex items-center justify-between"
-                                        onclick="var d=document.getElementById('selectDropdown');d.classList.toggle('hidden');this.setAttribute('aria-expanded', d.classList.contains('hidden')?'false':'true')">
-                                        <span id="selectText" class="text-white/40">Select a service…</span>
-                                        <svg class="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                                    </button>
-                                    <div id="selectDropdown" role="listbox" aria-labelledby="serviceLabel" class="hidden absolute top-full left-0 right-0 mt-2 border border-white/15 rounded-2xl overflow-hidden z-50 shadow-2xl" style="background:#111118; max-height:260px; overflow-y:auto;">
-                                        <div class="py-2" id="selectOptions">
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" style="hover-background:#2563EB22" role="option" onclick="selectService(this)">Spring Replacement</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Off Track Repair</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Opener Installation</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Track Adjustments</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Full Door Replacement</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Maintenance ($49 Special)</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Cable Repair</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Emergency Repair</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm border-b border-white/5" role="option" onclick="selectService(this)">Inspection Preparation</div>
-                                            <div class="px-6 py-3.5 text-white/80 hover:text-white cursor-pointer transition-all font-light text-sm" role="option" onclick="selectService(this)">Other / Not Sure</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <label for="serviceInput" class="text-[10px] font-black uppercase tracking-widest text-white/40">Service Needed</label>
+                                <select id="serviceInput" name="service" required
+                                    class="w-full h-14 bg-white/5 border border-white/10 rounded-xl px-5 outline-none focus:border-blue-500/40 transition-all font-light text-white/60 cursor-pointer native-select-dark">
+                                    <option value="" disabled selected hidden>Select a service…</option>
+                                    <option value="Spring Replacement">Spring Replacement</option>
+                                    <option value="Off Track Repair">Off Track Repair</option>
+                                    <option value="Opener Installation">Opener Installation</option>
+                                    <option value="Track Adjustments">Track Adjustments</option>
+                                    <option value="Full Door Replacement">Full Door Replacement</option>
+                                    <option value="Maintenance ($49 Special)">Maintenance ($49 Special)</option>
+                                    <option value="Cable Repair">Cable Repair</option>
+                                    <option value="Emergency Repair">Emergency Repair</option>
+                                    <option value="Inspection Preparation">Inspection Preparation</option>
+                                    <option value="Other / Not Sure">Other / Not Sure</option>
+                                </select>
                             </div>
                             <div class="space-y-1.5">
                                 <label for="quoteMessage" class="text-[10px] font-black uppercase tracking-widest text-white/40">Describe Your Issue (Optional)</label>
                                 <textarea id="quoteMessage" name="message" maxlength="2000" placeholder="e.g. My garage door spring snapped..."
                                     class="w-full h-24 bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-blue-500/40 transition-all font-light resize-none"></textarea>
                             </div>
-                            <div style="display:flex; align-items:flex-start; gap:10px; padding-top:2px;">
+                            <label for="quoteSmsService" style="display:flex; align-items:flex-start; gap:10px; padding-top:2px; cursor:pointer;">
                                 <input id="quoteSmsService" name="sms_consent_service" type="checkbox"
-                                    style="margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
-                                <label for="quoteSmsService" style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300; cursor:pointer;">
+                                    style="margin-top:2px; width:24px; height:24px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
+                                <span style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300;">
                                     By checking this box, you agree to receive transactional and informational text messages about your service request and appointments from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.
-                                </label>
-                            </div>
-                            <div style="display:flex; align-items:flex-start; gap:10px;">
+                                </span>
+                            </label>
+                            <label for="quoteSmsConsent" style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
                                 <input id="quoteSmsConsent" name="sms_consent" type="checkbox"
-                                    style="margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
-                                <label for="quoteSmsConsent" style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300; cursor:pointer;">
+                                    style="margin-top:2px; width:24px; height:24px; flex-shrink:0; accent-color:#2563eb; cursor:pointer;">
+                                <span style="font-size:11px; line-height:1.55; color:rgba(255,255,255,0.5); font-weight:300;">
                                     By checking this box, you agree to receive promotional and marketing text messages from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.
-                                </label>
-                            </div>
+                                </span>
+                            </label>
                             <p style="font-size:10px; line-height:1.5; color:rgba(255,255,255,0.35); font-weight:300; margin:0;">
                                 Both boxes are optional and not required to get a quote or service.
                                 <a href="/sms-terms.html" target="_blank" rel="noopener" style="color:#60a5fa; text-decoration:underline;">SMS Terms</a>
@@ -2470,24 +2466,6 @@
                 btn.querySelector('i[data-lucide="chevron-down"]').classList.toggle('rotate-180');
             });
         });
-
-        function selectService(el) {
-            var selectText = document.getElementById('selectText');
-            selectText.textContent = el.textContent;
-            selectText.classList.remove('text-white/40');
-            document.getElementById('serviceInput').value = el.textContent;
-            document.getElementById('selectDropdown').classList.add('hidden');
-            document.getElementById('selectBtn').setAttribute('aria-expanded', 'false');
-        }
-
-        document.addEventListener('click', function(e) {
-            var cs = document.getElementById('customSelect');
-            if (cs && !cs.contains(e.target)) {
-                document.getElementById('selectDropdown').classList.add('hidden');
-                document.getElementById('selectBtn').setAttribute('aria-expanded', 'false');
-            }
-        });
-
 
         // Track phone-number clicks as a GA4 conversion (many leads call instead of filling the form)
         document.addEventListener('click', function (e) {
