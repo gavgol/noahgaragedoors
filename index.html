@@ -614,7 +614,7 @@
     <header class="md:sticky md:top-0 z-50 w-full px-6 md:px-8 py-0 glass border-b-0">
         <div class="max-w-7xl mx-auto flex items-center justify-between relative" style="min-height:76px;">
             <a href="/" class="flex items-center">
-                <img src="logo.webp" width="1135" height="564" alt="Noah Garage Doors logo" class="nav-logo object-contain">
+                <img src="logo.webp" width="1135" height="564" alt="Noah Garage Doors logo" class="nav-logo object-contain" decoding="async">
             </a>
             <nav class="hidden md:flex items-center gap-7 text-[15px] font-medium text-white/70 absolute left-1/2" style="transform:translateX(-50%)">
                 <a href="#services" class="hover:text-white transition-colors">Services</a>
@@ -667,7 +667,7 @@
                     <img src="hero_new.webp"
                         srcset="gallery/opt/hero_new-800.webp 800w, gallery/opt/hero_new-1200.webp 1200w, hero_new.webp 1672w"
                         sizes="100vw" width="1672" height="941" fetchpriority="high"
-                        alt="Noah Garage Doors technicians installing a glass garage door in San Diego, CA" class="w-full h-full object-cover" style="object-position: center 30%;">
+                        alt="Noah Garage Doors technicians installing a glass garage door in San Diego, CA" class="w-full h-full object-cover" style="object-position: center 30%;" decoding="async">
                 </picture>
                 <div class="absolute inset-0 hero-gradient"></div>
             </div>
@@ -1035,6 +1035,11 @@
                 @media (min-width:1024px){.rev-card{flex:0 0 30%;}}
                 .rev-card{height:450px;}
                 .rev-card .rev-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+                /* Off-screen clones (the before/after sets that make the loop seamless)
+                   skip layout/paint/style work while scrolled out of view. The browser
+                   automatically renders them normally as they approach the viewport, so
+                   this does not affect the arc/tilt effect applied by updateArc(). */
+                .rev-card.rev-clone{content-visibility:auto;contain-intrinsic-size:360px 450px;}
                 .rev-fill{margin-top:auto;height:190px;border-radius:1rem;position:relative;overflow:hidden;background:linear-gradient(155deg,rgba(37,99,235,.16),rgba(37,99,235,.02));display:flex;flex-direction:column;align-items:center;justify-content:center;}
                 .rev-fill-q{font-family:Georgia,'Times New Roman',serif;font-size:7rem;line-height:.7;color:rgba(96,140,240,.30);margin-top:8px;}
                 .rev-fill-w{letter-spacing:.24em;font-size:.62rem;color:rgba(255,255,255,.34);font-weight:600;margin-top:6px;}
@@ -1074,7 +1079,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Our garage spring broke and Noah replaced it with new springs the same day we reached out. He was very professional, knowledgeable, friendly and efficient. Pricing was fair. Highly recommend!"</p>
-                            <img src="reviews/img/PatriciaWBlanco.webp" alt="New garage door torsion spring installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/PatriciaWBlanco.webp" alt="New garage door torsion spring installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1089,7 +1094,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Had a new door installed and the whole process was smooth from start to finish. Noah showed up on time, did a great job, and left everything clean when he was done. The new door looks great and works perfectly. Fair pricing, good communication, and quality work. Definitely recommend!"</p>
-                            <img src="reviews/img/IzzieCorrales.webp" alt="New modern garage door installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/IzzieCorrales.webp" alt="New modern garage door installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1134,7 +1139,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"We were having some issues with our garage door not opening and closing properly, so we reached out to Noah Garage Doors. Their technician was fantastic, conducted a thorough inspection, and clearly explained the issues in a way that was easy to understand. The garage door is now operating perfectly. I highly recommend the team at Noah Garage Doors!"</p>
-                            <img src="reviews/img/Gabriel.webp" alt="New garage door installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/Gabriel.webp" alt="New garage door installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1149,7 +1154,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Noah arrived at the promised appointment date and time. He was friendly and professional, completed the job within a reasonable amount of time, and completely resolved the problem. I would definitely recommend Noah to my family and friends!"</p>
-                            <img src="reviews/img/ArnieAmbito.webp" alt="Garage door repair completed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/ArnieAmbito.webp" alt="Garage door repair completed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1194,7 +1199,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Thank you for your great service!"</p>
-                            <img src="reviews/img/MitchGurule.webp" alt="Garage door safety sensors installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/MitchGurule.webp" alt="Garage door safety sensors installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1224,7 +1229,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"So fast and everything was in line and perfect when he went away. Great job!"</p>
-                            <img src="reviews/img/JoshuaMcBride.webp" alt="New garage door spring installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/JoshuaMcBride.webp" alt="New garage door spring installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1329,7 +1334,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Noah did a great job. Very friendly and got my garage door moving smoothly again. Installed a new sensor."</p>
-                            <img src="reviews/img/MaureenMoore.webp" alt="New garage door safety sensor installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/MaureenMoore.webp" alt="New garage door safety sensor installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
 
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
@@ -1372,7 +1377,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Noah is amazing, great service fair pricing, outstanding products. Second to none!"</p>
-                            <img src="reviews/img/JamesThompson.webp" alt="New garage door opener installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/JamesThompson.webp" alt="New garage door opener installed by Noah Garage Doors in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1386,7 +1391,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Noah was great!! Thank you for the help!"</p>
-                            <img src="reviews/img/LibroDiZinno.webp" alt="Customer photo of a garage door from a 5-star Google review in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/LibroDiZinno.webp" alt="Customer photo of a garage door from a 5-star Google review in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1400,7 +1405,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed" style="font-style:italic;color:rgba(255,255,255,.45);">Rated 5 stars on Google</p>
-                            <img src="reviews/img/Joe.webp" alt="Customer photo of a white garage door from a 5-star Google review in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/Joe.webp" alt="Customer photo of a white garage door from a 5-star Google review in San Diego" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1428,7 +1433,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Thank you for the new opener! 10/10."</p>
-                            <img src="reviews/img/emadzro.webp" alt="New garage door opener installed by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/emadzro.webp" alt="New garage door opener installed by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1552,7 +1557,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Very quick response and completion of two garage door motors within one day here in Escondido."</p>
-                            <img src="reviews/img/GMRASER.webp" alt="Garage door opener motor repair in Escondido by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/GMRASER.webp" alt="Garage door opener motor repair in Escondido by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1607,7 +1612,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Fixed the door in no time. Excellent customer service. Highly recommend. In Chula Vista."</p>
-                            <img src="reviews/img/EBONYTYREE.webp" alt="LiftMaster garage door opener installed in Chula Vista by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/EBONYTYREE.webp" alt="LiftMaster garage door opener installed in Chula Vista by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1663,7 +1668,7 @@
                                 <span title="Posted on Google" style="flex-shrink:0;"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
                             </div>
                             <p class="rev-text font-light leading-relaxed">"Thank you for amazing service."</p>
-                            <img src="reviews/img/alejandrareule.webp" alt="LiftMaster garage door opener installed by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;">
+                            <img src="reviews/img/alejandrareule.webp" alt="LiftMaster garage door opener installed by Noah Garage Doors, customer photo from a 5-star Google review" loading="lazy" style="margin-top:auto;width:100%;height:190px;object-fit:cover;border-radius:1rem;display:block;" width="300" height="190" decoding="async">
                         </article>
                         <article class="rev-card glass" style="border-radius:2rem;padding:2rem;display:flex;flex-direction:column;">
                             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.25rem;">
@@ -1766,8 +1771,8 @@
                     var before = document.createDocumentFragment();
                     var after = document.createDocumentFragment();
                     originals.forEach(function (c) {
-                        var a = c.cloneNode(true); a.setAttribute('aria-hidden', 'true'); before.appendChild(a);
-                        var b = c.cloneNode(true); b.setAttribute('aria-hidden', 'true'); after.appendChild(b);
+                        var a = c.cloneNode(true); a.setAttribute('aria-hidden', 'true'); a.classList.add('rev-clone'); before.appendChild(a);
+                        var b = c.cloneNode(true); b.setAttribute('aria-hidden', 'true'); b.classList.add('rev-clone'); after.appendChild(b);
                     });
                     track.insertBefore(before, track.firstChild);
                     track.appendChild(after);
@@ -1924,11 +1929,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-1">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE17.jpeg')">
-                                <img src="gallery/opt/BEFORE17-400.webp" srcset="gallery/opt/BEFORE17-400.webp 400w, gallery/opt/BEFORE17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door before replacement San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE17-400.webp" srcset="gallery/opt/BEFORE17-400.webp 400w, gallery/opt/BEFORE17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door before replacement San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER17.jpeg')">
-                                <img src="gallery/opt/AFTER17-400.webp" srcset="gallery/opt/AFTER17-400.webp 400w, gallery/opt/AFTER17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door with windows installed San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER17-400.webp" srcset="gallery/opt/AFTER17-400.webp 400w, gallery/opt/AFTER17-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door with windows installed San Diego" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1941,11 +1946,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-2">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE8.jpeg')">
-                                <img src="gallery/opt/BEFORE8-400.webp" srcset="gallery/opt/BEFORE8-400.webp 400w, gallery/opt/BEFORE8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old LiftMaster Formula2 opener" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE8-400.webp" srcset="gallery/opt/BEFORE8-400.webp 400w, gallery/opt/BEFORE8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old LiftMaster Formula2 opener" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER8.jpeg')">
-                                <img src="gallery/opt/AFTER8-400.webp" srcset="gallery/opt/AFTER8-400.webp 400w, gallery/opt/AFTER8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New Chamberlain myQ smart opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER8-400.webp" srcset="gallery/opt/AFTER8-400.webp 400w, gallery/opt/AFTER8-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New Chamberlain myQ smart opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1958,11 +1963,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-3">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE1.jpeg')">
-                                <img src="gallery/opt/BEFORE1-400.webp" srcset="gallery/opt/BEFORE1-400.webp 400w, gallery/opt/BEFORE1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old worn garage door springs" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE1-400.webp" srcset="gallery/opt/BEFORE1-400.webp 400w, gallery/opt/BEFORE1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old worn garage door springs" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER1.jpeg')">
-                                <img src="gallery/opt/AFTER1-400.webp" srcset="gallery/opt/AFTER1-400.webp 400w, gallery/opt/AFTER1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door springs installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER1-400.webp" srcset="gallery/opt/AFTER1-400.webp 400w, gallery/opt/AFTER1-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door springs installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1975,11 +1980,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-4">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE14.jpeg')">
-                                <img src="gallery/opt/BEFORE14-400.webp" srcset="gallery/opt/BEFORE14-400.webp 400w, gallery/opt/BEFORE14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring with orange tag on arched door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE14-400.webp" srcset="gallery/opt/BEFORE14-400.webp 400w, gallery/opt/BEFORE14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring with orange tag on arched door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER14.jpeg')">
-                                <img src="gallery/opt/AFTER14-400.webp" srcset="gallery/opt/AFTER14-400.webp 400w, gallery/opt/AFTER14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on arched window garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER14-400.webp" srcset="gallery/opt/AFTER14-400.webp 400w, gallery/opt/AFTER14-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on arched window garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -1992,11 +1997,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-1">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE.jpeg')">
-                                <img src="gallery/opt/BEFORE-400.webp" srcset="gallery/opt/BEFORE-400.webp 400w, gallery/opt/BEFORE-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door opener before replacement" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE-400.webp" srcset="gallery/opt/BEFORE-400.webp 400w, gallery/opt/BEFORE-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old garage door opener before replacement" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER.jpeg')">
-                                <img src="gallery/opt/AFTER-400.webp" srcset="gallery/opt/AFTER-400.webp 400w, gallery/opt/AFTER-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER-400.webp" srcset="gallery/opt/AFTER-400.webp 400w, gallery/opt/AFTER-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New garage door opener installed" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -2009,11 +2014,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-2">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE6.jpeg')">
-                                <img src="gallery/opt/BEFORE6-400.webp" srcset="gallery/opt/BEFORE6-400.webp 400w, gallery/opt/BEFORE6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Broken spring on windowed garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE6-400.webp" srcset="gallery/opt/BEFORE6-400.webp 400w, gallery/opt/BEFORE6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Broken spring on windowed garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER6.jpeg')">
-                                <img src="gallery/opt/AFTER6-400.webp" srcset="gallery/opt/AFTER6-400.webp 400w, gallery/opt/AFTER6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring installed on windowed door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER6-400.webp" srcset="gallery/opt/AFTER6-400.webp 400w, gallery/opt/AFTER6-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring installed on windowed door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -2026,11 +2031,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-3">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE21.jpeg')">
-                                <img src="gallery/opt/BEFORE21-400.webp" srcset="gallery/opt/BEFORE21-400.webp 400w, gallery/opt/BEFORE21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old Chamberlain opener in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE21-400.webp" srcset="gallery/opt/BEFORE21-400.webp 400w, gallery/opt/BEFORE21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old Chamberlain opener in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER21.jpeg')">
-                                <img src="gallery/opt/AFTER21-400.webp" srcset="gallery/opt/AFTER21-400.webp 400w, gallery/opt/AFTER21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New opener installed in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER21-400.webp" srcset="gallery/opt/AFTER21-400.webp 400w, gallery/opt/AFTER21-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New opener installed in wooden beam garage" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -2043,11 +2048,11 @@
                     <div class="glass rounded-2xl overflow-hidden reveal reveal-delay-4">
                         <div class="grid grid-cols-2 h-56 md:h-64">
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/BEFORE19.jpeg')">
-                                <img src="gallery/opt/BEFORE19-400.webp" srcset="gallery/opt/BEFORE19-400.webp 400w, gallery/opt/BEFORE19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring on glass panel garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/BEFORE19-400.webp" srcset="gallery/opt/BEFORE19-400.webp 400w, gallery/opt/BEFORE19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="Old spring on glass panel garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 left-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#dc2626">Before</span>
                             </div>
                             <div class="relative overflow-hidden cursor-pointer group" onclick="openLightbox('gallery/AFTER19.jpeg')">
-                                <img src="gallery/opt/AFTER19-400.webp" srcset="gallery/opt/AFTER19-400.webp 400w, gallery/opt/AFTER19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on glass garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img src="gallery/opt/AFTER19-400.webp" srcset="gallery/opt/AFTER19-400.webp 400w, gallery/opt/AFTER19-800.webp 800w" sizes="(max-width: 767px) 50vw, 290px" width="2048" height="1536" loading="lazy" alt="New spring on glass garage door" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" decoding="async">
                                 <span class="absolute bottom-2 right-2 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full text-white" style="background:#16a34a">After</span>
                             </div>
                         </div>
@@ -2199,21 +2204,21 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <a href="/garage-door-springs/" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/spring-hero.jpg" srcset="/blog/images/opt/spring-hero-400.webp 400w, /blog/images/opt/spring-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door spring replacement in San Diego" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/spring-hero.jpg" srcset="/blog/images/opt/spring-hero-400.webp 400w, /blog/images/opt/spring-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door spring replacement in San Diego" class="w-full h-48 object-cover" loading="lazy" decoding="async">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Garage Door Spring Repair:<br>Same-Day in San Diego</h3>
                             <p class="text-white/40 text-sm mt-2">What spring repair costs in San Diego, why DIY is dangerous, and what to expect on the visit.</p>
                         </div>
                     </a>
                     <a href="/emergency-garage-door-repair/" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/emergency-hero.jpg" srcset="/blog/images/opt/emergency-hero-400.webp 400w, /blog/images/opt/emergency-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Emergency garage door repair San Diego" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/emergency-hero.jpg" srcset="/blog/images/opt/emergency-hero-400.webp 400w, /blog/images/opt/emergency-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Emergency garage door repair San Diego" class="w-full h-48 object-cover" loading="lazy" decoding="async">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Emergency Garage Door Repair:<br>24/7 in San Diego</h3>
                             <p class="text-white/40 text-sm mt-2">Door stuck open or car trapped inside? What to do right now and how fast we can reach you.</p>
                         </div>
                     </a>
                     <a href="/blog/garage-door-repair-chula-vista.html" class="group glass rounded-2xl overflow-hidden hover:border-blue-500/15 transition-all">
-                        <img src="/blog/images/chula-vista-hero.jpg" srcset="/blog/images/opt/chula-vista-hero-400.webp 400w, /blog/images/opt/chula-vista-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door repair in Chula Vista CA" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="/blog/images/chula-vista-hero.jpg" srcset="/blog/images/opt/chula-vista-hero-400.webp 400w, /blog/images/opt/chula-vista-hero-800.webp 800w" sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" width="1536" height="1024" alt="Garage door repair in Chula Vista CA" class="w-full h-48 object-cover" loading="lazy" decoding="async">
                         <div class="p-6">
                             <h3 class="font-semibold text-lg group-hover:text-blue-400 transition-colors">Garage Door Repair in Chula Vista, CA</h3>
                             <p class="text-white/40 text-sm mt-2">Same day garage door service for Chula Vista homeowners. Local experts, fast response.</p>
@@ -2411,7 +2416,7 @@
             <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4 mb-4">
                 <!-- Brand -->
                 <div class="flex items-center gap-3">
-                    <img src="logo.webp" width="1135" height="564" loading="lazy" alt="Noah Garage Doors logo" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1);">
+                    <img src="logo.webp" width="1135" height="564" loading="lazy" alt="Noah Garage Doors logo" class="h-10 w-auto object-contain" style="filter: brightness(0) invert(1);" decoding="async">
                     <div>
                         <span class="block font-bold text-sm tracking-tighter text-white">NOAH GARAGE DOORS</span>
                         <span class="block text-[9px] text-white/30 uppercase tracking-widest">Fast. Reliable. Local.</span>
@@ -2533,7 +2538,7 @@
         <img id="lightboxImg" src="" alt="Garage door project, enlarged view"
              onclick="event.stopPropagation();"
              class="scale-95 transition-transform duration-300"
-             style="max-width:92vw;max-height:88vh;object-fit:contain;border-radius:0.5rem;cursor:default;">
+             style="max-width:92vw;max-height:88vh;object-fit:contain;border-radius:0.5rem;cursor:default;" width="2048" height="1536" decoding="async">
     </div>
 
     <script>
