@@ -5,6 +5,37 @@
   var KEY = "ngd_cookie_consent";
   var PHONE = "6195724266";
 
+  // Both floating bars below must get out of the way while the visitor is
+  // actually looking at the #quote lead form, otherwise their high
+  // z-index means they end up covering the submit button or last field.
+  // Each bar registers a callback here; a single IntersectionObserver on
+  // #quote (started once, from build()) drives all of them together.
+  var quoteVisibilityCallbacks = [];
+
+  function onQuoteVisibilityChange(cb) {
+    quoteVisibilityCallbacks.push(cb);
+  }
+
+  function initQuoteOverlapGuard() {
+    if (!quoteVisibilityCallbacks.length) return;
+    var quoteEl = document.getElementById("quote");
+    // Pages without a #quote section (or older browsers without
+    // IntersectionObserver) simply keep the bars' normal show/hide logic.
+    if (!quoteEl || typeof IntersectionObserver === "undefined") return;
+    var observer = new IntersectionObserver(
+      function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          var obscuring = entries[i].isIntersecting;
+          for (var j = 0; j < quoteVisibilityCallbacks.length; j++) {
+            quoteVisibilityCallbacks[j](obscuring);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(quoteEl);
+  }
+
   function savedChoice() {
     try {
       return localStorage.getItem(KEY);
@@ -101,9 +132,13 @@
     // On the homepage the hero already shows Call/Quote buttons, so the bar
     // stays hidden until the visitor scrolls past the first screen.
     var isHome = location.pathname === "/" || /\/index\.html$/.test(location.pathname);
+    // While the #quote lead form is in view, the bar would otherwise sit on
+    // top of its submit button/last field, so it steps aside until the
+    // visitor scrolls away from the form.
+    var nearQuote = false;
     function sync() {
       bar.style.display = media.matches ? "none" : "flex";
-      var show = !isHome || window.scrollY > window.innerHeight * 0.8;
+      var show = (!isHome || window.scrollY > window.innerHeight * 0.8) && !nearQuote;
       bar.style.transform = show ? "translateY(0)" : "translateY(140%)";
       bar.style.opacity = show ? "1" : "0";
       bar.style.pointerEvents = show ? "auto" : "none";
@@ -111,6 +146,10 @@
     sync();
     media.addEventListener("change", sync);
     window.addEventListener("scroll", sync, { passive: true });
+    onQuoteVisibilityChange(function (obscured) {
+      nearQuote = obscured;
+      sync();
+    });
   }
 
   function addConsentBanner() {
@@ -127,7 +166,7 @@
       "border:1px solid rgba(255,255,255,.12);border-radius:16px;" +
       "box-shadow:0 12px 40px rgba(0,0,0,.5);padding:18px 20px;color:#e6e6ec;" +
       "font:14px/1.55 system-ui,sans-serif;display:flex;flex-wrap:wrap;" +
-      "align-items:center;gap:12px;";
+      "align-items:center;gap:12px;transition:transform .28s ease,opacity .28s ease;";
 
     var text = document.createElement("div");
     text.style.cssText = "flex:1 1 300px;color:rgba(255,255,255,.78);";
@@ -164,12 +203,28 @@
     bar.appendChild(decline);
     bar.appendChild(accept);
     document.body.appendChild(bar);
+
+    // Same idea as the contact bar: step out of the way while the visitor
+    // is looking at the #quote form, so it can never cover the submit
+    // button, then slide back once they scroll away (until dismissed).
+    var nearQuote = false;
+    function syncPosition() {
+      var show = !nearQuote;
+      bar.style.transform = show ? "translateY(0)" : "translateY(160%)";
+      bar.style.opacity = show ? "1" : "0";
+      bar.style.pointerEvents = show ? "auto" : "none";
+    }
+    onQuoteVisibilityChange(function (obscured) {
+      nearQuote = obscured;
+      syncPosition();
+    });
   }
 
   function build() {
     if (savedChoice() === "accepted") loadAnalytics();
     addMobileContactBar();
     addConsentBanner();
+    initQuoteOverlapGuard();
   }
 
   if (document.readyState === "loading") {
