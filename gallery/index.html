@@ -82,7 +82,7 @@
           <i data-lucide="phone" class="w-4 h-4"></i> (619) 572-4266
         </a>
         <a href="/#quote" class="hidden sm:inline-flex px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-bold transition-all shadow-lg">Free Estimate</a>
-        <button id="hamburger" class="sm:hidden p-2 rounded-lg glass" onclick="toggleMenu()" aria-label="Open menu">
+        <button id="hamburger" class="sm:hidden p-2 rounded-lg glass" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
           <div class="w-5 h-0.5 bg-white mb-1.5"></div>
           <div class="w-5 h-0.5 bg-white mb-1.5"></div>
           <div class="w-5 h-0.5 bg-white"></div>
@@ -92,7 +92,7 @@
   </header>
 
   <!-- MOBILE MENU -->
-  <div id="mobile-menu" aria-hidden="true">
+  <div id="mobile-menu" aria-hidden="true" inert>
     <button class="menu-close-btn p-3 glass rounded-full" onclick="toggleMenu()" aria-label="Close menu">
       <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
@@ -440,8 +440,16 @@
 
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
+      const btn = document.getElementById('hamburger');
       const open = menu.classList.toggle('open');
       menu.setAttribute('aria-hidden', !open);
+      if (open) {
+        menu.removeAttribute('inert');
+      } else {
+        menu.setAttribute('inert', '');
+      }
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
   </script>
     <script src="/cookie-consent.js?v=2" defer></script>
