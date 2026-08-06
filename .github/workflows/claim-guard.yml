@@ -7,12 +7,19 @@ name: Claim Guard
 # This runs on the FILES, not on one generator's output, because the previous
 # guard lived inside publish-seo-article.yml and stopped covering anything the
 # moment article publishing moved to a different routine.
+#
+# NOTE: no `push` trigger on purpose. deploy-production.yml already runs
+# claim_guard.py as a blocking gate on every push to main, so running it again
+# here on push was pure duplication, and those duplicate runs kept failing to
+# acquire a hosted runner ("job was not acquired by Runner") and emailing false
+# alarms. Production stays gated by the deploy. This workflow now covers PRs
+# (pre-merge), a weekly structural audit, and manual runs.
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "0 16 * * 1"
   workflow_dispatch: {}
 
 jobs:
