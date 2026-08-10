@@ -217,7 +217,8 @@ CONTENT REQUIREMENTS:
 8. Use service-grid/service-card divs for lists of services when appropriate
 9. INTERNAL LINKS: Within the body, naturally link 2-3 relevant phrases to these service pages (use the exact href, descriptive anchor text, NOT "click here"): /garage-door-springs/ , /garage-door-openers/ , /garage-door-off-track-repair/ , /garage-door-cable-repair/ , /garage-door-maintenance/ , /new-garage-door/ , /emergency-garage-door-repair/ . Example: <a href="/garage-door-springs/">broken garage door spring</a>. Only link phrases that genuinely match the service.
 10. FAQPage SCHEMA: Fill the FAQPage JSON-LD block in the <head> with the EXACT same questions and answers as the visible faq-card FAQ section. Answers must be PLAIN TEXT (strip all HTML tags, no <a> links). The number of Question entries must equal the number of faq-card items. Escape any double quotes inside the JSON.
-11. KEYWORD PLACEMENT: Put the primary keyword near the FRONT of the <title> (aim 50-60 chars), in the H1, and within the first 100 words of the body. Write a unique ~155-char meta description.
+11. KEYWORD PLACEMENT: Put the primary keyword near the FRONT of the <title>, the H1, and the first 100 words of the body. Write a unique ~155-char meta description.
+12. TITLE LENGTH IS A HARD RULE: the full <title> tag INCLUDING the " | Noah Garage Doors" suffix must be 60 characters or fewer. That leaves about 40 characters for your title text, so COUNT them. If the topic name is longer than that, SHORTEN it for the <title> (for example drop "in San Diego" or a trailing sub-phrase). The <title> is allowed to be shorter than the H1: keep the full, keyword-rich, local phrasing in the <h1>, and put the tighter version in the <title>. Example: <h1>Garage Door Repair Scams to Avoid in San Diego</h1> paired with <title>Garage Door Repair Scams to Avoid | Noah Garage Doors</title> (53 chars).
 
 Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav, and footer. Only change: title, meta description, canonical URL, slug, JSON-LD schema, hero badge text, h1, and article body content.
 
@@ -228,7 +229,7 @@ Return ONLY the complete HTML document below. Copy the EXACT structure, CSS, nav
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://www.noahgaragesd.com/blog/{slug}.html">
   <link rel="icon" type="image/webp" href="/logo.webp">
-  <title>[WRITE TITLE HERE] | Noah Garage Doors</title>
+  <title>[WRITE TITLE HERE, whole tag including this suffix must be <= 60 chars; shorten the topic name if needed] | Noah Garage Doors</title>
   <meta name="description" content="[WRITE ~155 CHAR META DESC WITH CITY AND PHONE (619) 572-4266]">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://www.noahgaragesd.com/blog/{slug}.html">
