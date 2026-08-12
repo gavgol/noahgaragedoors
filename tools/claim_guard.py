@@ -17,10 +17,12 @@ Exit code 1 on any violation, which is what makes it a gate.
 
 Standing facts this enforces (see also the canonical price list in
 generate_seo_article.py):
-  - The company holds no contractor licence. Nothing may claim or imply
-    licensed / insured / bonded / certified / background-checked.
+  - The company holds CSLB contractor licence #1159513 (issued 2026-08).
+    "Licensed" claims are fine now. Insurance/bonding status is still
+    unconfirmed, so nothing may claim or imply insured / bonded /
+    certified / background-checked.
   - Warranties are the manufacturer's. There is no lifetime warranty.
-  - The rating is 4.9 from 78 reviews. No other figure may appear.
+  - The rating is 4.9 from 79 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
   - No em-dashes in customer-facing copy.
 """
@@ -36,15 +38,15 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # A finding is suppressed when the surrounding text matches the allow pattern.
 RULES = [
     (
-        'licensing',
-        r'\b(licensed|licence[ds]?|licensing|insured|bonded'
+        'insurance-bonding',
+        r'\b(insured|bonded'
         r'|background[- ]?check(ed|s)?|certified technician|factory[- ]certified)\b',
-        'The company holds no contractor licence. Do not claim or imply licensed, '
-        'insured, bonded, certified or background-checked.',
-        # "licensed" is fine when the page is telling readers to check for one,
-        # or is describing what a licence is.
-        r'ask (your|the) contractor|verify (a|the|their) licen|what a licen'
-        r'|licen[cs]e (number )?(lookup|search)|cslb',
+        'Insurance/bonding/background-check/certification status is not confirmed. '
+        'Do not claim or imply insured, bonded, certified or background-checked. '
+        '(Licensed is fine now: CSLB #1159513.)',
+        # Generic advice telling readers to check a contractor's own status is
+        # fine; only a self-claim about Noah Garage Doors is banned.
+        r'ask (your|the) contractor|verify (a|the|their) insur|is (bonded|insured)',
     ),
     (
         'lifetime-warranty',
@@ -56,7 +58,7 @@ RULES = [
         'rating',
         # Any star rating or review count that is not the real 4.9 / 44.
         r'\b(?!4\.9\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
-        r'|\b(?!78\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
+        r'|\b(?!79\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
         'The real figures are 4.9 stars from 44 reviews. Do not use any other number.',
         None,
     ),
