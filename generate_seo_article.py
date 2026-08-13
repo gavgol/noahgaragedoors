@@ -178,7 +178,7 @@ COMPANY INFO:
 - Hours: Open 24/7. We work around the clock, every day. If you mention availability, say "24/7", "round-the-clock", or "same-day". NEVER state limited or specific business hours (e.g. do NOT write "7am to 9pm", "Mon-Fri", or any opening/closing time). That would contradict the rest of the site.
 - Address: NONE. This is a Service Area Business serving all of San Diego County. NEVER print a street address in the article body or schema; refer only to "San Diego, CA" or "San Diego County".
 - Key differentiators: Same-day service, manufacturer's warranty on parts, locally owned, upfront honest pricing, experienced technicians
-- IMPORTANT: The business holds CSLB contractor license #1159513 — "licensed" (with that number, when a license is mentioned) is fine to use. Do NOT claim "insured", "bonded", "certified", or "background-checked". It does not hold those credentials. Never use those words.
+- IMPORTANT: The business holds CSLB contractor license #1159513 and a commercial general liability insurance policy (Palomar Excess and Surplus Insurance Company, policy PA002808100). "Licensed" and "insured" are both fine to use now. Do NOT claim "bonded", "certified", or "background-checked". It does not hold those credentials. Never use those words.
 - WARRANTY WORDING: Always write "manufacturer's warranty". NEVER write "lifetime warranty", "lifetime spring warranty", or any other lifetime guarantee.
 - Service area: All of San Diego County
 

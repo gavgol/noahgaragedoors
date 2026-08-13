@@ -18,11 +18,14 @@ Exit code 1 on any violation, which is what makes it a gate.
 Standing facts this enforces (see also the canonical price list in
 generate_seo_article.py):
   - The company holds CSLB contractor licence #1159513 (issued 2026-08).
-    "Licensed" claims are fine now. Insurance/bonding status is still
-    unconfirmed, so nothing may claim or imply insured / bonded /
-    certified / background-checked.
+    "Licensed" claims are fine now.
+  - The company holds commercial general liability insurance (Palomar
+    Excess and Surplus Insurance Company, policy PA002808100, issued
+    2026-08). "Insured" claims are fine now. Bonding/certification/
+    background-check status is still unconfirmed, so nothing may claim
+    or imply bonded / certified / background-checked.
   - Warranties are the manufacturer's. There is no lifetime warranty.
-  - The rating is 4.9 from 79 reviews. No other figure may appear.
+  - The rating is 5.0 from 80 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
   - No em-dashes in customer-facing copy.
 """
@@ -38,15 +41,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # A finding is suppressed when the surrounding text matches the allow pattern.
 RULES = [
     (
-        'insurance-bonding',
-        r'\b(insured|bonded'
+        'bonding-certification',
+        r'\b(bonded'
         r'|background[- ]?check(ed|s)?|certified technician|factory[- ]certified)\b',
-        'Insurance/bonding/background-check/certification status is not confirmed. '
-        'Do not claim or imply insured, bonded, certified or background-checked. '
-        '(Licensed is fine now: CSLB #1159513.)',
+        'Bonding/background-check/certification status is not confirmed. '
+        'Do not claim or imply bonded, certified or background-checked. '
+        '(Licensed and insured are both fine now: CSLB #1159513, general '
+        'liability policy PA002808100.)',
         # Generic advice telling readers to check a contractor's own status is
         # fine; only a self-claim about Noah Garage Doors is banned.
-        r'ask (your|the) contractor|verify (a|the|their) insur|is (bonded|insured)',
+        r'ask (your|the) contractor|verify (a|the|their) insur|is bonded',
     ),
     (
         'lifetime-warranty',
@@ -56,10 +60,10 @@ RULES = [
     ),
     (
         'rating',
-        # Any star rating or review count that is not the real 4.9 / 44.
-        r'\b(?!4\.9\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
-        r'|\b(?!79\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
-        'The real figures are 4.9 stars from 44 reviews. Do not use any other number.',
+        # Any star rating or review count that is not the real 5.0 / 80.
+        r'\b(?!5\.0\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
+        r'|\b(?!80\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
+        'The real figures are 5.0 stars from 80 reviews. Do not use any other number.',
         None,
     ),
     (
