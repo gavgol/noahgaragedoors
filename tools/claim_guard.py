@@ -25,7 +25,7 @@ generate_seo_article.py):
     background-check status is still unconfirmed, so nothing may claim
     or imply bonded / certified / background-checked.
   - Warranties are the manufacturer's. There is no lifetime warranty.
-  - The rating is 5.0 from 85 reviews. No other figure may appear.
+  - The rating is 5.0 from 88 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
   - No em-dashes in customer-facing copy.
 """
@@ -62,8 +62,8 @@ RULES = [
         'rating',
         # Any star rating or review count that is not the real 5.0 / 80.
         r'\b(?!5\.0\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
-        r'|\b(?!85\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
-        'The real figures are 5.0 stars from 85 reviews. Do not use any other number.',
+        r'|\b(?!88\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
+        'The real figures are 5.0 stars from 88 reviews. Do not use any other number.',
         None,
     ),
     (
