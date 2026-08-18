@@ -49,6 +49,11 @@ TOPIC_QUEUE = [
     {"slug": "garage-door-repair-scams-to-avoid", "title": "Garage Door Repair Scams to Avoid in San Diego", "type": "guide"},
     {"slug": "diy-vs-professional-garage-door-repair", "title": "DIY vs Professional Garage Door Repair: When to Call a Pro", "type": "guide"},
     {"slug": "garage-door-repair-la-jolla", "title": "Garage Door Repair in La Jolla, CA", "type": "city", "city": "La Jolla"},
+    # Targets the broad query "broken garage door" (141 impr @ pos 30.9, 0 clicks as of
+    # 28d ending 2026-08-15) - biggest un-captured demand on the site. Broad "my door is
+    # broken, what now" guide that triages the failure and funnels to /emergency-garage-door-repair/,
+    # /garage-door-springs/, and /garage-door-cable-repair/. Moved to front to publish next.
+    {"slug": "broken-garage-door-san-diego", "title": "Broken Garage Door in San Diego? What to Do and How to Fix It", "type": "guide"},
 
     # ---------- TIER 2: opener cluster (weeks 5-8) ----------
     # Query "garage door opener repair" already at pos 13.3; /garage-door-openers/ at pos 38.4.
