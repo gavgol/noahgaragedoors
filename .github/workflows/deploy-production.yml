@@ -12,6 +12,9 @@ concurrency:
   group: vercel-production
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -32,6 +35,28 @@ jobs:
 
       - name: Claim guard
         run: python tools/claim_guard.py
+
+      # Self-healing, not a gate. An article with no hero image is a quality
+      # problem, not a legal one, so it must not hold production hostage the way
+      # the claim guard does. It also must not ship: two guides went live
+      # imageless in September 2026 and nobody noticed for a week.
+      #
+      # The push below uses GITHUB_TOKEN, which by design cannot trigger another
+      # workflow, so committing to main from inside this job does not re-trigger
+      # this deploy. The repaired files are already in the working tree, so the
+      # deploy in the next step ships them either way.
+      - name: Heal missing blog hero images
+        run: |
+          python tools/hero_guard.py --fix
+          if git diff --quiet; then
+            echo "Nothing to heal."
+            exit 0
+          fi
+          git config user.name "SEO Bot"
+          git config user.email "bot@noahgaragesd.com"
+          git add blog/
+          git commit -m "fix(blog): add hero images the publisher left out"
+          git push
 
       - name: Install Vercel CLI
         run: npm install -g vercel@50

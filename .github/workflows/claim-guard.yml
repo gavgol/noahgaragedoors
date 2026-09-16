@@ -43,3 +43,9 @@ jobs:
       # sitemap gap should be loud without holding production hostage.
       - name: Structural SEO audit
         run: python tools/seo_audit.py
+
+      # Reports only. deploy-production.yml runs this with --fix on every push
+      # to main, so by the time a page is live it should already be repaired;
+      # a failure here means the repair itself could not find an image.
+      - name: Hero image guard
+        run: python tools/hero_guard.py
