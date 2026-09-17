@@ -35,7 +35,7 @@ Owner-operated garage door repair in San Diego County. Same-day spring replaceme
 
 ## ✍️ Long description (~750 characters)
 ```
-Noah Garage Doors is a locally owned, owner-operated garage door repair company serving all of San Diego County. We fix broken springs, faulty openers, off-track and stuck doors, frayed cables, and noisy rollers, and we install brand-new garage doors. With 10+ years of hands-on experience, Noah personally stands behind every job: no call centers, no pushy upsells. We offer same-day service, a lifetime warranty on the springs we install, and honest upfront pricing so you know the cost before we start. Serving San Diego, Chula Vista, El Cajon, Oceanside, Carlsbad, Escondido, La Mesa, Poway, Encinitas, Vista, San Marcos and Del Mar. Available 24/7. Call or text (619) 572-4266 for a free estimate.
+Noah Garage Doors is a locally owned, owner-operated garage door repair company serving all of San Diego County. We fix broken springs, faulty openers, off-track and stuck doors, frayed cables, and noisy rollers, and we install brand-new garage doors. With 10+ years of hands-on experience, Noah personally stands behind every job: no call centers, no pushy upsells. We offer same-day service, the manufacturer's warranty on the springs we install, and honest upfront pricing so you know the cost before we start. Serving San Diego, Chula Vista, El Cajon, Oceanside, Carlsbad, Escondido, La Mesa, Poway, Encinitas, Vista, San Marcos and Del Mar. Available 24/7. Call or text (619) 572-4266 for a free estimate.
 ```
 
 ## ✍️ Services (add as individual service items where allowed)
