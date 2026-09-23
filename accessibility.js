@@ -15,9 +15,8 @@
  * underlying site being accessible; this sits on top of that.
  *
  * Self-injecting (same pattern as cookie-consent.js) with inline styles so it is
- * immune to the prebuilt tailwind.css. On mobile it is a small tab on the right
- * edge (well clear of the bottom Call/Text bar) and yields z-index to that bar,
- * so it never hides the primary CTA; it also hides while the cookie banner shows.
+ * immune to the prebuilt tailwind.css. Positioned to sit ABOVE the bottom Call/
+ * Text bar on mobile and yields z-index to it, so it never hides the primary CTA.
  */
 (function () {
   "use strict";
@@ -104,9 +103,6 @@
     "html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after {" +
       " animation:none !important; transition:none !important; scroll-behavior:auto !important; }" +
     "html.a11y-motion .reveal { opacity:1 !important; transform:none !important; }" +
-    // Fade-in elements start at opacity 0; with their animation removed they
-    // must be forced visible or they would stay hidden.
-    "html.a11y-motion .animate-blur-up { opacity:1 !important; filter:none !important; transform:none !important; }" +
     "#ngd-a11y-panel button:focus-visible, #ngd-a11y-btn:focus-visible {" +
       " outline:3px solid #8ab4ff !important; outline-offset:2px; }" +
     "#ngd-a11y-panel .a11y-tile:hover { border-color:rgba(255,255,255,.28); background:rgba(255,255,255,.07); }" +
@@ -161,46 +157,28 @@
   btn.setAttribute("aria-haspopup", "dialog");
   btn.setAttribute("aria-expanded", "false");
   btn.setAttribute("aria-label", "Accessibility options");
-  btn.innerHTML = '<span style="color:#fff;display:flex">' + I.a11y.replace(/width="22" height="22"/, 'width="20" height="20"') + "</span>";
-  // 40px launcher. On phones it is a small tab tucked against the right edge
-  // at mid-height, clear of the bottom Call/Text bar and of in-page buttons
-  // (which sit in the centre/left). On desktop it is a round button bottom-left.
+  btn.innerHTML = '<span style="color:#fff;display:flex">' + I.a11y + "</span>";
   btn.style.cssText =
-    "position:fixed;z-index:2147481000;" +
-    "width:40px;height:40px;border:0;cursor:pointer;padding:0;" +
+    "position:fixed;left:18px;bottom:96px;z-index:2147481000;" +
+    "width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;padding:0;" +
     "display:flex;align-items:center;justify-content:center;" +
     "background:linear-gradient(145deg,#3b82f6,#1d4ed8);" +
-    "box-shadow:0 6px 16px rgba(37,99,235,.45),inset 0 1px 0 rgba(255,255,255,.3);" +
+    "box-shadow:0 8px 22px rgba(37,99,235,.5),inset 0 1px 0 rgba(255,255,255,.35);" +
     "transition:transform .15s ease,opacity .25s ease;-webkit-tap-highlight-color:transparent;";
   btn.addEventListener("mouseenter", function () { if (revealed) btn.style.transform = "scale(1.07)"; });
   btn.addEventListener("mouseleave", function () { if (revealed) btn.style.transform = "scale(1)"; });
 
   var desk = window.matchMedia("(min-width:768px)");
   function placeButton() {
-    if (desk.matches) {
-      btn.style.left = "18px"; btn.style.right = "auto";
-      btn.style.top = "auto"; btn.style.bottom = "24px";
-      btn.style.borderRadius = "50%";
-    } else {
-      btn.style.left = "auto"; btn.style.right = "0";
-      btn.style.top = "calc(50% - 20px)"; btn.style.bottom = "auto";
-      btn.style.borderRadius = "12px 0 0 12px";
-    }
+    btn.style.bottom = desk.matches ? "24px" : "96px";
     if (isOpen) positionPanel();
   }
 
   var isHome = location.pathname === "/" || /\/index\.html$/.test(location.pathname);
   var revealed = !isHome;
   var overFooter = false;
-  // Hidden while the cookie-consent banner (cookie-consent.js) is on screen,
-  // so the two never stack on top of each other.
-  var cookieBanner = document.documentElement.getAttribute("data-ngd-cookie-banner") === "shown";
-  window.addEventListener("ngd-cookie-banner", function (e) {
-    cookieBanner = !!(e.detail && e.detail.visible);
-    setShown(revealed);
-  });
   function setShown(show) {
-    var visible = show && !overFooter && !cookieBanner;
+    var visible = show && !overFooter;
     btn.style.opacity = visible ? "1" : "0";
     btn.style.transform = visible ? "scale(1)" : "scale(.6)";
     btn.style.pointerEvents = visible ? "auto" : "none";
@@ -421,14 +399,7 @@
   }
 
   // ---- position / open / close ---------------------------------------------
-  function positionPanel() {
-    if (desk.matches) {
-      panel.style.left = "18px"; panel.style.right = "auto"; panel.style.bottom = "76px";
-    } else {
-      // Opens from the right-edge tab, above the Call/Text bar.
-      panel.style.left = "auto"; panel.style.right = "12px"; panel.style.bottom = "96px";
-    }
-  }
+  function positionPanel() { panel.style.bottom = (desk.matches ? 88 : 160) + "px"; }
   var isOpen = false;
   function open() {
     if (isOpen) return;
