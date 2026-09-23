@@ -20,3 +20,23 @@ tools/make_social_carousels.py
 tools/make_social_carousels_v2.py
 __pycache__/
 *.pyc
+
+# Internal files that must never be publicly served (audit 2026-09-23:
+# REVIEWS-BACKUP.md, CLAUDE.md, tools/, .github/ etc. were live at 200).
+# The GitHub Actions deploy runs `vercel deploy` from the checkout, so this
+# file DOES apply to production.
+*.md
+*.py
+*.txt
+!robots.txt
+.github/
+tools/
+tailwind-src/
+tailwind.config.js
+inline-tailwind.js
+ads-assets/
+ad-creatives/
+ad-creative.html
+social-post-*.html
+social-media/
+NOAHGRAGEBEFOREAFTER/
