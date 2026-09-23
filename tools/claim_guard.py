@@ -27,7 +27,14 @@ generate_seo_article.py):
   - Warranties are the manufacturer's. There is no lifetime warranty.
   - The rating is 5.0 from 123 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
+    A bare "1-3 hr" tile or badge counts as a promise unless it is hedged.
+  - No invented success-rate / ROI percentages ("90%+ fixed first visit",
+    "~194% return on investment").
   - No em-dashes in customer-facing copy.
+
+JSON-LD (<script type="application/ld+json">) IS scanned: Google shows FAQ and
+review schema text in search results, so a claim there is as public as one in
+the page body. Other scripts, styles and comments are still skipped.
 """
 import argparse
 import os
@@ -62,7 +69,9 @@ RULES = [
         'rating',
         # Any star rating or review count that is not the real 5.0 / 123.
         r'\b(?!5\.0\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
-        r'|\b(?!123\b)\d{1,4}\+?\s+(?:google\s+)?reviews\b',
+        # An optional word may sit between the number and "Google", as in
+        # "123 Verified Google Reviews" or "90 five-star reviews".
+        r'|\b(?!123\b)\d{1,4}\+?\s+(?:(?!google\b)[a-z][a-z-]*\s+)?(?:google\s+)?reviews\b',
         'The real figures are 5.0 stars from 123 reviews. Do not use any other number.',
         None,
     ),
@@ -79,6 +88,28 @@ RULES = [
         r'depending on|in many cases|aim to)\b',
     ),
     (
+        'response-badge',
+        # Stat tiles and badges: "1-3 hr", "1-3 hour response". The sentence
+        # boundary includes > and <, so a tile is judged on its own text:
+        # "Typically 1-3 hr" passes, a bare "1-3 hr" does not.
+        r'\b\d+\s*(?:-|–|to)\s*\d+\s*(?:hrs?\b|(?:hour|hr)s?[\s-]+(?:response|arrival|eta)\b)',
+        'No bare response-time figures. Hedge it ("Typically 1-3 hr") or drop it.',
+        r'\b(?:typically|usually|often|generally|most|vary|varies|average|'
+        r'depending on|in many cases|aim to)\b',
+    ),
+    (
+        'percentage-claim',
+        # "90%+ fixed first visit", "~194% return on investment", "95% of issues".
+        # Plain facts such as "100% locally owned" or "under 50% of replacement
+        # cost" do not match.
+        r'\b\d{1,3}(?:\.\d+)?\s?%\s?\+'
+        r'|[~≈]\s?\d{1,3}(?:\.\d+)?\s?%'
+        r'|\b\d{1,3}(?:\.\d+)?\s?%\s+(?:return|roi|of\s+(?:issues|repairs|jobs|calls|'
+        r'problems|customers|doors|cost))\b',
+        'No unsourced success-rate or ROI percentages. Describe it without a number.',
+        None,
+    ),
+    (
         'em-dash',
         r'—',
         'No em-dash characters in customer-facing copy.',
@@ -93,8 +124,9 @@ SKIP_DIRS = {'.git', 'node_modules', '.github', 'tools', 'backups', 'ADS-OUTPUT'
 SCAN_EXT = {'.html'}
 
 # Machinery, not customer-facing copy. Matching inside these produces noise.
+# JSON-LD is deliberately NOT stripped (see module docstring).
 STRIP = [
-    re.compile(r'<script\b[^>]*>.*?</script>', re.S | re.I),
+    re.compile(r'<script\b(?![^>]*ld\+json)[^>]*>.*?</script>', re.S | re.I),
     re.compile(r'<style\b[^>]*>.*?</style>', re.S | re.I),
     re.compile(r'<!--.*?-->', re.S),
 ]

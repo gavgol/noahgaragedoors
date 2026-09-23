@@ -24,23 +24,26 @@
   <script src="https://unpkg.com/lucide@1.17.0" defer></script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Garage Door Cable Repair San Diego",
-    "description": "Professional garage door cable repair and replacement in San Diego County. All cable types serviced same-day.",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Noah Garage Doors",
-      "telephone": "+1-619-572-4266",
-      "url": "https://www.noahgaragesd.com/",
-      "address": {"@type":"PostalAddress","addressLocality":"San Diego","addressRegion":"CA","addressCountry":"US"}
-    },
-    "areaServed": "San Diego County, CA",
-    "offers": {"@type": "Offer", "priceRange": "$150-$300", "priceCurrency": "USD"}
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Garage Door Cable Repair San Diego",
+  "description": "Professional garage door cable repair and replacement in San Diego County. All cable types serviced same-day.",
+  "provider": {
+    "@id": "https://www.noahgaragesd.com/#business"
+  },
+  "areaServed": "San Diego County, CA",
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "minPrice": 150,
+      "maxPrice": 300,
+      "priceCurrency": "USD"
+    }
   }
+}
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,7 +52,7 @@
       {"@type":"Question","name":"What does a garage door cable do?","acceptedAnswer":{"@type":"Answer","text":"Cables work alongside the springs to lift and lower the door in a controlled way. They run from the bottom corners of the door, up through pulleys (on extension spring systems) or onto cable drums (on torsion systems). Without functional cables, the door cannot move safely."}},
       {"@type":"Question","name":"How do I know if my garage door cable is broken?","acceptedAnswer":{"@type":"Answer","text":"Signs include: the door hangs at an angle (one side lower than the other), visible slack or loose cable hanging on the side of the door, the door falls faster than normal when closing, or you can see a frayed or snapped cable near the bottom bracket."}},
       {"@type":"Question","name":"Can I drive my car out with a broken cable?","acceptedAnswer":{"@type":"Answer","text":"Only if the door can be safely held open. Do not operate the door with the opener if a cable is broken, it may fall suddenly. If you must exit, manually hold the door open and secure it before driving out, then call us immediately."}},
-      {"@type":"Question","name":"Do I need to replace both cables at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we always recommend replacing both cables together. They wear at the same rate, and if one broke, the other is close behind. Replacing both prevents a second service call and keeps tension even on both sides."}},
+      {"@type":"Question","name":"Do I need to replace both cables at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we always recommend replacing both cables together. They wear at the same rate, and if one broke, the other is close behind. Replacing both prevents a second visit and keeps tension even on both sides."}},
       {"@type":"Question","name":"How much does cable repair cost in San Diego?","acceptedAnswer":{"@type":"Answer","text":"Cable repair in San Diego typically costs $150–$300 depending on the cable type and whether springs or other hardware need replacement at the same time. We provide upfront pricing before any work begins."}}
     ]
   }
@@ -90,7 +93,8 @@
       <a href="/"><img src="/logo.webp" alt="Noah Garage Doors" style="height:54px;width:auto;object-fit:contain;filter:brightness(2.5) drop-shadow(0 0 8px rgba(37,99,235,0.7));"></a>
       <nav style="align-items:center;gap:28px;font-size:0.875rem;font-weight:500;" class="hidden md:flex">
         <a href="/#services" style="color:rgba(255,255,255,0.7);text-decoration:none;">Services</a>
-        <a href="/#gallery" style="color:rgba(255,255,255,0.7);text-decoration:none;">Gallery</a>
+        <a href="/gallery/" style="color:rgba(255,255,255,0.7);text-decoration:none;">Gallery</a>
+        <a href="/blog/" style="color:rgba(255,255,255,0.7);text-decoration:none;">Blog</a>
         <a href="/#reviews" style="color:rgba(255,255,255,0.7);text-decoration:none;">Reviews</a>
         <a href="/#service-areas" style="color:rgba(255,255,255,0.7);text-decoration:none;">Areas</a>
         <a href="/#promo" style="color:#fff;font-weight:700;text-decoration:none;">$49 Special!</a>
@@ -102,17 +106,17 @@
       </div>
     </div>
   </header>
-  <div id="mobile-menu" aria-hidden="true"><button class="menu-close-btn" onclick="toggleMenu()" aria-label="Close menu" style="padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:50%;cursor:pointer;"><svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button><a href="/#services" onclick="toggleMenu()">Services</a><a href="/#gallery" onclick="toggleMenu()">Gallery</a><a href="/#reviews" onclick="toggleMenu()">Reviews</a><a href="/#service-areas" onclick="toggleMenu()">Areas</a><a href="/#promo" onclick="toggleMenu()" style="color:var(--brand-urgent)!important;">$49 Special!</a><a href="tel:6195724266" style="color:var(--brand-urgent)!important;font-size:1.5rem;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;">📞 (619) 572-4266</a></div>
+  <div id="mobile-menu" aria-hidden="true"><button class="menu-close-btn" onclick="toggleMenu()" aria-label="Close menu" style="padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:50%;cursor:pointer;"><svg style="width:20px;height:20px;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button><a href="/#services" onclick="toggleMenu()">Services</a><a href="/gallery/" onclick="toggleMenu()">Gallery</a><a href="/blog/" onclick="toggleMenu()">Blog</a><a href="/#reviews" onclick="toggleMenu()">Reviews</a><a href="/#service-areas" onclick="toggleMenu()">Areas</a><a href="/#promo" onclick="toggleMenu()" style="color:var(--brand-urgent)!important;">$49 Special!</a><a href="tel:6195724266" style="color:var(--brand-urgent)!important;font-size:1.5rem;margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;">📞 (619) 572-4266</a></div>
 
   <main>
     <section style="background:linear-gradient(135deg,#0A0A0F 0%,#0d1526 50%,#0A0A0F 100%);padding:80px 16px 60px;text-align:center;">
       <div style="max-width:800px;margin:0 auto;">
         <nav style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-bottom:24px;text-transform:uppercase;letter-spacing:0.06em;"><a href="/" style="color:rgba(255,255,255,0.4);text-decoration:none;">Home</a> <span style="margin:0 8px;">›</span> <a href="/#services" style="color:rgba(255,255,255,0.4);text-decoration:none;">Services</a> <span style="margin:0 8px;">›</span> <span style="color:rgba(255,255,255,0.7);">Cable Repair</span></nav>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);color:#60a5fa;font-size:0.7rem;font-weight:800;padding:6px 16px;border-radius:999px;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.08em;"><i data-lucide="shield-check" style="width:14px;height:14px;"></i> Same-Day Service · Parts Stocked on Every Truck</div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);color:#60a5fa;font-size:0.7rem;font-weight:800;padding:6px 16px;border-radius:999px;margin-bottom:20px;text-transform:uppercase;letter-spacing:0.08em;"><i data-lucide="shield-check" style="width:14px;height:14px;"></i> Same-Day Service · Parts Stocked in the Truck</div>
         <h1 class="font-display" style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1.05;text-transform:uppercase;margin-bottom:16px;">Garage Door Cable Repair<br><span style="color:var(--brand-accent);">San Diego, CA</span></h1>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto 32px;line-height:1.6;">A broken cable leaves your door unbalanced and potentially dangerous. Don't force it, we carry cables on every truck and repair them same-day across all of San Diego County.</p>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto 32px;line-height:1.6;">A broken cable leaves your door unbalanced and potentially dangerous. Don't force it, we carry cables in the truck and repair them same-day across all of San Diego County.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <a href="tel:6195724266" class="urgent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:800;font-size:1rem;padding:14px 28px;border-radius:999px;text-decoration:none;box-shadow:0 4px 24px var(--brand-urgent-glow);"><i data-lucide="phone" style="width:18px;height:18px;"></i> Call Now, Same Day</a>
+          <a href="tel:6195724266" class="urgent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#111827;font-weight:800;font-size:1rem;padding:14px 28px;border-radius:999px;text-decoration:none;box-shadow:0 4px 24px var(--brand-urgent-glow);"><i data-lucide="phone" style="width:18px;height:18px;"></i> Call Now, Same Day</a>
           <a href="/#quote" class="accent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:1rem;padding:14px 28px;border-radius:999px;text-decoration:none;">Free Estimate</a>
         </div>
       </div>
@@ -158,7 +162,7 @@
           <div>
             <h2 class="font-display" style="font-size:1.75rem;font-weight:900;text-transform:uppercase;margin-bottom:12px;color:#f87171;">Do Not Attempt Cable Repair Yourself</h2>
             <p style="color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:12px;">Garage door cables are under the same tension as the springs, hundreds of pounds of stored energy. If the cable snaps while you're working on it, it can cause severe injury. Cables are also connected to springs and drums in ways that require specific tools and training to handle safely.</p>
-            <p style="color:rgba(255,255,255,0.5);line-height:1.7;font-size:0.9rem;">Our technicians carry the right gauge cables for your specific door weight and handle this repair in under an hour. Call us, it's not worth the risk.</p>
+            <p style="color:rgba(255,255,255,0.5);line-height:1.7;font-size:0.9rem;">Noah carries the right gauge cables for your specific door weight and handles this repair in under an hour. Call us, it's not worth the risk.</p>
           </div>
         </div>
       </div>
@@ -167,9 +171,9 @@
       <div style="margin-bottom:60px;">
         <h2 class="font-display" style="font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:16px;">Cable Repair Pricing in San Diego</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
-          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">$150–$200</div><div style="font-weight:700;margin-bottom:4px;">Single Cable</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">One cable replaced</div></div>
-          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">$200–$260</div><div style="font-weight:700;margin-bottom:4px;">Both Cables</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Recommended, replace pair</div></div>
-          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">$300–$450</div><div style="font-weight:700;margin-bottom:4px;">Cable + Spring</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Often fail together</div></div>
+          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">$150–$300</div><div style="font-weight:700;margin-bottom:4px;">Cable Replacement</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Both cables, replaced as a pair</div></div>
+          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">$150–$400</div><div style="font-weight:700;margin-bottom:4px;">Off-Track Door</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);">When a snapped cable dropped the door</div></div>
+          <div class="glass" style="border-radius:16px;padding:24px;text-align:center;"><div class="font-display" style="font-size:1.8rem;font-weight:900;color:var(--brand-accent);margin-bottom:6px;">Quoted On-Site</div><div style="font-weight:700;margin-bottom:4px;">Cable + Spring</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Quoted on-site after inspection</div></div>
         </div>
         <p style="font-size:0.85rem;color:rgba(255,255,255,0.4);margin-top:16px;">Upfront pricing before any work begins. No hidden fees.</p>
       </div>
@@ -180,7 +184,7 @@
         <div style="display:flex;flex-direction:column;gap:12px;">
           <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">What does a garage door cable do? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Cables work alongside the springs to lift and lower the door in a controlled, balanced way. They attach at the bottom corners and connect to the spring system via drums or pulleys. Without working cables, the door cannot operate safely.</div></div>
           <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">How do I know if my cable is broken? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Signs include: door hanging at an angle, visible slack or loose cable near the bottom bracket, door falling faster than normal, or visible fraying on the cable surface. If you see any of these, stop using the door and call us.</div></div>
-          <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">Do I need to replace both cables at the same time? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Yes, we always recommend replacing both cables together. They wear at the same rate, so if one broke, the other is close behind. Replacing both prevents a second service call and keeps tension even on both sides of the door.</div></div>
+          <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">Do I need to replace both cables at the same time? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Yes, we always recommend replacing both cables together. They wear at the same rate, so if one broke, the other is close behind. Replacing both prevents a second visit and keeps tension even on both sides of the door.</div></div>
           <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">Can I drive my car out with a broken cable? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Only if the door can be safely held open. Do not operate the door with the opener if a cable is broken, it may fall suddenly. If you must exit, manually hold the door and prop it securely before driving out, then call us immediately.</div></div>
           <div class="glass" style="border-radius:16px;overflow:hidden;"><button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;">How much does cable repair cost in San Diego? <i data-lucide="chevron-down" class="chevron" style="width:18px;height:18px;flex-shrink:0;"></i></button><div class="faq-content" style="padding:0 24px 20px;color:rgba(255,255,255,0.65);line-height:1.7;font-size:0.9rem;">Cable repair in San Diego typically costs $150–$300 depending on the cable type and whether springs need replacement at the same time. Upfront pricing before any work begins.</div></div>
         </div>
@@ -222,14 +226,55 @@
         <div class="font-display" style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;text-transform:uppercase;margin-bottom:12px;">Cable Broken? <span style="color:var(--brand-urgent);">We Come Today.</span></div>
         <p style="color:rgba(255,255,255,0.6);margin-bottom:28px;line-height:1.6;">Same-day service across San Diego County. Parts on the truck. Upfront pricing.</p>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <a href="tel:6195724266" class="urgent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:800;font-size:1.1rem;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 24px var(--brand-urgent-glow);"><i data-lucide="phone" style="width:20px;height:20px;"></i> (619) 572-4266</a>
+          <a href="tel:6195724266" class="urgent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#111827;font-weight:800;font-size:1.1rem;padding:16px 32px;border-radius:999px;text-decoration:none;box-shadow:0 4px 24px var(--brand-urgent-glow);"><i data-lucide="phone" style="width:20px;height:20px;"></i> (619) 572-4266</a>
           <a href="/#quote" class="accent-bg" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:1rem;padding:16px 28px;border-radius:999px;text-decoration:none;">Free Estimate</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer style="padding:24px 16px;border-top:1px solid rgba(255,255,255,0.05);"><div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;"><div style="display:flex;align-items:center;gap:12px;"><img src="/logo.webp" alt="Noah Garage Doors" style="height:40px;width:auto;object-fit:contain;filter:brightness(2.5);"><div><span style="display:block;font-weight:700;font-size:0.85rem;">NOAH GARAGE DOORS</span><span style="display:block;font-size:0.7rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">San Diego, CA</span></div></div><nav style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.75rem;"><a href="/garage-door-springs/" style="color:rgba(255,255,255,0.4);text-decoration:none;">Spring Repair</a><a href="/garage-door-openers/" style="color:rgba(255,255,255,0.4);text-decoration:none;">Opener Repair</a><a href="/emergency-garage-door-repair/" style="color:rgba(255,255,255,0.4);text-decoration:none;">Emergency</a><a href="/new-garage-door/" style="color:rgba(255,255,255,0.4);text-decoration:none;">New Door</a><a href="/garage-door-maintenance/" style="color:rgba(255,255,255,0.4);text-decoration:none;">Maintenance</a></nav><a href="tel:6195724266" style="font-weight:700;color:#fff;text-decoration:none;">(619) 572-4266</a></div><div style="max-width:1280px;margin:16px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.06em;"><span>© 2026 Noah Garage Doors. All rights reserved.</span><span>San Diego, CA</span></div></footer>
+  <footer style="padding:24px 16px;border-top:1px solid rgba(255,255,255,0.05);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="/logo.webp" alt="Noah Garage Doors" style="height:40px;width:auto;object-fit:contain;filter:brightness(2.5);">
+        <div>
+          <span style="display:block;font-weight:700;font-size:0.85rem;letter-spacing:-0.02em;">NOAH GARAGE DOORS</span>
+          <span style="display:block;font-size:0.7rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em;">San Diego, CA</span>
+        </div>
+      </div>
+      <nav aria-label="Footer" style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.75rem;">
+        <a href="/garage-door-springs/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Spring Repair</a>
+        <a href="/garage-door-openers/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Opener Repair</a>
+        <a href="/garage-door-cable-repair/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Cable Repair</a>
+        <a href="/garage-door-off-track-repair/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Off-Track</a>
+        <a href="/emergency-garage-door-repair/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Emergency</a>
+        <a href="/new-garage-door/" style="color:rgba(255,255,255,0.6);text-decoration:none;">New Door</a>
+        <a href="/garage-door-maintenance/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Maintenance</a>
+        <a href="/blog/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Blog</a>
+        <a href="/gallery/" style="color:rgba(255,255,255,0.6);text-decoration:none;">Gallery</a>
+      </nav>
+      <a href="tel:6195724266" style="font-weight:700;color:#fff;text-decoration:none;font-size:1rem;">(619) 572-4266</a>
+    </div>
+    <div style="max-width:1280px;margin:16px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);font-size:0.75rem;color:rgba(255,255,255,0.6);line-height:1.9;">
+      <strong style="color:#fff;font-weight:700;">Areas we serve:</strong>
+      <a href="/blog/garage-door-repair-carlsbad.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Carlsbad</a> &middot;
+      <a href="/blog/garage-door-repair-chula-vista.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Chula Vista</a> &middot;
+      <a href="/blog/garage-door-repair-el-cajon.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">El Cajon</a> &middot;
+      <a href="/blog/garage-door-repair-encinitas.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Encinitas</a> &middot;
+      <a href="/blog/garage-door-repair-escondido.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Escondido</a> &middot;
+      <a href="/blog/garage-door-repair-la-jolla.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">La Jolla</a> &middot;
+      <a href="/blog/garage-door-repair-la-mesa.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">La Mesa</a> &middot;
+      <a href="/blog/garage-door-repair-oceanside.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Oceanside</a> &middot;
+      <a href="/blog/garage-door-repair-poway.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Poway</a> &middot;
+      <a href="/blog/garage-door-repair-santee.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Santee</a> &middot;
+      <a href="/blog/garage-door-repair-vista-ca.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Vista</a>
+      &middot; and all of San Diego County
+    </div>
+    <div style="max-width:1280px;margin:16px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.06em;">
+      <span>© 2026 Noah Garage Doors. All rights reserved.</span>
+      <span><a href="/privacy-policy.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Privacy Policy</a> &middot; <a href="/accessibility.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Accessibility</a></span>
+    </div>
+  </footer>
 
   <script>
     if(window.lucide){lucide.createIcons();}else{document.addEventListener('DOMContentLoaded',function(){lucide.createIcons();});}
@@ -250,7 +295,7 @@
     });
     function toggleFaq(btn) { btn.nextElementSibling.classList.toggle('open'); btn.querySelector('.chevron').classList.toggle('rotated'); }
   </script>
-    <script src="/cookie-consent.js?v=2" defer></script>
-    <script src="/accessibility.js?v=3" defer></script>
+    <script src="/cookie-consent.js?v=4" defer></script>
+    <script src="/accessibility.js?v=4" defer></script>
 </body>
 </html>

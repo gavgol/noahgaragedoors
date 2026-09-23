@@ -19,7 +19,7 @@
     .nav-brand-text { font-weight: 900; color: #fff; text-transform: uppercase; font-size: 14px; letter-spacing: -0.02em; line-height: 1.1; }
     .nav-brand-sub { display: none; }
     .nav-phone { display: none; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; }
-    .nav-phone:hover { color: #2563EB; }
+    .nav-phone:hover { color: #60A5FA; }
     .nav-cta { background: #2563EB; color: #fff; padding: 8px 18px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 13px; transition: all 0.2s; white-space: nowrap; }
     .nav-cta:hover { background: #1D4ED8; transform: translateY(-1px); }
     .nav-right { display: flex; align-items: center; gap: 12px; }
@@ -32,12 +32,23 @@
     .article-wrap ul { margin: 0 0 18px 22px; color: #c8c8c8; }
     .article-wrap li { margin-bottom: 8px; }
     .article-wrap strong { color: #ffffff; font-weight: 600; }
-    .article-wrap a { color: #2563EB; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.3); transition: border-color 0.2s; }
+    .article-wrap a { color: #60A5FA; text-decoration: none; border-bottom: 1px solid rgba(37,99,235,0.3); transition: border-color 0.2s; }
     .article-wrap a:hover { border-bottom-color: #2563EB; }
     .contact-card { background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.25); border-radius: 16px; padding: 22px 24px; margin-top: 8px; }
     .footer { background: #050505; border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 24px; text-align: center; color: #666; font-size: 14px; }
-    .footer a { color: #2563EB; text-decoration: none; }
+    .footer a { color: #60A5FA; text-decoration: none; }
     .footer-areas { color: #555; margin-top: 12px; font-size: 13px; }
+    /* Shared nav + footer additions (internal links, mobile call button, contrast) */
+    .nav-link { display: none; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 600; font-size: 14px; }
+    .nav-link:hover { color: #fff; }
+    @media (min-width: 768px) { .nav-link { display: inline; } }
+    @media (max-width: 767px) { .nav-phone { display: flex !important; font-size: 14px; white-space: nowrap; } }
+    @media (max-width: 560px) { .nav-cta { display: none; } .nav-brand-text { font-size: 12px; } }
+    .footer { color: #a3a3a3; }
+    .footer a { color: #60A5FA; }
+    .footer-links { margin-bottom: 12px; font-weight: 600; }
+    .footer-areas { color: #a3a3a3 !important; line-height: 1.9; }
+    .footer-areas a { color: #d4d4d4; }
   </style>
 </head>
 <body>
@@ -51,6 +62,8 @@
         </div>
       </a>
       <div class="nav-right">
+        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="/gallery/" class="nav-link">Gallery</a>
         <a href="tel:6195724266" class="nav-phone">&#9742; (619) 572-4266</a>
         <a href="/#quote" class="nav-cta">Free Estimate</a>
       </div>
@@ -88,11 +101,12 @@
   </article>
 
   <footer class="footer">
-    <p>&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | San Diego, CA</p>
-    <p style="margin-top:8px;"><a href="/privacy-policy.html">Privacy Policy</a> &bull; <a href="/accessibility.html">Accessibility</a></p>
-    <p class="footer-areas">Serving San Diego &bull; Chula Vista &bull; Oceanside &bull; Carlsbad &bull; Escondido &bull; El Cajon &bull; Poway &bull; Encinitas &bull; and more</p>
+    <p class="footer-links"><a href="/#services">Services</a> &bull; <a href="/blog/">Blog</a> &bull; <a href="/gallery/">Gallery</a> &bull; <a href="/#reviews">Reviews</a> &bull; <a href="tel:6195724266">(619) 572-4266</a></p>
+    <p class="footer-areas"><strong>Areas we serve:</strong> <a href="/blog/garage-door-repair-carlsbad.html">Carlsbad</a> &bull; <a href="/blog/garage-door-repair-chula-vista.html">Chula Vista</a> &bull; <a href="/blog/garage-door-repair-el-cajon.html">El Cajon</a> &bull; <a href="/blog/garage-door-repair-encinitas.html">Encinitas</a> &bull; <a href="/blog/garage-door-repair-escondido.html">Escondido</a> &bull; <a href="/blog/garage-door-repair-la-jolla.html">La Jolla</a> &bull; <a href="/blog/garage-door-repair-la-mesa.html">La Mesa</a> &bull; <a href="/blog/garage-door-repair-oceanside.html">Oceanside</a> &bull; <a href="/blog/garage-door-repair-poway.html">Poway</a> &bull; <a href="/blog/garage-door-repair-santee.html">Santee</a> &bull; <a href="/blog/garage-door-repair-vista-ca.html">Vista</a> &bull; and all of San Diego County</p>
+    <p style="margin-top:12px;">&copy; 2026 <a href="/">Noah Garage Doors</a>. All rights reserved. | San Diego, CA</p>
+    <p style="margin-top:8px;"><a href="/privacy-policy.html">Privacy Policy</a> &bull; <a href="/accessibility.html">Accessibility</a> &bull; <a href="/sms-terms.html">SMS Terms</a></p>
   </footer>
-  <script src="/cookie-consent.js?v=2" defer></script>
-  <script src="/accessibility.js?v=3" defer></script>
+  <script src="/cookie-consent.js?v=4" defer></script>
+  <script src="/accessibility.js?v=4" defer></script>
 </body>
 </html>

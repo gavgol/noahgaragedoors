@@ -18,7 +18,7 @@ BASE = "https://www.noahgaragesd.com"
 ROOT = Path(__file__).parent
 
 # Files/dirs that must never appear in the sitemap (internal/working assets).
-EXCLUDE_NAMES = {"index_standalone.html"}
+EXCLUDE_NAMES = {"index_standalone.html", "404.html"}
 EXCLUDE_PREFIXES = ("social-post", "ad-creative", "garage_source", "sevan")
 EXCLUDE_DIRS = {"node_modules", "NOAHGRAGEBEFOREAFTER", ".git"}
 
