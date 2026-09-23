@@ -260,6 +260,12 @@
             background: #19191e !important;
         }
 
+        /* Mobile: the vertically centred hero pushed the headline and CTA below
+           the middle of the screen. Start the content near the top instead. */
+        @media (max-width: 639px) {
+            .hero-sec { justify-content: flex-start; padding-top: 72px; }
+        }
+
         .glass-blue {
             background: rgba(37, 99, 235, 0.1) !important;
             backdrop-filter: blur(20px);
@@ -670,7 +676,7 @@
 
     <main>
         <!-- HERO -->
-        <section class="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+        <section class="hero-sec relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <picture>
                     <source media="(max-width: 767px)" srcset="hero-mobile.webp" width="941" height="1672">
