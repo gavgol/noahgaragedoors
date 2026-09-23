@@ -264,6 +264,9 @@
            the middle of the screen. Start the content near the top instead. */
         @media (max-width: 639px) {
             .hero-sec { justify-content: flex-start; padding-top: 72px; }
+            /* Brand on its own line, "San Diego Garage Door Repair" below it */
+            .hero-brand { display: block; white-space: nowrap; font-size: clamp(0.9rem, 6.5vw, 1.5rem); }
+            .hero-comma { display: none; }
         }
 
         .glass-blue {
@@ -689,7 +692,7 @@
             </div>
             <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center -mt-12 md:-mt-8">
                 <h1 class="font-display leading-[1.02] mb-5 animate-blur-up delay-100 uppercase" style="text-shadow: 0 4px 24px rgba(0,0,0,0.8);">
-                    <span class="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-[0.04em] text-white/85 mb-3">Noah Garage Doors, San Diego Garage Door Repair</span>
+                    <span class="block text-2xl sm:text-3xl md:text-4xl font-bold tracking-[0.04em] text-white/85 mb-3"><span class="hero-brand">Noah Garage Doors<span class="hero-comma">,</span></span> <span class="hero-brand">San Diego Garage Door Repair</span></span>
                     <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white">Broken?</span>
                     <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl" style="color:var(--brand-accent)">We Fix It Today!</span>
                 </h1>
