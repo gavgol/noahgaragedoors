@@ -54,6 +54,25 @@
       new CustomEvent("ngd-consent", { detail: { analytics: choice === "accepted" } })
     );
     if (choice === "accepted") loadAnalytics();
+    else stopAnalytics();
+  }
+
+  // California law is opt-out, not opt-in: analytics run by default, a
+  // visitor can opt out in the notice, and the Global Privacy Control browser
+  // signal counts as an opt-out without any click.
+  function gpcOptOut() {
+    return navigator.globalPrivacyControl === true;
+  }
+
+  function analyticsAllowed() {
+    return savedChoice() !== "declined" && !gpcOptOut();
+  }
+
+  // Scripts that already loaded on this page cannot be unloaded, so an
+  // opt-out mid-visit switches them off; the next page never loads them.
+  function stopAnalytics() {
+    window["ga-disable-G-HPY4V3C8T5"] = true;
+    if (window.fbq) window.fbq("consent", "revoke");
   }
 
   function loadAnalytics() {
@@ -152,8 +171,9 @@
     });
   }
 
-  function addConsentBanner() {
-    if (savedChoice() || document.getElementById("ngd-cookie-banner")) return;
+  function addConsentBanner(force) {
+    if (gpcOptOut() || document.getElementById("ngd-cookie-banner")) return;
+    if (savedChoice() && !force) return;
 
     var bar = document.createElement("div");
     bar.id = "ngd-cookie-banner";
@@ -171,19 +191,19 @@
     var text = document.createElement("div");
     text.style.cssText = "flex:1 1 300px;color:rgba(255,255,255,.78);";
     text.innerHTML =
-      "Optional analytics help us understand which pages and ads lead to service requests. " +
+      "We use analytics cookies to see which pages and ads lead to service requests. You can opt out anytime. " +
       '<a href="/privacy-policy.html" style="color:#60a5fa">Privacy Policy</a>.';
 
     var decline = document.createElement("button");
     decline.type = "button";
-    decline.textContent = "Decline";
+    decline.textContent = "Opt out";
     decline.style.cssText =
       "cursor:pointer;border:1px solid rgba(255,255,255,.25);background:transparent;" +
       "color:white;font-weight:700;padding:10px 18px;border-radius:999px;";
 
     var accept = document.createElement("button");
     accept.type = "button";
-    accept.textContent = "Accept analytics";
+    accept.textContent = "OK";
     accept.style.cssText =
       "cursor:pointer;border:0;background:#2563eb;color:white;font-weight:700;" +
       "padding:11px 20px;border-radius:999px;";
@@ -221,8 +241,15 @@
   }
 
   function build() {
-    if (savedChoice() === "accepted") loadAnalytics();
+    if (analyticsAllowed()) loadAnalytics();
     addMobileContactBar();
+    // Any link to #cookie-settings (privacy policy, footer) reopens the notice.
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest && event.target.closest('a[href="#cookie-settings"]');
+      if (!link) return;
+      event.preventDefault();
+      addConsentBanner(true);
+    });
     addConsentBanner();
     initQuoteOverlapGuard();
   }
