@@ -4,6 +4,12 @@
 
   var KEY = "ngd_cookie_consent";
   var PHONE = "6195724266";
+  // Meta pixel is OFF (2026-09-25). California CIPA "wiretap" suits target
+  // third-party ad pixels on small-business sites, and FB ads are paused, so
+  // the pixel carries risk and no value. SB 690 (signature due 30.9.2026) only
+  // curbs the pen-register theory, not the wiretap one. Revisit before
+  // re-enabling; prefer sending leads server-side (Conversions API) instead.
+  var META_PIXEL_ENABLED = false;
 
   // Both floating bars below must get out of the way while the visitor is
   // actually looking at the #quote lead form, otherwise their high
@@ -91,6 +97,7 @@
     google.src = "https://www.googletagmanager.com/gtag/js?id=G-HPY4V3C8T5";
     document.head.appendChild(google);
 
+    if (!META_PIXEL_ENABLED) return;
     window.fbq = function () {
       window.fbq.callMethod
         ? window.fbq.callMethod.apply(window.fbq, arguments)
@@ -191,7 +198,7 @@
     var text = document.createElement("div");
     text.style.cssText = "flex:1 1 300px;color:rgba(255,255,255,.78);";
     text.innerHTML =
-      "We use analytics cookies to see which pages and ads lead to service requests. You can opt out anytime. " +
+      "We use Google Analytics to see which pages lead to service requests. Choose Opt out to turn it off on this browser. " +
       '<a href="/privacy-policy.html" style="color:#60a5fa">Privacy Policy</a>.';
 
     var decline = document.createElement("button");
@@ -243,6 +250,8 @@
   function build() {
     if (analyticsAllowed()) loadAnalytics();
     addMobileContactBar();
+    // No banner on page load (standard for US small-business sites); the
+    // opt-out lives behind #cookie-settings links in the footer and privacy page.
     // Any link to #cookie-settings (privacy policy, footer) reopens the notice.
     document.addEventListener("click", function (event) {
       var link = event.target.closest && event.target.closest('a[href="#cookie-settings"]');
@@ -250,7 +259,6 @@
       event.preventDefault();
       addConsentBanner(true);
     });
-    addConsentBanner();
     initQuoteOverlapGuard();
   }
 

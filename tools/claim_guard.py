@@ -25,7 +25,7 @@ generate_seo_article.py):
     background-check status is still unconfirmed, so nothing may claim
     or imply bonded / certified / background-checked.
   - Warranties are the manufacturer's. There is no lifetime warranty.
-  - The rating is 5.0 from 123 reviews. No other figure may appear.
+  - The rating is 5.0 from 124 reviews. No other figure may appear.
   - No invented operational promises (arrival windows, response times).
     A bare "1-3 hr" tile or badge counts as a promise unless it is hedged.
   - No invented success-rate / ROI percentages ("90%+ fixed first visit",
@@ -67,12 +67,12 @@ RULES = [
     ),
     (
         'rating',
-        # Any star rating or review count that is not the real 5.0 / 123.
+        # Any star rating or review count that is not the real 5.0 / 124.
         r'\b(?!5\.0\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
         # An optional word may sit between the number and "Google", as in
-        # "123 Verified Google Reviews" or "90 five-star reviews".
-        r'|\b(?!123\b)\d{1,4}\+?\s+(?:(?!google\b)[a-z][a-z-]*\s+)?(?:google\s+)?reviews\b',
-        'The real figures are 5.0 stars from 123 reviews. Do not use any other number.',
+        # "124 Verified Google Reviews" or "90 five-star reviews".
+        r'|\b(?!124\b)\d{1,4}\+?\s+(?:(?!google\b)[a-z][a-z-]*\s+)?(?:google\s+)?reviews\b',
+        'The real figures are 5.0 stars from 124 reviews. Do not use any other number.',
         None,
     ),
     (
