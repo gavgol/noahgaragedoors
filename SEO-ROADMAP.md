@@ -315,3 +315,7 @@ These are enforced in `ARTICLE_PROMPT` inside `generate_seo_article.py`. Do not 
 - **No em-dashes** anywhere in customer-facing copy. Use commas or periods.
 - Canonical contact details: phone (619) 572-4266, email Noahgaragedoors@gmail.com, hours 24/7.
 - No street address. This is a service area business covering San Diego County.
+
+---
+
+**2026-10-02 update:** competitor sitemap audit (SEO-COMPETITOR-SITEMAPS-2026-10.md) moved the new-door cluster (Tier 5) ahead of Tier 4 in TOPIC_QUEUE. Dates in section 3 for Tiers 4-5 are now swapped; queue order is the source of truth.

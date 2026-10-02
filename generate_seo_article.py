@@ -73,17 +73,10 @@ TOPIC_QUEUE = [
     {"slug": "commercial-garage-door-repair-san-diego", "title": "Commercial Garage Door Repair in San Diego", "type": "service"},
     {"slug": "garage-door-repair-san-marcos", "title": "Garage Door Repair in San Marcos, CA", "type": "city", "city": "San Marcos"},
 
-    # ---------- TIER 4: diagnostics + maintenance (weeks 13-16) ----------
-    {"slug": "garage-door-off-balance-san-diego", "title": "Is Your Garage Door Off Balance? How to Tell and Fix It", "type": "guide"},
-    {"slug": "torsion-vs-extension-springs", "title": "Torsion vs Extension Springs: Which Does Your Door Have?", "type": "guide"},
-    {"slug": "how-to-lubricate-a-garage-door", "title": "How to Lubricate a Garage Door the Right Way", "type": "guide"},
-    {"slug": "how-often-to-service-garage-door", "title": "How Often Should You Service Your Garage Door?", "type": "guide"},
-    {"slug": "garage-door-auto-reverse-safety-test", "title": "How to Test Your Garage Door's Auto-Reverse Safety Feature", "type": "guide"},
-    {"slug": "garage-door-security-tips-san-diego", "title": "Garage Door Security Tips for San Diego Homeowners", "type": "guide"},
-    {"slug": "garage-door-repair-spring-valley", "title": "Garage Door Repair in Spring Valley, CA", "type": "city", "city": "Spring Valley"},
-
-    # ---------- TIER 5: new-door buying cluster (weeks 17-22) ----------
-    # Props up /new-garage-door/ (146 impr but pos 47.5, the weakest high-impression page).
+    # ---------- TIER 5 (moved ahead of Tier 4 on 2026-10-02): new-door buying cluster ----------
+    # Props up /new-garage-door/ (1,023 impr @ pos 26.2 in 60d to 2026-09-29, our #2 page by impressions).
+    # Competitor sitemap audit 2026-10-02: new-door content is the cluster SD competitors publish most
+    # (104 URLs touched since 2026-06 across 8 sites). Higher ticket than repairs, so it goes first.
     {"slug": "new-garage-door-cost-san-diego", "title": "How Much Does a New Garage Door Cost in San Diego? (2026)", "type": "guide"},
     {"slug": "signs-you-need-a-new-garage-door", "title": "7 Signs You Need a New Garage Door", "type": "guide"},
     {"slug": "how-to-measure-for-a-new-garage-door", "title": "How to Measure for a New Garage Door", "type": "guide"},
@@ -99,6 +92,15 @@ TOPIC_QUEUE = [
     {"slug": "rv-garage-door-installation-san-diego", "title": "RV and Oversized Garage Door Installation in San Diego", "type": "service"},
     {"slug": "garage-door-installation-permit-san-diego", "title": "Do You Need a Permit for a Garage Door in San Diego?", "type": "guide"},
     {"slug": "garage-door-repair-for-hoa-and-condos-san-diego", "title": "Garage Door Repair for HOAs and Condos in San Diego", "type": "service"},
+
+    # ---------- TIER 4: diagnostics + maintenance (weeks 13-16) ----------
+    {"slug": "garage-door-off-balance-san-diego", "title": "Is Your Garage Door Off Balance? How to Tell and Fix It", "type": "guide"},
+    {"slug": "torsion-vs-extension-springs", "title": "Torsion vs Extension Springs: Which Does Your Door Have?", "type": "guide"},
+    {"slug": "how-to-lubricate-a-garage-door", "title": "How to Lubricate a Garage Door the Right Way", "type": "guide"},
+    {"slug": "how-often-to-service-garage-door", "title": "How Often Should You Service Your Garage Door?", "type": "guide"},
+    {"slug": "garage-door-auto-reverse-safety-test", "title": "How to Test Your Garage Door's Auto-Reverse Safety Feature", "type": "guide"},
+    {"slug": "garage-door-security-tips-san-diego", "title": "Garage Door Security Tips for San Diego Homeowners", "type": "guide"},
+    {"slug": "garage-door-repair-spring-valley", "title": "Garage Door Repair in Spring Valley, CA", "type": "city", "city": "Spring Valley"},
 ]
 
 # =====================================================================================
