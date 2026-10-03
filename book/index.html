@@ -120,10 +120,10 @@
     .arrows{display:flex;gap:8px}
     .arrows button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line2);background:var(--panel2);color:var(--text);display:grid;place-items:center;cursor:pointer}
     .arrows svg{width:18px;height:18px;stroke-width:2.2}
-    .track{display:flex;align-items:stretch;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;margin:0;padding:2px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+    .track{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;margin:0 -16px;padding:8px 0 38px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
     .track::-webkit-scrollbar{display:none}
     /* every slide is the same height: one photo review, or two text reviews stacked */
-    .slide{flex:0 0 100%;height:var(--slideH,auto);scroll-snap-align:start;display:flex;flex-direction:column;gap:10px}
+    .slide{flex:0 0 78%;height:var(--slideH,auto);transform-origin:50% 100%;will-change:transform;display:flex;flex-direction:column;gap:10px}
     .rv{display:flex;flex-direction:column;border-radius:18px;background:var(--panel);border:1px solid var(--line);overflow:hidden;min-height:0}
     .slide>.rv:only-child{flex:1}
     .slide>.rv:not(:only-child){flex:1 1 0}
@@ -144,8 +144,8 @@
     .rv .who .stars{font-size:12px}
     .rv .who svg{margin-left:auto;flex-shrink:0}
     .rv q{font-size:14.5px;line-height:1.5;color:#dde3ee;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
-    .dots{position:relative;height:3px;max-width:160px;margin:14px auto 0;border-radius:3px;background:var(--line2);overflow:hidden}
-    .dots span{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--blue);transition:left .45s ease}
+    .dots{position:relative;height:3px;max-width:160px;margin:0 auto;border-radius:3px;background:var(--line2);overflow:hidden}
+    .dots span{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--blue)}
 
     .next{margin-top:32px}
     .next h2{margin-bottom:12px}
@@ -168,8 +168,8 @@
       h1{font-size:72px;max-width:12ch}
       .lede{font-size:18px;max-width:36ch}
       .main{margin:0;max-width:none;padding:40px 40px 60px}
-      .track{margin:0;padding:2px 0 6px}
-      .slide{flex-basis:calc(50% - 6px)}
+      .track{margin:0 -20px}
+      .slide{flex-basis:46%}
       .rv img{height:130px}
       .rv q{-webkit-line-clamp:12}
       .rv.solo q{font-size:16px;-webkit-line-clamp:20}
@@ -340,13 +340,16 @@
           '<span><b>' + esc(r[0]) + '</b><span class="stars" aria-label="5 stars">★★★★★</span></span>' + G + '</div>' +
           '<q>' + esc(r[2]) + '</q></div></article>';
       }
-      trackEl.innerHTML = R.map(function (s, i) {
+      // Three identical copies (before, real, after) give a seamless infinite loop.
+      var setHtml = R.map(function (s, i) {
         return '<div class="slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + R.length + '">' +
           s.map(function (r) { return card(r, s.length > 1); }).join('') + '</div>';
       }).join('');
-      // Paged carousel: arrows and autoplay move by a whole page (every slide on screen is new).
-      var slides = trackEl.children, page = 0, pages = 1, per = 1;
+      var cloneHtml = setHtml.replace(/class="slide" role="group"/g, 'class="slide" aria-hidden="true" role="group"');
+      trackEl.innerHTML = cloneHtml + setHtml + cloneHtml;
+      var slides = trackEl.children, N = R.length, per = 1;
       function step() { return slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : trackEl.clientWidth; }
+      function setW() { return step() * N; }
       // Slide height = the tallest slide's natural height at this width, so no slot is padded for a much longer one.
       function measure() {
         trackEl.classList.add('measuring');
@@ -361,46 +364,82 @@
         trackEl.style.setProperty('--slideH', tallest + 'px');
       }
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layout(); });
+      // --- Continuous drift with a coverflow arc (same feel as the homepage reviews) ---
+      var pos = 0;                 // our own float scroll position (scrollLeft rounds on some screens)
+      var SPEED = 38;              // px per second
+      var slow = false, touching = false, resumeAt = 0, anim = null, lastTs = null, visible = true;
       function layout() {
         measure();
-        per = Math.max(1, Math.floor((trackEl.clientWidth + 12) / step()));
-        pages = Math.ceil(slides.length / per);
-        sync();
+        per = Math.max(1, Math.round(trackEl.clientWidth / step() - 0.3));
+        var w = setW();
+        if (!pos || pos < w * 0.5 || pos > w * 2.5) pos = (slides[N].offsetLeft - slides[0].offsetLeft) - (trackEl.clientWidth - slides[N].offsetWidth) / 2;
+        trackEl.scrollLeft = pos;
+        arc(); paint();
       }
-      function go(p) {
-        page = (p + pages) % pages;
-        var max = trackEl.scrollWidth - trackEl.clientWidth;
-        trackEl.scrollTo({ left: Math.min(page * per * step(), max), behavior: 'smooth' });
-        paint();
+      function wrap() {
+        var w = setW(); if (w <= 0) return;
+        if (pos >= 2 * w) { pos -= w; if (anim) { anim.from -= w; anim.to -= w; } }
+        else if (pos < w * 0.25) { pos += w; if (anim) { anim.from += w; anim.to += w; } }
+      }
+      function arc() {
+        var tr = trackEl.getBoundingClientRect(), c = tr.left + tr.width / 2, half = tr.width / 2, ns = [];
+        for (var i = 0; i < slides.length; i++) { var r = slides[i].getBoundingClientRect(); ns.push((r.left + r.width / 2 - c) / half); }
+        for (var j = 0; j < slides.length; j++) {
+          var n = Math.max(-1.4, Math.min(1.4, ns[j]));
+          if (Math.abs(ns[j]) > 2.5) continue;          // far off-screen, skip the write
+          slides[j].style.transform = 'translateY(' + (n * n * 26).toFixed(1) + 'px) rotate(' + (n * 5).toFixed(2) + 'deg)';
+          slides[j].style.opacity = (1 - Math.min(Math.abs(n), 1.2) * 0.38).toFixed(2);
+        }
       }
       dotsEl.innerHTML = '<span></span>';
       function paint() {
-        var bar = dotsEl.firstChild, w = Math.max(100 / pages, 8);
-        bar.style.width = w + '%';
-        bar.style.left = (pages > 1 ? page * (100 - w) / (pages - 1) : 0) + '%';
+        var bar = dotsEl.firstChild, w = setW(); if (w <= 0) return;
+        var frac = (((pos - w) % w) + w) % w / w, bw = 22;
+        bar.style.width = bw + '%';
+        bar.style.left = (frac * (100 - bw)).toFixed(2) + '%';
       }
-      function sync() {
-        var max = trackEl.scrollWidth - trackEl.clientWidth;
-        page = trackEl.scrollLeft >= max - 4 ? pages - 1 : Math.round(trackEl.scrollLeft / (per * step()));
-        paint();
+      function animateTo(target) {
+        anim = { from: pos, to: target, t0: performance.now(), dur: 650 };
+        resumeAt = performance.now() + 4000;
       }
-      var scrollT;
-      trackEl.addEventListener('scroll', function () { clearTimeout(scrollT); scrollT = setTimeout(sync, 120); }, { passive: true });
-      document.getElementById('rvPrev').addEventListener('click', function () { hold(); go(page - 1); });
-      document.getElementById('rvNext').addEventListener('click', function () { hold(); go(page + 1); });
+      document.getElementById('rvNext').addEventListener('click', function () { animateTo(Math.round((pos + step() * per) / step()) * step()); });
+      document.getElementById('rvPrev').addEventListener('click', function () { animateTo(Math.round((pos - step() * per) / step()) * step()); });
+
+      // Touch / drag: hand control to the finger, resume the drift shortly after.
+      trackEl.addEventListener('touchstart', function () { touching = true; anim = null; }, { passive: true });
+      ['touchend', 'touchcancel'].forEach(function (e) {
+        trackEl.addEventListener(e, function () { touching = false; resumeAt = performance.now() + 2200; }, { passive: true });
+      });
+      trackEl.addEventListener('wheel', function () { resumeAt = performance.now() + 2200; anim = null; }, { passive: true });
+      trackEl.addEventListener('scroll', function () {
+        if (touching || performance.now() < resumeAt && !anim) { pos = trackEl.scrollLeft; wrap(); trackEl.scrollLeft = pos; }
+        arc(); paint();
+      }, { passive: true });
+      // Hover only slows the drift so it never looks frozen.
+      trackEl.addEventListener('mouseenter', function () { slow = true; });
+      trackEl.addEventListener('mouseleave', function () { slow = false; });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { rootMargin: '100px' }).observe(trackEl);
+      }
+      function frame(ts) {
+        var dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.05) : 0; lastTs = ts;
+        if (visible && !document.hidden && !touching) {
+          if (anim) {
+            var k = Math.min(1, (ts - anim.t0) / anim.dur), e = 1 - Math.pow(1 - k, 3);
+            pos = anim.from + (anim.to - anim.from) * e;
+            if (k >= 1) anim = null;
+          } else if (ts >= resumeAt) {
+            pos += SPEED * (slow ? 0.25 : 1) * dt;
+          }
+          wrap();
+          trackEl.scrollLeft = pos;
+        }
+        requestAnimationFrame(frame);
+      }
       window.addEventListener('resize', layout);
       layout();
-
-      // Autoplay every 5s while on screen; a swipe or arrow click pauses it, and it resumes 8s after the last interaction.
-      var pausedUntil = 0;
-      function hold() { pausedUntil = Date.now() + 8000; }
-      ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) { trackEl.addEventListener(ev, hold, { passive: true }); });
-      setInterval(function () {
-        if (document.hidden || Date.now() < pausedUntil) return;
-        var r = trackEl.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > window.innerHeight) return;
-        go(page + 1);
-      }, 5000);
+      requestAnimationFrame(frame);
     })();
   </script>
 </body>
