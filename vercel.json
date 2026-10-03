@@ -7,6 +7,16 @@
       "permanent": true
     },
     {
+      "source": "/ig",
+      "destination": "/book/?utm_source=instagram&utm_medium=bio",
+      "permanent": false
+    },
+    {
+      "source": "/qr",
+      "destination": "/book/?utm_source=qr&utm_medium=sticker",
+      "permanent": false
+    },
+    {
       "source": "/blog/emergency-garage-door-repair-san-diego.html",
       "destination": "/emergency-garage-door-repair/",
       "permanent": true
