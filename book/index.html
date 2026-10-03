@@ -120,8 +120,10 @@
     .arrows{display:flex;gap:8px}
     .arrows button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line2);background:var(--panel2);color:var(--text);display:grid;place-items:center;cursor:pointer}
     .arrows svg{width:18px;height:18px;stroke-width:2.2}
-    .track{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;margin:0 -16px;padding:8px 0 38px;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
-    .track::-webkit-scrollbar{display:none}
+    .track{position:relative;overflow:hidden;margin:0 -16px;padding:8px 0 38px;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+    .track.grabbing{cursor:grabbing}
+    .strip{display:flex;align-items:flex-start;gap:14px;will-change:transform;backface-visibility:hidden}
+    .track img{pointer-events:none;-webkit-user-drag:none}
     /* every slide is the same height: one photo review, or two text reviews stacked */
     .slide{flex:0 0 78%;height:var(--slideH,auto);transform-origin:50% 100%;will-change:transform;display:flex;flex-direction:column;gap:10px}
     .rv{display:flex;flex-direction:column;border-radius:18px;background:var(--panel);border:1px solid var(--line);overflow:hidden;min-height:0}
@@ -145,7 +147,7 @@
     .rv .who svg{margin-left:auto;flex-shrink:0}
     .rv q{font-size:14.5px;line-height:1.5;color:#dde3ee;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
     .dots{position:relative;height:3px;max-width:160px;margin:0 auto;border-radius:3px;background:var(--line2);overflow:hidden}
-    .dots span{position:absolute;top:0;bottom:0;border-radius:3px;background:var(--blue)}
+    .dots span{position:absolute;top:0;bottom:0;left:0;width:22%;border-radius:3px;background:var(--blue);will-change:transform}
 
     .next{margin-top:32px}
     .next h2{margin-bottom:12px}
@@ -346,15 +348,16 @@
           s.map(function (r) { return card(r, s.length > 1); }).join('') + '</div>';
       }).join('');
       var cloneHtml = setHtml.replace(/class="slide" role="group"/g, 'class="slide" aria-hidden="true" role="group"');
-      trackEl.innerHTML = cloneHtml + setHtml + cloneHtml;
-      var slides = trackEl.children, N = R.length, per = 1;
-      function step() { return slides[1] ? slides[1].offsetLeft - slides[0].offsetLeft : trackEl.clientWidth; }
-      function setW() { return step() * N; }
+      trackEl.innerHTML = '<div class="strip" id="rvStrip">' + cloneHtml + setHtml + cloneHtml + '</div>';
+      var strip = document.getElementById('rvStrip');
+      var slides = strip.children, N = R.length, per = 1;
+      var STEP = 1, SW = 1, VW = 1;   // slide pitch, slide width, viewport width (measured in layout only)
+      function setW() { return STEP * N; }
       // Slide height = the tallest slide's natural height at this width, so no slot is padded for a much longer one.
       function measure() {
         trackEl.classList.add('measuring');
         var tallest = 0;
-        for (var k = 0; k < slides.length; k++) {
+        for (var k = N; k < 2 * N; k++) {
           var hgt = 0, kids = slides[k].children;
           for (var j = 0; j < kids.length; j++) hgt += kids[j].offsetHeight;
           hgt += (kids.length - 1) * 10;
@@ -364,76 +367,96 @@
         trackEl.style.setProperty('--slideH', tallest + 'px');
       }
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layout(); });
-      // --- Continuous drift with a coverflow arc (same feel as the homepage reviews) ---
-      var pos = 0;                 // our own float scroll position (scrollLeft rounds on some screens)
-      var SPEED = 38;              // px per second
-      var slow = false, touching = false, resumeAt = 0, anim = null, lastTs = null, visible = true;
+
+      // --- GPU-driven drift with a coverflow arc --------------------------------
+      // The strip moves with translate3d (sub-pixel, compositor only). Card tilt is
+      // computed from known positions, so nothing is measured inside the frame loop.
+      var pos = 0, vel = 0, SPEED = 42, slow = false;
+      var dragging = false, dragX = 0, dragPos = 0, lastX = 0, lastT = 0, flick = 0;
+      var resumeAt = 0, anim = null, lastTs = null, visible = true;
       function layout() {
+        var keep = STEP > 1 ? (pos - setW()) / setW() : null;
         measure();
-        per = Math.max(1, Math.round(trackEl.clientWidth / step() - 0.3));
-        var w = setW();
-        if (!pos || pos < w * 0.5 || pos > w * 2.5) pos = (slides[N].offsetLeft - slides[0].offsetLeft) - (trackEl.clientWidth - slides[N].offsetWidth) / 2;
-        trackEl.scrollLeft = pos;
-        arc(); paint();
+        STEP = slides[1].offsetLeft - slides[0].offsetLeft;
+        SW = slides[0].offsetWidth;
+        VW = trackEl.clientWidth;
+        per = Math.max(1, Math.round(VW / STEP - 0.3));
+        pos = keep === null ? setW() - (VW - SW) / 2 : setW() + keep * setW();
+        render();
       }
       function wrap() {
-        var w = setW(); if (w <= 0) return;
-        if (pos >= 2 * w) { pos -= w; if (anim) { anim.from -= w; anim.to -= w; } }
-        else if (pos < w * 0.25) { pos += w; if (anim) { anim.from += w; anim.to += w; } }
+        var w = setW();
+        if (pos >= 2 * w) { pos -= w; if (anim) { anim.from -= w; anim.to -= w; } dragPos -= w; }
+        else if (pos < w * 0.5) { pos += w; if (anim) { anim.from += w; anim.to += w; } dragPos += w; }
       }
-      function arc() {
-        var tr = trackEl.getBoundingClientRect(), c = tr.left + tr.width / 2, half = tr.width / 2, ns = [];
-        for (var i = 0; i < slides.length; i++) { var r = slides[i].getBoundingClientRect(); ns.push((r.left + r.width / 2 - c) / half); }
-        for (var j = 0; j < slides.length; j++) {
-          var n = Math.max(-1.4, Math.min(1.4, ns[j]));
-          if (Math.abs(ns[j]) > 2.5) continue;          // far off-screen, skip the write
-          slides[j].style.transform = 'translateY(' + (n * n * 26).toFixed(1) + 'px) rotate(' + (n * 5).toFixed(2) + 'deg)';
-          slides[j].style.opacity = (1 - Math.min(Math.abs(n), 1.2) * 0.38).toFixed(2);
+      function render() {
+        strip.style.transform = 'translate3d(' + (-pos).toFixed(2) + 'px,0,0)';
+        var half = VW / 2, c = pos + half;
+        var first = Math.max(0, Math.floor((pos - SW) / STEP)), last = Math.min(slides.length - 1, Math.ceil((pos + VW) / STEP));
+        for (var i = first; i <= last; i++) {
+          var n = (i * STEP + SW / 2 - c) / half;
+          n = Math.max(-1.4, Math.min(1.4, n));
+          slides[i].style.transform = 'translate3d(0,' + (n * n * 24).toFixed(2) + 'px,0) rotate(' + (n * 4.5).toFixed(3) + 'deg)';
+          slides[i].style.opacity = (1 - Math.min(Math.abs(n), 1.2) * 0.4).toFixed(3);
         }
+        var w = setW(), frac = (((pos - w) % w) + w) % w / w;
+        dotsEl.firstChild.style.transform = 'translate3d(' + (frac * 354).toFixed(1) + '%,0,0)';
       }
       dotsEl.innerHTML = '<span></span>';
-      function paint() {
-        var bar = dotsEl.firstChild, w = setW(); if (w <= 0) return;
-        var frac = (((pos - w) % w) + w) % w / w, bw = 22;
-        bar.style.width = bw + '%';
-        bar.style.left = (frac * (100 - bw)).toFixed(2) + '%';
-      }
       function animateTo(target) {
-        anim = { from: pos, to: target, t0: performance.now(), dur: 650 };
-        resumeAt = performance.now() + 4000;
+        anim = { from: pos, to: target, t0: performance.now(), dur: 700 };
+        resumeAt = performance.now() + 3500;
       }
-      document.getElementById('rvNext').addEventListener('click', function () { animateTo(Math.round((pos + step() * per) / step()) * step()); });
-      document.getElementById('rvPrev').addEventListener('click', function () { animateTo(Math.round((pos - step() * per) / step()) * step()); });
+      function snapTarget(dir) { return (Math.round((pos + (VW - SW) / 2) / STEP) + dir * per) * STEP - (VW - SW) / 2; }
+      document.getElementById('rvNext').addEventListener('click', function () { animateTo(snapTarget(1)); });
+      document.getElementById('rvPrev').addEventListener('click', function () { animateTo(snapTarget(-1)); });
 
-      // Touch / drag: hand control to the finger, resume the drift shortly after.
-      trackEl.addEventListener('touchstart', function () { touching = true; anim = null; }, { passive: true });
-      ['touchend', 'touchcancel'].forEach(function (e) {
-        trackEl.addEventListener(e, function () { touching = false; resumeAt = performance.now() + 2200; }, { passive: true });
+      // Drag / swipe with the finger or mouse; vertical page scroll still works (touch-action: pan-y).
+      trackEl.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        dragging = true; anim = null; dragX = lastX = e.clientX; dragPos = pos; lastT = performance.now(); flick = 0;
+        trackEl.setPointerCapture(e.pointerId); trackEl.classList.add('grabbing');
       });
-      trackEl.addEventListener('wheel', function () { resumeAt = performance.now() + 2200; anim = null; }, { passive: true });
-      trackEl.addEventListener('scroll', function () {
-        if (touching || performance.now() < resumeAt && !anim) { pos = trackEl.scrollLeft; wrap(); trackEl.scrollLeft = pos; }
-        arc(); paint();
-      }, { passive: true });
-      // Hover only slows the drift so it never looks frozen.
+      trackEl.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var t = performance.now();
+        flick = (lastX - e.clientX) / Math.max(t - lastT, 1);   // px per ms
+        lastX = e.clientX; lastT = t;
+        pos = dragPos - (e.clientX - dragX);
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false; trackEl.classList.remove('grabbing');
+        var target = pos + Math.max(-1, Math.min(1, flick)) * 260;   // a little momentum
+        anim = { from: pos, to: Math.round((target + (VW - SW) / 2) / STEP) * STEP - (VW - SW) / 2, t0: performance.now(), dur: 600 };
+        resumeAt = performance.now() + 2500;
+      }
+      trackEl.addEventListener('pointerup', endDrag);
+      trackEl.addEventListener('pointercancel', endDrag);
       trackEl.addEventListener('mouseenter', function () { slow = true; });
       trackEl.addEventListener('mouseleave', function () { slow = false; });
 
       if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { rootMargin: '100px' }).observe(trackEl);
+        new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { rootMargin: '150px' }).observe(trackEl);
       }
       function frame(ts) {
         var dt = lastTs ? Math.min((ts - lastTs) / 1000, 0.05) : 0; lastTs = ts;
-        if (visible && !document.hidden && !touching) {
-          if (anim) {
+        if (visible && !document.hidden) {
+          if (dragging) {
+            vel = 0;
+          } else if (anim) {
             var k = Math.min(1, (ts - anim.t0) / anim.dur), e = 1 - Math.pow(1 - k, 3);
             pos = anim.from + (anim.to - anim.from) * e;
             if (k >= 1) anim = null;
-          } else if (ts >= resumeAt) {
-            pos += SPEED * (slow ? 0.25 : 1) * dt;
+            vel = 0;
+          } else {
+            // ease the speed in and out instead of jumping between moving and stopped
+            var target = ts < resumeAt ? 0 : SPEED * (slow ? 0.3 : 1);
+            vel += (target - vel) * Math.min(1, dt * 3);
+            pos += vel * dt;
           }
           wrap();
-          trackEl.scrollLeft = pos;
+          render();
         }
         requestAnimationFrame(frame);
       }
