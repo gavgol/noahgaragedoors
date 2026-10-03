@@ -2,130 +2,280 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Book Garage Door Service | Noah Garage Doors San Diego</title>
-  <meta name="description" content="Request garage door service in San Diego County. Leave your name and number and Noah will call you back, or call (619) 572-4266 now.">
+  <meta name="description" content="Tell Noah what is wrong with your garage door and get a call back, or call (619) 572-4266. San Diego County, open 24/7.">
   <link rel="canonical" href="https://www.noahgaragesd.com/book/">
   <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0a0e16">
   <link rel="icon" type="image/png" href="/logo.webp">
+  <link rel="preload" as="image" href="/book/hero-doors.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b0d12;--card:#141821;--line:rgba(255,255,255,.10);--text:#f4f5f7;--dim:rgba(255,255,255,.62);--accent:#2563eb;--accent2:#1d4ed8;--call:#16a34a;--call2:#15803d}
+    :root{
+      --bg:#0a0e16;--panel:#111723;--panel2:#161e2d;--line:rgba(148,170,210,.14);--line2:rgba(148,170,210,.26);
+      --text:#f2f5fa;--dim:#9aa6bb;--faint:#6b778c;
+      --blue:#2f6bff;--blue2:#1f55e0;--blueGlow:rgba(47,107,255,.35);
+      --green:#18a957;--green2:#12924a;--star:#fbbc05;
+    }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5;min-height:100vh}
+    html{-webkit-text-size-adjust:100%}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,sans-serif;line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
     a{color:inherit}
-    .wrap{max-width:520px;margin:0 auto;padding:20px 16px 120px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-    header img{height:38px;width:auto;filter:brightness(0) invert(1)}
-    header a.home{font-size:13px;color:var(--dim);text-decoration:none}
-    h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;font-size:40px;line-height:1;letter-spacing:.5px}
-    .sub{color:var(--dim);margin:10px 0 18px;font-size:16px}
-    .trust{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px;color:var(--dim);margin-bottom:20px}
-    .trust b{color:var(--text);font-weight:700}
-    .call{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:64px;border-radius:14px;background:var(--call);color:#fff;text-decoration:none;font-weight:700;font-size:20px;box-shadow:0 10px 30px rgba(22,163,74,.25)}
-    .call:hover,.call:focus-visible{background:var(--call2)}
-    .call small{display:block;font-weight:400;font-size:12px;opacity:.85}
-    .or{display:flex;align-items:center;gap:12px;color:var(--dim);font-size:13px;margin:22px 0 16px}
-    .or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
-    .card h2{font-size:18px;font-weight:700;margin-bottom:4px}
-    .card p.hint{color:var(--dim);font-size:14px;margin-bottom:16px}
-    label.f{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:14px 0 6px}
-    input[type=text],input[type=tel],select,textarea{width:100%;height:54px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font:inherit;font-size:16px;padding:0 14px;outline:none}
-    textarea{height:84px;padding:12px 14px;resize:none}
-    select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--dim) 50%),linear-gradient(135deg,var(--dim) 50%,transparent 50%);background-position:calc(100% - 20px) 24px,calc(100% - 14px) 24px;background-size:6px 6px;background-repeat:no-repeat}
-    select option{background:#141821;color:#f4f5f7}
-    input:focus,select:focus,textarea:focus{border-color:rgba(37,99,235,.7)}
-    .consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;cursor:pointer}
-    .consent input{width:22px;height:22px;flex-shrink:0;margin-top:2px;accent-color:var(--accent)}
-    .consent span{font-size:11px;line-height:1.5;color:rgba(255,255,255,.5)}
-    .legal{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px}
-    .legal a{color:#60a5fa}
-    button{width:100%;height:58px;margin-top:18px;border:0;border-radius:12px;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:17px;cursor:pointer}
-    button:hover,button:focus-visible{background:var(--accent2)}
-    button:disabled{opacity:.6;cursor:not-allowed}
+    img{display:block;max-width:100%}
+    .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+    /* hero */
+    .hero{position:relative;min-height:380px;padding:18px 16px 92px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 72%;z-index:0}
+    .hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,14,22,.55) 0%,rgba(10,14,22,.25) 35%,rgba(10,14,22,.85) 78%,var(--bg) 100%)}
+    .hero>div{position:relative;z-index:2}
+    .top{display:flex;align-items:center;justify-content:space-between}
+    .top img{height:34px;width:auto;filter:brightness(0) invert(1)}
+    .open{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:rgba(10,14,22,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);font-size:12px;font-weight:700;letter-spacing:.02em}
+    .dot{width:8px;height:8px;border-radius:50%;background:#2ee07a;animation:pulse 2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,224,122,.55)}70%{box-shadow:0 0 0 9px rgba(46,224,122,0)}100%{box-shadow:0 0 0 0 rgba(46,224,122,0)}}
+    h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:clamp(38px,10.5vw,56px);line-height:.95;letter-spacing:.3px;text-wrap:balance;margin-top:56px}
+    h1 em{font-style:normal;color:#7fa6ff}
+    .lede{color:#d3dae6;font-size:16px;margin-top:10px;max-width:30ch}
+
+    /* layout */
+    .main{position:relative;z-index:3;max-width:560px;margin:-72px auto 0;padding:0 16px 130px}
+    .rating{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;padding:12px 14px;border-radius:14px;background:rgba(17,23,35,.92);border:1px solid var(--line);margin-bottom:12px;font-size:13px;color:var(--dim)}
+    .rating .g{display:flex;align-items:center;gap:6px;color:var(--text);font-weight:700;font-size:14px}
+    .stars{color:var(--star);letter-spacing:1px;font-size:14px}
+    .rating .sep{width:3px;height:3px;border-radius:50%;background:var(--faint)}
+
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px 18px 20px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+    .step{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;margin-bottom:12px}
+    .step b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(47,107,255,.16);color:#8fb0ff;font-size:13px}
+    .tiles + .step{margin-top:24px}
+
+    /* service tiles */
+    .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:0;min-width:0}
+    .tile{position:relative}
+    .tile input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
+    .tile span{position:relative;display:flex;flex-direction:column;gap:8px;min-height:92px;padding:13px 12px;border-radius:14px;background:var(--panel2);border:1.5px solid var(--line);font-size:14px;font-weight:500;line-height:1.25;transition:border-color .15s,background .15s,transform .1s}
+    .tile svg{width:26px;height:26px;stroke:#8fb0ff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+    .tile.wide{grid-column:1/-1}
+    .tile.wide span{flex-direction:row;align-items:center;min-height:56px}
+    .tile input:hover + span{border-color:var(--line2)}
+    .tile input:active + span{transform:scale(.98)}
+    .tile input:checked + span{border-color:var(--blue);background:rgba(47,107,255,.12);box-shadow:0 0 0 3px rgba(47,107,255,.18)}
+    .tile input:checked + span:after{content:"";position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat}
+    .tile input:focus-visible + span{outline:2px solid #9bb8ff;outline-offset:2px}
+
+    /* fields */
+    .fields{display:grid;gap:10px}
+    .field{position:relative}
+    .field svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:19px;height:19px;stroke:var(--faint);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .field input{width:100%;height:56px;border-radius:14px;border:1.5px solid var(--line);background:var(--panel2);color:var(--text);font:inherit;font-size:16px;padding:0 14px 0 44px;outline:none;transition:border-color .15s}
+    .field input::placeholder{color:var(--faint)}
+    .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,107,255,.18)}
+    details.more{margin-top:10px}
+    details.more summary{cursor:pointer;list-style:none;color:#8fb0ff;font-size:14px;font-weight:500;padding:4px 0}
+    details.more summary::-webkit-details-marker{display:none}
+    details.more summary:before{content:"+ "}
+    details.more[open] summary:before{content:"\2212  "}
+    textarea{width:100%;margin-top:8px;height:90px;border-radius:14px;border:1.5px solid var(--line);background:var(--panel2);color:var(--text);font:inherit;font-size:16px;padding:12px 14px;resize:none;outline:none}
+    textarea::placeholder{color:var(--faint)}
+    textarea:focus{border-color:var(--blue)}
+
+    .submit{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:60px;margin-top:20px;border:0;border-radius:14px;background:linear-gradient(180deg,#3d76ff,var(--blue2));color:#fff;font:inherit;font-weight:700;font-size:18px;cursor:pointer;box-shadow:0 12px 30px var(--blueGlow),inset 0 1px 0 rgba(255,255,255,.18)}
+    .submit:hover{filter:brightness(1.07)}
+    .submit:disabled{opacity:.65;cursor:not-allowed}
+    .submit svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .assure{display:flex;justify-content:center;gap:6px 16px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--dim)}
+    .assure span{display:inline-flex;align-items:center;gap:5px}
+    .assure svg{width:14px;height:14px;stroke:#2ee07a;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+    .consents{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:grid;gap:10px}
+    .consent{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+    .consent input{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--blue)}
+    .consent span{font-size:10.5px;line-height:1.5;color:var(--faint)}
+    .legal{font-size:10.5px;color:var(--faint)}
+    .legal a{color:#8fb0ff}
+
     .hidden{display:none!important}
     #formError{margin-top:12px;padding:12px;border-radius:12px;border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.1);color:#fca5a5;font-size:14px;text-align:center}
-    #formSuccess{text-align:center;padding:28px 16px}
-    #formSuccess .ok{font-size:22px;font-weight:700;color:#4ade80;margin-bottom:6px}
-    #formSuccess p{color:var(--dim)}
-    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
-    footer{margin-top:26px;text-align:center;color:rgba(255,255,255,.4);font-size:12px}
+    #formSuccess{text-align:center;padding:26px 6px 10px}
+    #formSuccess .check{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:rgba(46,224,122,.14);border:1px solid rgba(46,224,122,.35)}
+    #formSuccess .check svg{width:30px;height:30px;stroke:#2ee07a;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+    #formSuccess h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:30px;line-height:1}
+    #formSuccess p{color:var(--dim);margin-top:8px}
+    #formSuccess a{color:#fff;font-weight:700}
+
+    /* talk now */
+    .or{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:13px;margin:26px 0 14px}
+    .or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+    .talk{display:grid;grid-template-columns:1.6fr 1fr;gap:10px}
+    .btn{display:flex;align-items:center;justify-content:center;gap:9px;height:58px;border-radius:14px;text-decoration:none;font-weight:700;font-size:16px}
+    .btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .btn.call{background:var(--green);color:#fff;box-shadow:0 10px 26px rgba(24,169,87,.28)}
+    .btn.call:hover{background:var(--green2)}
+    .btn.text{background:var(--panel2);border:1.5px solid var(--line2);color:var(--text)}
+
+    /* proof */
+    .review{margin-top:26px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;padding:16px;border-radius:18px;background:var(--panel);border:1px solid var(--line)}
+    .review img{width:96px;height:96px;object-fit:cover;border-radius:12px}
+    .review q{display:block;font-size:14.5px;line-height:1.5;color:#dbe2ee}
+    .review .who{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin-top:8px;font-size:13px;color:var(--dim)}
+    .review .who b{color:var(--text)}
+
+    .next{margin-top:26px}
+    .next h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;font-size:24px;letter-spacing:.4px;margin-bottom:12px}
+    .next ol{list-style:none;display:grid;gap:12px;counter-reset:s}
+    .next li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;font-size:14.5px;color:var(--dim)}
+    .next li:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);color:var(--text);font-weight:700}
+    .next li b{display:block;color:var(--text);font-size:15px}
+
+    footer{margin-top:30px;text-align:center;color:var(--faint);font-size:12px;line-height:1.7}
+    footer a{color:var(--dim)}
+
+    a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #9bb8ff;outline-offset:2px}
+    @media (prefers-reduced-motion:reduce){.dot{animation:none}*{transition:none!important}}
+
+    /* desktop: photo left, form right */
+    @media (min-width:960px){
+      body{display:grid;grid-template-columns:minmax(0,1fr) 600px;align-items:start}
+      .hero{position:sticky;top:0;height:100vh;min-height:0;padding:36px 48px 56px}
+      .hero:after{background:linear-gradient(180deg,rgba(10,14,22,.5) 0%,rgba(10,14,22,.15) 40%,rgba(10,14,22,.88) 100%)}
+      h1{font-size:72px;margin-top:0;max-width:12ch}
+      .lede{font-size:18px;max-width:36ch}
+      .main{margin:0;max-width:none;padding:44px 40px 60px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <header class="hero">
+    <img class="hero-img" src="/book/hero-doors.jpg" alt="Two black modern garage doors installed by Noah Garage Doors in San Diego County" width="1400" height="1050" fetchpriority="high">
+    <div class="top">
       <a href="/" aria-label="Noah Garage Doors home"><img src="/logo.webp" width="1135" height="564" alt="Noah Garage Doors"></a>
-      <a class="home" href="/">Home</a>
-    </header>
+      <span class="open"><span class="dot" aria-hidden="true"></span>Open 24/7</span>
+    </div>
+    <div>
+      <h1>Garage door <em>acting up?</em></h1>
+      <p class="lede">Tell me what's going on and I'll call you right back. Noah, San Diego County.</p>
+    </div>
+  </header>
 
-    <h1>Garage door trouble?</h1>
-    <p class="sub">Call now, or leave your number and I'll call you back.</p>
-    <div class="trust"><span><b>5.0</b> on Google</span><span>Licensed &amp; Insured</span><span>San Diego County, 24/7</span></div>
+  <main class="main">
+    <div class="rating">
+      <span class="g"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.920c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.570-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.290-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>5.0</span>
+      <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+      <span>129 Google reviews</span>
+      <span class="sep" aria-hidden="true"></span>
+      <span>Licensed &amp; Insured</span>
+    </div>
 
-    <a class="call" href="tel:6195724266" id="callBtn"><span>Call (619) 572-4266<small>Talk to Noah directly</small></span></a>
-
-    <div class="or">or request a call back</div>
-
-    <div class="card">
+    <section class="card" aria-labelledby="formTitle">
+      <h2 id="formTitle" class="sr">Request a call back</h2>
       <form id="quoteForm" method="post" action="/" novalidate>
-        <h2>Request a call back</h2>
-        <p class="hint">Takes 20 seconds. No obligation.</p>
         <input type="hidden" name="lead_source" id="leadSource" value="">
         <input type="hidden" name="form_started_at" id="formStartedAt" value="">
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
 
-        <label class="f" for="quoteName">Name</label>
-        <input id="quoteName" type="text" name="name" required minlength="2" maxlength="120" autocomplete="name">
+        <div class="step" id="svcLabel"><b>1</b>What's going on with the door?</div>
+        <fieldset class="tiles" aria-labelledby="svcLabel">
+          <label class="tile"><input type="radio" name="service" value="Emergency Repair" required><span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1.5"/><path d="M3 9h18M3 14h18"/><path d="M12 17v4M10 19l2 2 2-2"/></svg>Won't open or close</span></label>
+          <label class="tile"><input type="radio" name="service" value="Spring Replacement"><span><svg viewBox="0 0 24 24"><path d="M2 12h2M20 12h2"/><path d="M4 12c1-3 2-3 3 0s2 3 3 0 2-3 3 0M15 9l2 6M18 9l2 6"/></svg>Broken spring or loud bang</span></label>
+          <label class="tile"><input type="radio" name="service" value="Off Track Repair"><span><svg viewBox="0 0 24 24"><path d="M5 3v18M19 3v8"/><path d="M19 15l-3 6M9 7h6M9 12h5"/></svg>Door off track or crooked</span></label>
+          <label class="tile"><input type="radio" name="service" value="Cable Repair"><span><svg viewBox="0 0 24 24"><circle cx="7" cy="6" r="3"/><path d="M7 9v5c0 2 1 3 3 3"/><path d="M14 17c2 0 3-1 3-3v-1M17 9V6"/></svg>Snapped or loose cable</span></label>
+          <label class="tile"><input type="radio" name="service" value="Opener Installation"><span><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="8" r="2"/><path d="M10 14h4M10 17h4"/></svg>Opener or remote problem</span></label>
+          <label class="tile"><input type="radio" name="service" value="Full Door Replacement"><span><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v11H3z"/><path d="M7 21v-8h10v8M7 16h10"/></svg>I want a new door</span></label>
+          <label class="tile wide"><input type="radio" name="service" value="Other / Not Sure"><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17.5v.01"/></svg>Something else or not sure</span></label>
+        </fieldset>
 
-        <label class="f" for="quotePhone">Phone</label>
-        <input id="quotePhone" type="tel" name="phone" required minlength="10" maxlength="40" autocomplete="tel" inputmode="tel">
+        <div class="step"><b>2</b>Where should I call you?</div>
+        <div class="fields">
+          <div class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>
+            <label class="sr" for="quoteName">Your name</label>
+            <input id="quoteName" type="text" name="name" placeholder="Your name" required minlength="2" maxlength="120" autocomplete="name">
+          </div>
+          <div class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>
+            <label class="sr" for="quotePhone">Phone number</label>
+            <input id="quotePhone" type="tel" name="phone" placeholder="Phone number" required minlength="10" maxlength="40" autocomplete="tel" inputmode="tel">
+          </div>
+        </div>
+        <details class="more">
+          <summary>Add a note or your ZIP (optional)</summary>
+          <label class="sr" for="quoteMessage">Note</label>
+          <textarea id="quoteMessage" name="message" maxlength="2000" placeholder="e.g. 92020, door stopped halfway this morning"></textarea>
+        </details>
 
-        <label class="f" for="serviceInput">What's going on with the door?</label>
-        <select id="serviceInput" name="service" required>
-          <option value="" disabled selected hidden>Choose one</option>
-          <option value="Emergency Repair">Door won't open or close</option>
-          <option value="Spring Replacement">Broken spring / loud bang</option>
-          <option value="Off Track Repair">Door off track</option>
-          <option value="Cable Repair">Cable problem</option>
-          <option value="Opener Installation">Opener or remote problem</option>
-          <option value="Full Door Replacement">I want a new door</option>
-          <option value="Other / Not Sure">Something else / not sure</option>
-        </select>
-
-        <label class="f" for="quoteMessage">Anything else? (optional)</label>
-        <textarea id="quoteMessage" name="message" maxlength="2000"></textarea>
-
-        <label class="consent" for="quoteSmsService">
-          <input id="quoteSmsService" name="sms_consent_service" type="checkbox">
-          <span>By checking this box, you agree to receive transactional and informational text messages about your service request and appointments from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
-        </label>
-        <label class="consent" for="quoteSmsConsent">
-          <input id="quoteSmsConsent" name="sms_consent" type="checkbox">
-          <span>By checking this box, you agree to receive promotional and marketing text messages from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
-        </label>
-        <p class="legal">Both boxes are optional and not required to get service. <a href="/sms-terms.html" target="_blank" rel="noopener">SMS Terms</a> &middot; <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
-
-        <button id="quoteSubmit" type="submit"><span id="quoteSubmitText">Request a Call Back</span></button>
+        <button class="submit" id="quoteSubmit" type="submit"><span id="quoteSubmitText">Call Me Back</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <div class="assure">
+          <span><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Free, no obligation</span>
+          <span><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Price before any work</span>
+        </div>
         <div id="formError" class="hidden" role="alert" tabindex="-1"></div>
+
+        <div class="consents">
+          <label class="consent" for="quoteSmsService">
+            <input id="quoteSmsService" name="sms_consent_service" type="checkbox">
+            <span>By checking this box, you agree to receive transactional and informational text messages about your service request and appointments from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
+          </label>
+          <label class="consent" for="quoteSmsConsent">
+            <input id="quoteSmsConsent" name="sms_consent" type="checkbox">
+            <span>By checking this box, you agree to receive promotional and marketing text messages from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
+          </label>
+          <p class="legal">Both boxes are optional and not required to get service. <a href="/sms-terms.html" target="_blank" rel="noopener">SMS Terms</a> &middot; <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
+        </div>
       </form>
+
       <div id="formSuccess" class="hidden" role="status" aria-live="polite">
-        <div class="ok">Got it, thank you!</div>
-        <p>I'll call you back shortly. Need help right now? <a href="tel:6195724266"><b>(619) 572-4266</b></a></p>
+        <div class="check"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
+        <h2>Got it, thank you!</h2>
+        <p>I'll call you back shortly. Can't wait? Call me at <a href="tel:6195724266">(619) 572-4266</a></p>
       </div>
+    </section>
+
+    <div class="or">or reach me right now</div>
+    <div class="talk">
+      <a class="btn call" href="tel:6195724266" id="callBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>(619) 572-4266</a>
+      <a class="btn text" href="sms:+16195724266" id="textBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Text</a>
     </div>
 
-    <footer>Noah Garage Doors &middot; San Diego County &middot; CSLB #1159513</footer>
-  </div>
-  <script src="/quote-form.js?v=book1" defer></script>
+    <figure class="review">
+      <img src="/reviews/img/ren.webp" alt="Customer photo from Ren's 5-star Google review" width="96" height="96" loading="lazy" decoding="async">
+      <figcaption>
+        <q>Super fast service at a very reasonable price. Noah was very professional and very proficient. Highly recommended.</q>
+        <div class="who"><b>Ren</b><span class="stars" aria-label="5 stars">★★★★★</span><span>Google review</span></div>
+      </figcaption>
+    </figure>
+
+    <section class="next">
+      <h2>What happens next</h2>
+      <ol>
+        <li><span><b>I call you back</b>We talk through what the door is doing and pick a time that works for you.</span></li>
+        <li><span><b>I look at the door</b>You get a clear price before I touch anything.</span></li>
+        <li><span><b>You decide</b>No work starts until you say yes.</span></li>
+      </ol>
+    </section>
+
+    <footer>
+      Noah Garage Doors &middot; San Diego County &middot; CSLB #1159513<br>
+      <a href="/">noahgaragesd.com</a>
+    </footer>
+  </main>
+
+  <script src="/quote-form.js?v=book2" defer></script>
   <script src="/cookie-consent.js?v=7" defer></script>
   <script>
-    document.getElementById('callBtn').addEventListener('click', function () {
-      if (typeof window.gtag === 'function') window.gtag('event', 'phone_call', { event_label: 'book_page' });
-    });
+    (function () {
+      function track(label) { if (typeof window.gtag === 'function') window.gtag('event', 'phone_call', { event_label: label }); }
+      document.getElementById('callBtn').addEventListener('click', function () { track('book_page'); });
+      document.getElementById('textBtn').addEventListener('click', function () { track('book_page_text'); });
+      // quote-form.js resets the label to "Request Free Quote" after an error; keep this page's wording.
+      var t = document.getElementById('quoteSubmitText');
+      new MutationObserver(function () {
+        if (t.textContent.indexOf('Quote') !== -1) t.textContent = 'Call Me Back';
+      }).observe(t, { childList: true, characterData: true, subtree: true });
+    })();
   </script>
 </body>
 </html>
