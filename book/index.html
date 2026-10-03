@@ -298,29 +298,90 @@
   <script src="/cookie-consent.js?v=8" defer></script>
   <script>
     (function () {
-      function track(label) { if (typeof window.gtag === 'function') window.gtag('event', 'phone_call', { event_label: label }); }
-      document.getElementById('topCall').addEventListener('click', function () { track('book_top'); });
-      document.getElementById('callBtn').addEventListener('click', function () { track('book_page'); });
-      document.getElementById('textBtn').addEventListener('click', function () { track('book_page_text'); });
+      /* ---------- measurement (GA4 + Meta pixel) ----------
+         cookie-consent.js defines gtag only after the page loads (and never if the
+         visitor opted out), so events wait in a queue and flush once gtag exists. */
+      var qs = new URLSearchParams(location.search);
+      var base = { page_type: 'book', traffic_source: qs.get('utm_source') || 'direct', traffic_medium: qs.get('utm_medium') || '' };
+      var queue = [], sent = {};
+      function track(name, params, once) {
+        if (once) { if (sent[name]) return; sent[name] = 1; }
+        var p = Object.assign({}, base, params || {});
+        if (typeof window.gtag === 'function') window.gtag('event', name, p); else queue.push([name, p]);
+      }
+      var flushTries = 0, flushT = setInterval(function () {
+        if (typeof window.gtag === 'function') { queue.forEach(function (e) { window.gtag('event', e[0], e[1]); }); queue = []; clearInterval(flushT); }
+        else if (++flushTries > 40) clearInterval(flushT);
+      }, 250);
+
+      // Every call / text link on the page, labelled by where it sits.
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href^="tel:"], a[href^="sms:"]');
+        if (!a) return;
+        var where = a.closest('#formSuccess') ? 'after_submit' : a.id === 'topCall' ? 'hero' : a.closest('.talk') ? 'below_form' : 'other';
+        if (a.getAttribute('href').indexOf('tel:') === 0) {
+          track('phone_call', { event_category: 'lead', event_label: 'book_' + where, call_location: where });
+          if (typeof window.fbq === 'function') window.fbq('track', 'Lead', { content_name: 'book_phone_' + where });
+        } else {
+          track('text_click', { event_category: 'lead', event_label: 'book_' + where, call_location: where });
+          if (typeof window.fbq === 'function') window.fbq('track', 'Contact', { content_name: 'book_text_' + where });
+        }
+      });
 
       /* two-step form */
       var form = document.getElementById('quoteForm');
       var s1 = document.getElementById('step1'), s2 = document.getElementById('step2');
       var note = document.getElementById('pickNote');
+      function picked() { var p = form.querySelector('input[name="service"]:checked'); return p ? p.value : ''; }
       function show(step) {
         s1.hidden = step !== 1; s2.hidden = step !== 2;
         document.getElementById(step === 1 ? 's1h' : 's2h').focus({ preventScroll: true });
         var y = form.getBoundingClientRect().top + window.scrollY - 24;
         if (window.scrollY > y) window.scrollTo({ top: y, behavior: 'smooth' });
       }
+      form.addEventListener('change', function (e) {
+        if (e.target.name === 'service') { track('book_form_start', { service: e.target.value }, true); track('book_service_select', { service: e.target.value }); }
+        if (e.target.type === 'checkbox') track('book_sms_consent', { field: e.target.name, checked: e.target.checked ? 'yes' : 'no' });
+      });
       document.getElementById('toStep2').addEventListener('click', function () {
         var p = form.querySelector('input[name="service"]:checked');
-        if (!p) { note.textContent = 'Pick one to continue. "Not sure" is fine.'; note.classList.add('err'); return; }
+        if (!p) { note.textContent = 'Pick one to continue. "Not sure" is fine.'; note.classList.add('err'); track('book_continue_blocked'); return; }
         note.classList.remove('err');
         document.getElementById('chosenText').textContent = p.parentNode.textContent.trim();
         show(2);
+        track('book_step2_view', { service: p.value });
       });
-      document.getElementById('backBtn').addEventListener('click', function () { show(1); });
+      document.getElementById('backBtn').addEventListener('click', function () { show(1); track('book_step_back', { service: picked() }); });
+      ['quoteName', 'quotePhone', 'quoteMessage'].forEach(function (id) {
+        document.getElementById(id).addEventListener('focus', function () { track('book_field_focus_' + id.replace('quote', '').toLowerCase(), { service: picked() }, true); });
+      });
+      form.addEventListener('submit', function () { track('book_submit_click', { service: picked() }); }, true);
+      // quote-form.js reveals #formSuccess / #formError; watch them to log the outcome.
+      new MutationObserver(function () {
+        if (!document.getElementById('formSuccess').classList.contains('hidden')) {
+          track('book_lead_submitted', { event_category: 'lead', service: picked() }, true);
+        }
+      }).observe(document.getElementById('formSuccess'), { attributes: true, attributeFilter: ['class'] });
+      new MutationObserver(function () {
+        var box = document.getElementById('formError');
+        if (!box.classList.contains('hidden')) track('book_submit_error', { service: picked(), error_text: box.textContent.slice(0, 90) });
+      }).observe(document.getElementById('formError'), { attributes: true, attributeFilter: ['class'] });
+      // How far down the page people get.
+      if ('IntersectionObserver' in window) {
+        [['.reviews', 'book_reviews_seen'], ['.next', 'book_bottom_seen']].forEach(function (pair) {
+          var el = document.querySelector(pair[0]); if (!el) return;
+          var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { track(pair[1], {}, true); io.disconnect(); } }, { threshold: 0.4 });
+          io.observe(el);
+        });
+      }
+      // Time on page when they leave (only meaningful for people who did not convert).
+      var t0 = Date.now();
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden' && !sent.book_lead_submitted) {
+          track('book_exit', { seconds_on_page: Math.round((Date.now() - t0) / 1000), reached_step: s2.hidden ? 1 : 2, service: picked() }, true);
+        }
+      });
+
       // Enter on step 1 must not submit; quote-form.js validates the whole form on submit.
       form.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !s1.hidden) e.preventDefault(); });
       var t = document.getElementById('quoteSubmitText');
@@ -408,8 +469,8 @@
         resumeAt = performance.now() + 3500;
       }
       function snapTarget(dir) { return (Math.round((pos + (VW - SW) / 2) / STEP) + dir * per) * STEP - (VW - SW) / 2; }
-      document.getElementById('rvNext').addEventListener('click', function () { animateTo(snapTarget(1)); });
-      document.getElementById('rvPrev').addEventListener('click', function () { animateTo(snapTarget(-1)); });
+      document.getElementById('rvNext').addEventListener('click', function () { animateTo(snapTarget(1)); track('book_reviews_nav', { direction: 'next' }); });
+      document.getElementById('rvPrev').addEventListener('click', function () { animateTo(snapTarget(-1)); track('book_reviews_nav', { direction: 'prev' }); });
 
       // Drag / swipe with the finger or mouse; vertical page scroll still works (touch-action: pan-y).
       trackEl.addEventListener('pointerdown', function (e) {
@@ -427,6 +488,7 @@
       function endDrag() {
         if (!dragging) return;
         dragging = false; trackEl.classList.remove('grabbing');
+        if (Math.abs(pos - dragPos) > 30) track('book_reviews_drag', {}, true);
         var target = pos + Math.max(-1, Math.min(1, flick)) * 260;   // a little momentum
         anim = { from: pos, to: Math.round((target + (VW - SW) / 2) / STEP) * STEP - (VW - SW) / 2, t0: performance.now(), dur: 600 };
         resumeAt = performance.now() + 2500;
