@@ -116,6 +116,9 @@
 
   function addMobileContactBar() {
     if (document.getElementById("ngd-mobile-contact")) return;
+    // Pages with their own in-page call/text actions (the /book/ variants)
+    // opt out with <html data-no-contact-bar>.
+    if (document.documentElement.hasAttribute("data-no-contact-bar")) return;
     var bar = document.createElement("div");
     bar.id = "ngd-mobile-contact";
     bar.setAttribute("aria-label", "Contact Noah Garage Doors");

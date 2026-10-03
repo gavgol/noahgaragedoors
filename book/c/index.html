@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-no-contact-bar>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Call | Noah Garage Doors San Diego</title>
+  <meta name="description" content="Noah repairs and installs garage doors in San Diego County. Ask him to call you, or call (619) 572-4266. Open 24/7.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.noahgaragesd.com/book/">
+  <meta name="theme-color" content="#fbf8f2">
+  <link rel="icon" type="image/png" href="/logo.webp">
+  <link rel="preload" as="image" href="/book/hero-doors.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#fbf8f2;--ink:#182b3b;--blue:#163f59;--blue2:#0f3046;--muted:#59646b;--line:#dcd6cc;--terra:#a34c32;--field:#fff}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    header{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 20px;max-width:560px;margin:0 auto}
+    header img{height:28px;width:auto}
+    .open{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+    .open:before{content:"";width:7px;height:7px;border-radius:50%;background:#2f9e5b}
+    .photo{max-width:560px;margin:0 auto}
+    .photo img{width:100%;height:190px;object-fit:cover;object-position:50% 68%}
+    .wrap{max-width:560px;margin:0 auto;padding:0 20px 56px}
+    .cap{font-size:12.5px;color:var(--muted);margin-top:8px}
+    h1{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:34px;line-height:1.08;margin-top:16px;text-wrap:balance}
+    h1 em{font-style:italic;color:var(--terra)}
+    .proof{margin-top:12px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px;color:var(--muted)}
+    .proof b{color:var(--ink)}
+    .proof .stars{color:#b7791f;letter-spacing:1px}
+    .actions{display:grid;gap:10px;margin-top:20px}
+    .primary,.secondary{display:flex;align-items:center;justify-content:center;gap:9px;height:54px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16.5px}
+    .primary{background:var(--blue);color:#fff}
+    .primary:hover{background:var(--blue2)}
+    .secondary{border:1.5px solid var(--ink);color:var(--ink)}
+    .secondary svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .formsec{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+    .formsec h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:27px;line-height:1.1;outline:none}
+    .formsec .sub{color:var(--muted);margin-top:6px}
+    label.f{display:block;font-size:14px;font-weight:700;margin:16px 0 6px}
+    input[type=text],input[type=tel],select,textarea{width:100%;height:54px;border:1.5px solid var(--line);border-radius:7px;background:var(--field);color:var(--ink);font:inherit;font-size:16px;padding:0 14px;outline:none}
+    select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2359646b' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px;padding-right:42px}
+    select:invalid{color:#8a8f92}
+    textarea{height:92px;padding:12px 14px;resize:none}
+    input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(22,63,89,.14)}
+    .consents{margin-top:20px}
+    .consent{display:flex;gap:12px;align-items:flex-start;padding:7px 0;cursor:pointer}
+    .consent input{width:22px;height:22px;flex-shrink:0;margin-top:1px;accent-color:var(--blue)}
+    .consent span{font-size:14px;color:#414b52}
+    .legal{font-size:14px;color:#414b52;margin-top:6px}
+    .legal a{color:var(--blue);font-weight:500}
+    button{width:100%;height:56px;margin-top:20px;border:0;border-radius:8px;background:var(--blue);color:#fff;font:inherit;font-weight:700;font-size:17px;cursor:pointer}
+    button:hover{background:var(--blue2)}
+    button:disabled{opacity:.65;cursor:not-allowed}
+    .price{margin-top:12px;font-size:14.5px;color:var(--muted);text-align:center}
+    .hidden{display:none!important}
+    #formError{margin-top:12px;padding:12px;border-radius:8px;background:#fbecea;border:1px solid #ebbdb5;color:#8a2a1a;font-size:14.5px}
+    #formSuccess{margin-top:20px}
+    #formSuccess h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:26px}
+    #formSuccess p{color:var(--muted);margin-top:8px}
+    #formSuccess a{color:var(--blue);font-weight:700}
+    .text{display:inline-block;margin-top:16px;color:var(--blue);font-weight:500}
+    .ba{margin-top:38px}
+    .ba h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:24px}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .pair figure{position:relative}
+    .pair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px}
+    .pair span{position:absolute;left:8px;top:8px;padding:3px 9px;border-radius:4px;background:rgba(24,43,59,.85);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .ba p{font-size:14px;color:var(--muted);margin-top:8px}
+    footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+    :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+    @media (min-width:600px){.photo img{height:300px;border-radius:0 0 10px 10px}.actions{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" aria-label="Noah Garage Doors home"><img src="/logo.webp" width="1135" height="564" alt="Noah Garage Doors"></a>
+    <span class="open">Open 24/7</span>
+  </header>
+  <div class="photo"><img src="/book/hero-doors.jpg" alt="Two black modern garage doors installed by Noah Garage Doors" width="1400" height="1050" fetchpriority="high"></div>
+
+  <div class="wrap">
+    <p class="cap">A garage door installation I completed in San Diego County.</p>
+    <h1>I'm Noah. I fix <em>garage doors.</em></h1>
+    <div class="proof">
+      <span><span class="stars" aria-hidden="true">★★★★★</span> <b>5.0</b> · 129 Google reviews</span>
+      <span>Licensed &amp; insured · CSLB #1159513</span>
+    </div>
+    <div class="actions">
+      <a class="primary" href="#callback" id="jumpBtn">Ask me to call</a>
+      <a class="secondary" href="tel:+16195724266" id="callBtn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Call me: (619) 572-4266</a>
+    </div>
+
+    <section class="formsec" id="callback">
+      <h2 id="cbh" tabindex="-1">Ask me to call you</h2>
+      <p class="sub">I'll call to talk about your door and set up a visit.</p>
+      <form id="quoteForm" method="post" action="/" novalidate>
+        <input type="hidden" name="lead_source" id="leadSource" value="">
+        <input type="hidden" name="form_started_at" id="formStartedAt" value="">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+
+        <label class="f" for="serviceInput">What's going on?</label>
+        <select id="serviceInput" name="service" required>
+          <option value="" disabled selected>Choose one</option>
+          <option value="Emergency Repair">Door won't open or close</option>
+          <option value="Spring Replacement">Broken spring or loud bang</option>
+          <option value="Off Track Repair">Door off track or crooked</option>
+          <option value="Cable Repair">Cable snapped or loose</option>
+          <option value="Opener Installation">Opener or remote problem</option>
+          <option value="Full Door Replacement">I want a new door</option>
+          <option value="Other / Not Sure">I'm not sure</option>
+        </select>
+        <label class="f" for="quoteName">Your name</label>
+        <input id="quoteName" type="text" name="name" required minlength="2" maxlength="120" autocomplete="name">
+        <label class="f" for="quotePhone">Phone number</label>
+        <input id="quotePhone" type="tel" name="phone" required minlength="10" maxlength="40" autocomplete="tel" inputmode="tel">
+        <label class="f" for="quoteMessage">Anything else? ZIP code helps (optional)</label>
+        <textarea id="quoteMessage" name="message" maxlength="2000"></textarea>
+
+        <div class="consents">
+          <label class="consent" for="quoteSmsService">
+            <input id="quoteSmsService" name="sms_consent_service" type="checkbox">
+            <span>By checking this box, you agree to receive transactional and informational text messages about your service request and appointments from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
+          </label>
+          <label class="consent" for="quoteSmsConsent">
+            <input id="quoteSmsConsent" name="sms_consent" type="checkbox">
+            <span>By checking this box, you agree to receive promotional and marketing text messages from Noah Garage Doors. Message frequency varies. Msg &amp; data rates may apply, reply HELP for help or STOP to opt out.</span>
+          </label>
+          <p class="legal">Both boxes are optional and not required to get service. <a href="/sms-terms.html" target="_blank" rel="noopener">SMS Terms</a> · <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
+        </div>
+
+        <button id="quoteSubmit" type="submit"><span id="quoteSubmitText">Ask Me to Call</span></button>
+        <p class="price">I'll explain the price before I start any work.</p>
+        <div id="formError" class="hidden" role="alert" tabindex="-1"></div>
+      </form>
+      <div id="formSuccess" class="hidden" role="status" aria-live="polite">
+        <h3>Thanks, I've got your request.</h3>
+        <p>I'll call you to talk about your door and set up a visit. You can also call me at <a href="tel:+16195724266">(619) 572-4266</a>.</p>
+      </div>
+      <a class="text" href="sms:+16195724266" id="textBtn">Prefer to text? Text me</a>
+    </section>
+
+    <section class="ba">
+      <h2>Before and after</h2>
+      <div class="pair">
+        <figure><img src="/book/door-before.jpg" alt="Garage door with bent bottom panels before Noah's work" width="1000" height="750" loading="lazy" decoding="async"><span>Before</span></figure>
+        <figure><img src="/book/door-after.jpg" alt="The same garage door straight and working after Noah's work" width="1000" height="750" loading="lazy" decoding="async"><span>After</span></figure>
+      </div>
+      <p>Same garage, before and after my visit.</p>
+    </section>
+
+    <footer>Noah Garage Doors · San Diego County · CSLB #1159513</footer>
+  </div>
+
+  <script src="/quote-form.js?v=book3" defer></script>
+  <script src="/cookie-consent.js?v=8" defer></script>
+  <script>
+    (function () {
+      function track(label) { if (typeof window.gtag === 'function') window.gtag('event', 'phone_call', { event_label: label }); }
+      document.getElementById('callBtn').addEventListener('click', function () { track('book_c'); });
+      document.getElementById('textBtn').addEventListener('click', function () { track('book_c_text'); });
+      document.getElementById('jumpBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('callback').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('cbh').focus({ preventScroll: true });
+      });
+      var t = document.getElementById('quoteSubmitText');
+      new MutationObserver(function () { if (t.textContent.indexOf('Quote') !== -1) t.textContent = 'Ask Me to Call'; })
+        .observe(t, { childList: true, characterData: true, subtree: true });
+    })();
+  </script>
+</body>
+</html>

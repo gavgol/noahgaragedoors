@@ -1,0 +1,16 @@
+You are a senior conversion designer. Review the mobile booking/callback page at book/index.html (live: https://www.noahgaragesd.com/book/). It is the landing page for the "Book" button on a Google Business Profile of a one-man garage door repair business in San Diego (Noah Garage Doors, 5.0 stars, 129 Google reviews, licensed & insured CSLB #1159513, open 24/7, phone (619) 572-4266). Visitors are homeowners on a phone with a broken door, often stressed.
+
+The owner says the current page is clunky, not eye-catching and not aesthetic. 
+
+Tasks:
+1. Look at 4-6 real competitor or category-leader booking / scheduling / "request service" pages for garage door or home-service companies (e.g. national franchises, top San Diego garage door companies, Thumbtack/Angi style flows). Use the network. For each, note the URL and the 1-2 patterns worth borrowing.
+2. Critique the current page honestly: hierarchy, first screen, friction, trust, visual quality.
+3. Propose THREE clearly different design directions for a new version. For each: a name, the core idea in one sentence, first-screen layout (what is visible without scrolling on a 390x844 phone), form flow (single page vs multi-step, which fields), visual style (palette hex, fonts from Google Fonts, imagery), and why it should convert better.
+
+Hard constraints for every direction:
+- Keep the form element IDs/names used by quote-form.js: form#quoteForm, #quoteSubmit, #quoteSubmitText, #formError, #formSuccess, hidden #leadSource and #formStartedAt, honeypot input name="website", fields name/phone/service(required)/message, checkboxes sms_consent_service and sms_consent with their exact legal text visible next to them.
+- Real photos only (files in repo root: gallery1.jpeg..gallery4.jpeg, after_*.jpeg, before_*.jpeg, reviews/img/*.webp). NO AI images of people or vans (hero-mobile.webp and hero_*.jpg are AI, do not use).
+- No claims about arrival time / minutes, no "lifetime warranty", no "bonded/certified/background-checked", no "Google Guaranteed", no em-dashes in copy. Rating must be exactly 5.0 and 129 reviews if mentioned.
+- Copy in first person as Noah.
+
+Write your answer ONLY to CODEX-REVIEW-2026-10/book-directions.md. Do not modify any other file.
