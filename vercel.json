@@ -2,7 +2,12 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "noahgaragesd.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "noahgaragesd.com"
+        }
+      ],
       "destination": "https://www.noahgaragesd.com/$1",
       "permanent": true
     },
@@ -14,6 +19,16 @@
     {
       "source": "/qr",
       "destination": "/book/?utm_source=qr&utm_medium=sticker",
+      "permanent": false
+    },
+    {
+      "source": "/tt",
+      "destination": "/book/?utm_source=tiktok&utm_medium=bio",
+      "permanent": false
+    },
+    {
+      "source": "/x",
+      "destination": "/book/?utm_source=x&utm_medium=bio",
       "permanent": false
     },
     {
@@ -46,25 +61,52 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
-        { "key": "Reporting-Endpoints", "value": "csp-endpoint=\"/api/csp-report\"" },
-        { "key": "Content-Security-Policy-Report-Only", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://noah-fsm.vercel.app https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; report-uri /api/csp-report; report-to csp-endpoint" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Reporting-Endpoints",
+          "value": "csp-endpoint=\"/api/csp-report\""
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://www.googletagmanager.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://noah-fsm.vercel.app https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com https://connect.facebook.net; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; report-uri /api/csp-report; report-to csp-endpoint"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(webp|jpg|jpeg|png|gif|svg|ico|woff2|woff)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=2592000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=2592000"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     }
   ]
