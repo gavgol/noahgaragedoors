@@ -71,7 +71,7 @@ RULES = [
         r'\b(?!5\.0\b)[0-5]\.\d\s*(?:[-– ]?star|stars|/\s*5|out of 5)'
         # An optional word may sit between the number and "Google", as in
         # "162 Verified Google Reviews" or "90 five-star reviews".
-        r'|\b(?!163\b)\d{1,4}\+?\s+(?:(?!google\b)[a-z][a-z-]*\s+)?(?:google\s+)?reviews\b',
+        r'|\b(?!162\b)\d{1,4}\+?\s+(?:(?!google\b)[a-z][a-z-]*\s+)?(?:google\s+)?reviews\b',
         'The real figures are 5.0 stars from 162 reviews. Do not use any other number.',
         None,
     ),
