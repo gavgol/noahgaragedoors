@@ -1048,6 +1048,19 @@
                 @media (min-width:1024px){.rev-card{flex:0 0 30%;}}
                 .rev-card{height:450px;}
                 .rev-card .rev-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+                .rev-card.rev-long .rev-text{-webkit-line-clamp:3;}
+                .rev-more{align-self:flex-start;margin-top:.35rem;font-size:.8rem;font-weight:700;color:#60a5fa;background:none;border:0;padding:.2rem 0;cursor:pointer;touch-action:manipulation;}
+                .rev-more:hover{color:#93c5fd;text-decoration:underline;}
+                .rev-more:focus-visible{outline:2px solid #60a5fa;outline-offset:3px;border-radius:4px;}
+                #rev-dialog{max-width:min(560px,92vw);width:100%;max-height:85vh;border:1px solid rgba(255,255,255,.12);border-radius:1.5rem;padding:0;background:#19191e;color:#fff;}
+                #rev-dialog::backdrop{background:rgba(0,0,0,.7);}
+                #rev-dialog .rd-in{padding:1.75rem;overflow:auto;max-height:85vh;}
+                #rev-dialog .rd-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
+                #rev-dialog .rd-head{flex:1;min-width:0;}
+                #rev-dialog .rd-head > div{margin-bottom:0 !important;}
+                #rev-dialog .rd-x{width:40px;height:40px;border-radius:9999px;border:1px solid rgba(255,255,255,.15);background:none;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;flex-shrink:0;}
+                #rev-dialog p{line-height:1.7;color:rgba(255,255,255,.88);font-weight:300;}
+                #rev-dialog img{width:100%;max-height:340px;object-fit:cover;border-radius:1rem;margin-top:1.25rem;display:block;}
                 /* Off-screen clones (the before/after sets that make the loop seamless)
                    skip layout/paint/style work while scrolled out of view. The browser
                    automatically renders them normally as they approach the viewport, so
@@ -3383,6 +3396,36 @@
                     // by exactly one set width at the edges, invisible because the
                     // sets are identical, so scrolling never hits a "wall".
                     var originals = Array.prototype.slice.call(track.querySelectorAll('.rev-card'));
+                    // Long reviews: show 3 lines + a "Read more" button that opens the
+                    // full text in a dialog (cards keep their fixed carousel height).
+                    // Measured on the originals before cloning, so clones get the button too.
+                    originals.forEach(function (c) {
+                        var t = c.querySelector('.rev-text');
+                        if (!t || t.scrollHeight <= t.clientHeight + 2) return;
+                        c.classList.add('rev-long');
+                        var btn = document.createElement('button');
+                        btn.type = 'button'; btn.className = 'rev-more'; btn.textContent = 'Read more';
+                        t.insertAdjacentElement('afterend', btn);
+                    });
+                    var dlg = document.createElement('dialog');
+                    dlg.id = 'rev-dialog';
+                    dlg.setAttribute('aria-label', 'Full review');
+                    dlg.innerHTML = '<div class="rd-in"><div class="rd-top"><div class="rd-head"></div><button type="button" class="rd-x" aria-label="Close review">&times;</button></div><p></p></div>';
+                    document.body.appendChild(dlg);
+                    dlg.querySelector('.rd-x').addEventListener('click', function () { dlg.close(); });
+                    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+                    track.addEventListener('click', function (e) {
+                        var b = e.target.closest('.rev-more');
+                        if (!b) return;
+                        var card = b.closest('.rev-card');
+                        var head = card.firstElementChild.cloneNode(true);
+                        var top = dlg.querySelector('.rd-head'); top.innerHTML = ''; top.appendChild(head);
+                        dlg.querySelector('p').textContent = card.querySelector('.rev-text').textContent;
+                        var old = dlg.querySelector('.rd-in > img'); if (old) old.remove();
+                        var img = card.querySelector('img');
+                        if (img) { var i2 = img.cloneNode(true); i2.removeAttribute('style'); i2.loading = 'eager'; dlg.querySelector('.rd-in').appendChild(i2); }
+                        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+                    });
                     var origCount = originals.length;
                     var before = document.createDocumentFragment();
                     var after = document.createDocumentFragment();
